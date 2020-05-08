@@ -1,70 +1,3 @@
-// Hàm dùng để format tiền tệ và số
-Number.prototype.formatNumber = function () {
-    var self = this,
-        value = null;
-    if (self) {
-        value = self.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
-    }
-    return value;
-}
-
-// Hàm tạo guid mới
-function NewGuid() {
-    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
-}
-///////////////////////// Các hằng số ///////////////////////////////
-
-var Constant = Constant || {};
-
-// Các url để chuyển hướng
-Constant.url = {
-    Login: "file:///D:/KhoaLuan2020/Index.html",
-    StudentManager: "file:///D:/KhoaLuan2020/View/StudentManager.html",
-    SubjectManager: "file:///D:/KhoaLuan2020/View/SubjectManager.html",
-    RoomManager:"file:///D:/KhoaLuan2020/View/RoomManager.html",
-    PeriodExamManager: "file:///D:/KhoaLuan2020/View/PeriodExamManager.html",
-
-    SubjectList: "file:///D:/KhoaLuan2020/View/SubjectList.html",
-    SettingRoom: "file:///D:/KhoaLuan2020/View/SettingRoom.html",
-    CreateExam: "file:///D:/KhoaLuan2020/View/CreateExam.html"
-}
-
-///////////////////////// Các Enum //////////////////////////////////
-
-var Enum = Enum || {};
-
-// Enum giới tính
-Enum.Gender = ["Giới tính","Nam","Nữ","Khác"];
-Enum.Status = ["Trạng thái","Sử dụng", "Không sử dụng"];
-Enum.StatusPeriod = ["Trạng thái kì thi", "Chưa đăng ký", "Đang đăng ký", "Đã đăng ký"];
-
-// Enum các loại lỗi
-Enum.TypeError = {
-    RequireUserName: 0,
-    RequirePassWord:1,
-    LoginInvalid:2,
-    RequireAll:3
-}
-
-// Các mode của thêm sửa xóa
-Enum.EditMode = {
-    Add: 1,
-    Edit: 2,
-    Delete: 3
-};
-
-// Các trạng thái lỗi khi gọi ajax
-Enum.StatusResponse = {
-    Success: 200,
-    NotFound: 404,
-    BadRequest: 500
-}
-
-// Text thông báo lỗi
-Enum.TypeErrorMessage = ["Tên đăng nhập không được để trống!","Mật khẩu không được để trống!","Tên đăng nhập hoặc mật khẩu không chính xác!",""];
-
 //////////////////////// Các hàm chung //////////////////////////////
 var CommonFn = CommonFn || {};
 
@@ -93,7 +26,7 @@ CommonFn.Clone = function(source){
 // Hàm dùng login
 CommonFn.LoginAjax = function(param, fnCallBack){
     $.ajax({
-        url: "http://admin.dkt.vnu.edu.vn:8881/admin/auth/login",
+        url: mappingApi.Login.urlLogin,
         data: JSON.stringify(param),
         type: "POST",
         crossDomain: true,
@@ -169,4 +102,59 @@ CommonFn.PostPutAjax = function(type, url, param, fnCallBack, async = true){
     }
 }
 
+// Hàm tạo guid mới
+function NewGuid() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+}
+
+///////////////////////// Các hằng số ///////////////////////////////
+var Constant = Constant || {};
+
+// Các url để chuyển hướng
+Constant.url = {
+    Login: "file:///D:/KhoaLuan2020/Index.html",
+    StudentManager: "file:///D:/KhoaLuan2020/View/StudentManager.html",
+    SubjectManager: "file:///D:/KhoaLuan2020/View/SubjectManager.html",
+    RoomManager:"file:///D:/KhoaLuan2020/View/RoomManager.html",
+    PeriodExamManager: "file:///D:/KhoaLuan2020/View/PeriodExamManager.html",
+
+    SubjectList: "file:///D:/KhoaLuan2020/View/SubjectList.html",
+    SettingRoom: "file:///D:/KhoaLuan2020/View/SettingRoom.html",
+    CreateExam: "file:///D:/KhoaLuan2020/View/CreateExam.html"
+}
+
+///////////////////////// Các Enum //////////////////////////////////
+var Enum = Enum || {};
+
+// Enum các loại lỗi
+Enum.TypeError = {
+    RequireUserName: 0,
+    RequirePassWord:1,
+    LoginInvalid:2,
+    RequireAll:3
+}
+
+// Các mode của thêm sửa xóa
+Enum.EditMode = {
+    Add: 1,
+    Edit: 2,
+    Delete: 3
+};
+
+// Các trạng thái lỗi khi gọi ajax
+Enum.StatusResponse = {
+    Success: 200,
+    NotFound: 404,
+    BadRequest: 500
+}
+
+// Enum giới tính
+Enum.Gender = ["Giới tính","Nam","Nữ","Khác"];
+Enum.Status = ["Trạng thái","Sử dụng", "Không sử dụng"];
+Enum.StatusPeriod = ["Trạng thái kì thi", "Chưa đăng ký", "Đang đăng ký", "Đã đăng ký"];
+
+// Text thông báo lỗi
+Enum.TypeErrorMessage = ["Tên đăng nhập không được để trống!","Mật khẩu không được để trống!","Tên đăng nhập hoặc mật khẩu không chính xác!",""];
 

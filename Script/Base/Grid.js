@@ -105,9 +105,6 @@ class Grid{
                 case "DateTime":
                     value = value.substr(0,10);
                     break;
-                case "Number":
-                    value = value.formatNumber();
-                    break;
                 case "Enum":
                     value = Enum[enumName][value];
                     break;
@@ -148,27 +145,51 @@ class Grid{
 
         return element;
     }
-
-    // Thiết lập nếu không có bản ghi nào chọn thì disable sửa, xóa
-    setStatusToolbar(){
+    
+    // Hàm lấy giá trị các bản ghi đang được chọn
+    getSelection(){
         let data = [];
         this.grid.find(".row-focus").each(function(){
             let item = $(this).data("value");
             data.push(item);
         });
 
+        return data;
+    }
+
+    // Thiết lập nếu không có bản ghi nào chọn thì disable sửa, xóa
+    setStatusToolbar(){
+        let me = this,
+            listToolbarDisable = me.getDisableToolbarItem();
+
+        $(".disable-button").removeClass("disable-button");
+
+        $(".toolbar-item[CommanName]").each(function(){
+            let commanName = $(this).attr("CommanName");
+
+            if(listToolbarDisable.includes(commanName)){
+                $(this).addClass("disable-button");
+            }
+        });
+    }
+
+    // Lấy các button bị disable
+    getDisableToolbarItem(){
+        let me = this,
+            data = me.getSelection(),
+            listItemDisable = [];
+
         if(data.length == 0){
-            $(".toolbar-item[CommanName]").each(function(){
-                let commanName = $(this).attr("CommanName");
-                if(commanName == 'Edit' || commanName == 'Delete'){
-                    $(this).addClass("disable-button");
-                }
-            });
-        }else{
-            $(".disable-button").removeClass("disable-button");
+            listItemDisable.push("Edit");
+            listItemDisable.push("Delete");
         }
 
-        this.customToolBarState();
+        return me.getCustomToolbarDisable(listItemDisable);
+    }
+
+    // Custom các button bị disable
+    getCustomToolbarDisable(listItemDisable){
+        return listItemDisable;
     }
 
     // Khởi tạo các sự kiện

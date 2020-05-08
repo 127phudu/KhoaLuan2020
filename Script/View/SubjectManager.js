@@ -15,11 +15,11 @@ class SubjectManagerPage extends BaseGrid {
     getConfig() {
         let object = {
             configUrl: {
-                urlGetData: null,
-                urlCreate: null,
-                urlUpdate: null,
-                urlDelete: null,
-                urlCheckDuplicate: null
+                urlGetData: mappingApi.Subject.urlGetData,
+                urlCreate: mappingApi.Subject.urlCreate,
+                urlUpdate: mappingApi.Subject.urlUpdate,
+                urlDelete: mappingApi.Subject.urlDelete,
+                urlCheckDuplicate: mappingApi.Subject.urlCheckDuplicate
             },
             role: "Admin",
             entityName: "Subjects",

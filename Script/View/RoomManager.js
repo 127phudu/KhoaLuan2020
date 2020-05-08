@@ -15,11 +15,11 @@ class RoomManagerPage extends BaseGrid {
     getConfig() {
         let object = {
             configUrl: {
-                urlGetData: null,
-                urlCreate: null,
-                urlUpdate: null,
-                urlDelete: null,
-                urlCheckDuplicate: null
+                urlGetData: mappingApi.Room.urlGetData,
+                urlCreate: mappingApi.Room.urlCreate,
+                urlUpdate: mappingApi.Room.urlUpdate,
+                urlDelete: mappingApi.Room.urlDelete,
+                urlCheckDuplicate: mappingApi.Room.urlCheckDuplicate
             },
             role: "Admin",
             entityName: "Rooms",

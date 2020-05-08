@@ -15,11 +15,11 @@ class StudentManagerPage extends BaseGrid {
     getConfig() {
         let object = {
             configUrl: {
-                urlGetData: null,
-                urlCreate: null,
-                urlUpdate: null,
-                urlDelete: null,
-                urlCheckDuplicate: null
+                urlGetData: mappingApi.Student.urlGetData,
+                urlCreate: mappingApi.Student.urlCreate,
+                urlUpdate: mappingApi.Student.urlUpdate,
+                urlDelete: mappingApi.Student.urlDelete,
+                urlCheckDuplicate: mappingApi.Student.urlCheckDuplicate
             },
             role: "Admin",
             entityName: "Students",

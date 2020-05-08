@@ -140,15 +140,9 @@ class BaseGrid extends Grid{
         super.loadData(data);
     }
 
-    // Hàm lấy giá trị các bản ghi đang được chọn
-    getSelection(){
-        let data = [];
-        this.grid.find(".row-focus").each(function(){
-            let item = $(this).data("value");
-            data.push(item);
-        });
-
-        return data;
+    // Hàm tạo một số mặc định khi thêm mới
+    initAddNew(){
+        return {};
     }
 
     // Hàm thêm mới
@@ -156,6 +150,7 @@ class BaseGrid extends Grid{
         this.editMode = Enum.EditMode.Add;
 
         if(this.formDetail){
+            this.recordCache = this.initAddNew();
             this.formDetail.show();
         }
     }

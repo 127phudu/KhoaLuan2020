@@ -15,11 +15,11 @@ class PeriodExamManagerPage extends BaseGrid {
     getConfig() {
         let object = {
             configUrl: {
-                urlGetData: null,
-                urlCreate: null,
-                urlUpdate: null,
-                urlDelete: null,
-                urlCheckDuplicate: null
+                urlGetData: mappingApi.PeriodExam.urlGetData,
+                urlCreate: mappingApi.PeriodExam.urlCreate,
+                urlUpdate: mappingApi.PeriodExam.urlUpdate,
+                urlDelete: mappingApi.PeriodExam.urlDelete,
+                urlCheckDuplicate: mappingApi.PeriodExam.urlCheckDuplicate
             },
             role: "Admin",
             entityName: "PeriodExams",
@@ -27,6 +27,30 @@ class PeriodExamManagerPage extends BaseGrid {
         };
 
         return object;
+    }
+
+    //override: Tạo một số thuộc tính mặc định khi thêm mới
+    initAddNew(){
+        return {
+            Status: 1
+        };
+    }
+
+    // Custom các button bị disable
+    getCustomToolbarDisable(listItemDisable){
+        let me = this,
+            records = me.getSelection();
+
+        if(records.length == 1 && records[0].Status == 1){
+            listItemDisable.push("DoneRegister");
+        }else if(records.length == 1 && records[0].Status == 2){
+            listItemDisable.push("StartRegister");
+        }else{
+            listItemDisable.push("DoneRegister");
+            listItemDisable.push("StartRegister");
+        }
+
+        return listItemDisable;
     }
 }
 
