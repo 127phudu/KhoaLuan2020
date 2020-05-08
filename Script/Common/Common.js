@@ -8,27 +8,27 @@ Number.prototype.formatNumber = function () {
     return value;
 }
 
-// Hàm dùng để format ngày tháng dd/mm/yyyy
-Date.prototype.formatDate = function () {
-    var self = this,
-        value = null;
-    if (self) {
-        var dd = self.getDate();
-        var mm = self.getMonth() + 1; 
-        var yyyy = self.getFullYear();
-        dd = (dd < 10) ? '0' + dd : dd;
-        mm = (mm < 10) ? '0' + mm : mm;
-        value = dd + '/' + mm + '/' + yyyy;
-    }
-
-    return value;
-}
-
 // Hàm tạo guid mới
 function NewGuid() {
     return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     );
+}
+///////////////////////// Các hằng số ///////////////////////////////
+
+var Constant = Constant || {};
+
+// Các url để chuyển hướng
+Constant.url = {
+    Login: "file:///D:/KhoaLuan2020/Index.html",
+    StudentManager: "file:///D:/KhoaLuan2020/View/StudentManager.html",
+    SubjectManager: "file:///D:/KhoaLuan2020/View/SubjectManager.html",
+    RoomManager:"file:///D:/KhoaLuan2020/View/RoomManager.html",
+    PeriodExamManager: "file:///D:/KhoaLuan2020/View/PeriodExamManager.html",
+
+    SubjectList: "file:///D:/KhoaLuan2020/View/SubjectList.html",
+    SettingRoom: "file:///D:/KhoaLuan2020/View/SettingRoom.html",
+    CreateExam: "file:///D:/KhoaLuan2020/View/CreateExam.html"
 }
 
 ///////////////////////// Các Enum //////////////////////////////////
@@ -38,6 +38,7 @@ var Enum = Enum || {};
 // Enum giới tính
 Enum.Gender = ["Giới tính","Nam","Nữ","Khác"];
 Enum.Status = ["Trạng thái","Sử dụng", "Không sử dụng"];
+Enum.StatusPeriod = ["Trạng thái kì thi", "Chưa đăng ký", "Đang đăng ký", "Đã đăng ký"];
 
 // Enum các loại lỗi
 Enum.TypeError = {
@@ -135,7 +136,7 @@ CommonFn.GetAjax = function(url, fnCallBack){
             }
         });
     }else{
-        window.location.href = "file:///D:/Project/Index.html";
+        window.location.replace(Constant.url["Login"]);
     }
 }
 
@@ -164,7 +165,7 @@ CommonFn.PostPutAjax = function(type, url, param, fnCallBack, async = true){
             }
         });
     }else{
-        window.location.href = "file:///D:/Project/Index.html";
+        window.location.replace(Constant.url["Login"]);
     }
 }
 

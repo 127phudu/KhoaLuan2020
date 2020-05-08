@@ -1,5 +1,5 @@
-// Trang quản lý Phòng thi
-class RoomManagerPage extends BaseGrid {
+// Trang quản lý kì thi
+class PeriodExamManagerPage extends BaseGrid {
 
     // Hàm khởi tạo grid
     constructor(gridId) {
@@ -8,7 +8,7 @@ class RoomManagerPage extends BaseGrid {
     
     // Tạo form detail
     createFormDetail(formID, width, height){
-        this.formDetail = new RoomForm(this, formID, width, height, this.config.formTitle);
+        this.formDetail = new PeriodExamForm(this, formID, width, height, this.config.formTitle);
     }
 
     //override: Thiết lập các config
@@ -22,21 +22,21 @@ class RoomManagerPage extends BaseGrid {
                 urlCheckDuplicate: null
             },
             role: "Admin",
-            entityName: "Rooms",
-            formTitle:"Phòng thi"
+            entityName: "PeriodExams",
+            formTitle:"Kì thi"
         };
 
         return object;
     }
 }
 
-// Khởi tạo trang quản lý Phòng thi
-var roomManagerPage = new RoomManagerPage("#GridRoom");
+// Khởi tạo trang quản lý Kì thi
+var periodExamManagerPage = new PeriodExamManagerPage("#GridPeriodExam");
 // Tạo một form detail
-    roomManagerPage.createFormDetail("#formRoom", 500, 185);
+    periodExamManagerPage.createFormDetail("#formPeriodExam", 500, 235);
 // Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
-    roomManagerPage.loadData(rooms);
-    roomManagerPage.listFakeData = rooms;
+    periodExamManagerPage.loadData(periodExams);
+    periodExamManagerPage.listFakeData = periodExams;
 
 
 

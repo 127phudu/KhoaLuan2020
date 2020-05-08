@@ -167,6 +167,8 @@ class Grid{
         }else{
             $(".disable-button").removeClass("disable-button");
         }
+
+        this.customToolBarState();
     }
 
     // Khởi tạo các sự kiện
@@ -214,4 +216,7 @@ class Grid{
            me.setStatusToolbar();
         });
     }
+
+    // Dùng custom trạng thái toolbar khi cần
+    customToolBarState(){}
 }

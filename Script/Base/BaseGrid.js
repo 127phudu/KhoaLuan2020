@@ -18,7 +18,7 @@ class BaseGrid extends Grid{
         let role = localStorage.getItem("Role");
         
         if(!this.config.role || this.config.role != role){
-            window.location.href = "file:///D:/Project/View/ErrorPage.html";
+            window.location.replace(Constant.url["Login"]);
         }
     }
 
@@ -50,30 +50,14 @@ class BaseGrid extends Grid{
                 case "Delete":
                     me.delete();
                     break;
-                case "View":
-                    me.view();
-                    break;
-                case "Print":
-                    me.print();
-                    break;
-                case "DownLoad":
-                    me.downLoad();
-                    break;
                 case "Import":
                     me.import();
                     break;
                 case "Export":
                     me.export();
                     break;
-                case "Duplicate":
-                    me.duplicate();
-                    break;
-                case "Use":
-                    me.use();
-                    break;
-                case "NotUse":
-                    me.notUse();
-                    break;
+                default:
+                    me.customToolbarItem(commandName);
             }
         });
     }
@@ -194,24 +178,11 @@ class BaseGrid extends Grid{
     }
     
     // Hàm lấy config
-    getConfig(){
-        return null;
-    }
-
-    // Hàm xem
-    view(){}
-    // Hàm in dữ liệu
-    print(){}
-    // Hàm download
-    downLoad(){}
-    // Hàm nhập khẩu
+    getConfig(){return null;}
+    // Nhập khẩu
     import(){}
-    // Hàm xuất khẩu
+    // Xuất khẩu
     export(){}
-    // Hàm nhân bản
-    duplicate(){}
-    // Hàm sử dụng
-    use(){}
-    // Hàm không sử dụng
-    notUse(){}
+    // Hàm dùng đối với từng loại toolbar đặc thù
+    customToolbarItem(commandName){}
 }

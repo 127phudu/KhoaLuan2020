@@ -75,83 +75,55 @@ var subjects = [
 // Dữ liệu các phòng thi
 var rooms = [
     {
-        RoomID: 1,
+        Id: 1,
         RoomName: "309G2",
         RoomCode: "PT0001",
-        SumComputer: 34,
-        PreventiveComputer: 4,
-        Status: 1
+        Place: "Đại học ngoại ngữ",
+        Description: "Khu vực đại học quốc gia"
     },
     {
-        RoomID: 2,
+        Id: 2,
         RoomName: "303G2",
         RoomCode: "PT0002",
-        SumComputer: 30,
-        PreventiveComputer: 5,
-        Status: 2
+        Place: "Đại học gtvt",
+        Description: ""
     },
     {
-        RoomID: 3,
+        Id: 3,
         RoomName: "304G3",
         RoomCode: "PT0003",
-        SumComputer: 31,
-        PreventiveComputer: 2,
+        Place: "Khu vực ký túc xá",
+        Description: "Gần kí túc"
+    }
+];
+
+// Dữ liệu các kì thi
+var periodExams = [
+    {
+        Id: 1,
+        PeriodName: "Kì thi học kì I",
+        PeriodCode: "PT0001",
+        Year: 2019,
+        StartDate: "19/03/2020 02:03:05",
+        EndDate: "19/04/2020 02:03:05",
         Status: 1
     },
     {
-        RoomID: 4,
-        RoomName: "301G3",
-        RoomCode: "PT0004",
-        SumComputer: 24,
-        PreventiveComputer: 1,
+        Id: 2,
+        PeriodName: "Kì thi học kì II",
+        PeriodCode: "PT0002",
+        Year: 2018,
+        StartDate: "12/03/2020 02:03:05",
+        EndDate: "14/04/2020 02:03:05",
         Status: 2
     },
     {
-        RoomID: 5,
-        RoomName: "308G2",
-        RoomCode: "PT0005",
-        SumComputer: 27,
-        PreventiveComputer: 2,
-        Status: 1
-    },
-    {
-        RoomID: 6,
-        RoomName: "302G1",
-        RoomCode: "PT0006",
-        SumComputer: 29,
-        PreventiveComputer: 3,
-        Status: 1
-    },
-    {
-        RoomID: 2,
-        RoomName: "303G2",
-        RoomCode: "PT0002",
-        SumComputer: 30,
-        PreventiveComputer: 5,
-        Status: 2
-    },
-    {
-        RoomID: 3,
-        RoomName: "304G3",
-        RoomCode: "PT0003",
-        SumComputer: 31,
-        PreventiveComputer: 2,
-        Status: 1
-    },
-    {
-        RoomID: 4,
-        RoomName: "301G3",
-        RoomCode: "PT0004",
-        SumComputer: 24,
-        PreventiveComputer: 1,
-        Status: 2
-    },
-    {
-        RoomID: 5,
-        RoomName: "308G2",
-        RoomCode: "PT0005",
-        SumComputer: 27,
-        PreventiveComputer: 2,
-        Status: 1
+        Id: 3,
+        PeriodName: "Kì thi học kì phụ",
+        PeriodCode: "PT0003",
+        Year: 2020,
+        StartDate: "05/03/2020 02:03:05",
+        EndDate: "03/04/2020 02:03:05",
+        Status: 3
     }
 ];

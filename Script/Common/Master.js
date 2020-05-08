@@ -3,11 +3,11 @@ class Layout{
     constructor(){
         // Khởi tạo các sự kiện
         this.initEvent();
-        this.bindindFullName();
+        this.bindingFullName();
     }
 
     // Hiển thị tên người dùng đăng nhập
-    bindindFullName(){
+    bindingFullName(){
         let fullName = localStorage.getItem("FullName");
 
         if(fullName){
@@ -22,6 +22,9 @@ class Layout{
 
         // Khi bấm đăng xuất
         $(".logout").click(this.logout.bind(this));
+
+        // Khi bấm vào menu
+        $(".submenu-item").click(this.redirecPage);
     }
 
     // Hàm xử lý khi đăng xuất
@@ -30,7 +33,16 @@ class Layout{
         localStorage.removeItem("Authorization");
         localStorage.removeItem("Role");
         // Chuyển tới trang đăng nhập
-        window.location.href = "file:///D:/Project/Index.html";
+        window.location.replace(Constant.url["Login"]);
+    }
+
+    // Hàm xử lý khi bấm vào menu
+    redirecPage(){
+        let urlTarget = $(this).attr("key");
+
+        if(urlTarget){
+            window.location.replace(Constant.url[urlTarget]);
+        }
     }
 
     // Hiển thị và thu gọn menubar

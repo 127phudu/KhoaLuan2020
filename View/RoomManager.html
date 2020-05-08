@@ -12,6 +12,7 @@
 </head>
 <body>
     <div class="container-wrapp">
+        <!-- Header page -->
         <div class="header-page">
             <div class="header-left flex">
                 <span class="glyphicon glyphicon-menu-hamburger"></span>
@@ -28,72 +29,86 @@
             </div>
         </div>
         <div class="body-page flex">
+            <!-- Menu left -->
             <div class="body-left">
                 <ul>
-                    <li class=" flex item-1">
-                        <a href="file:///D:/Project/View/StudentManager.html">
-                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                            <span>Quản lý sinh viên</span>
+                    <li class="menu-group">
+                        <a href="#" class="menu-parent">
+                            <i class="fa fa-graduation-cap"></i>
+                            <span>Quản lý kì thi</span>
                         </a>
                     </li>
-                    <li class="item-2">
-                        <a href="#">
-                            <i class="fa fa-book" aria-hidden="true"></i>
-                            <span>Quản lý học phần</span>
+                    <li class="flex item-1 submenu-item" key="SubjectList">
+                        <a href="#" class="tabLeft">
+                            <span>Danh sách học phần - SV</span>
                         </a>
                     </li>
-                    <li class="item-3 hover-color">
-                        <a href="file:///D:/Project/View/RoomManager.html">
-                            <i class="fa fa-home" aria-hidden="true"></i>
-                            <span> Quản lý phòng thi</span>
+                    <li class="flex item-2 submenu-item" key="SettingRoom">
+                        <a href="#" class="tabLeft">
+                            <span>Thiết lập phòng thi</span>
                         </a>
                     </li>
-                    <li class="item-4">
-                        <a href="#">
-                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                            <span>Quản lý ca thi</span>
+                    <li class="flex item-3 submenu-item" key="CreateExam">
+                        <a href="#" class="tabLeft">
+                            <span>Tạo lịch thi</span>
                         </a>
                     </li>
-                    <li class="item-5">
-                        <a href="#">
-                            <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                            <span>Quản lý lịch thi</span>
+                    <li class="menu-group">
+                        <a href="#" class="menu-parent">
+                            <i class="fa fa-address-book"></i>
+                            <span>Quản lý danh mục</span>
                         </a>
                     </li>
-                    <li class="item-6">
-                        <a href="#">
-                            <i class="fa fa-address-book" aria-hidden="true"></i>
-                            <span>Danh sách dự thi</span>
+                    <li class="flex item-1 submenu-item" key="StudentManager">
+                        <a href="#" class="tabLeft">
+                            <span>Sinh viên</span>
                         </a>
                     </li>
-                    <li class="item-7">
-                        <a href="#">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                            <span>Đăng ký thi</span>
+                    <li class="flex item-2 submenu-item" key="SubjectManager">
+                        <a href="#" class="tabLeft">
+                            <span>Học phần</span>
                         </a>
                     </li>
-                    <li class="item-8">
-                        <a href="#">
-                            <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                            <span>Kết quả đăng ký thi</span>
+                    <li class="flex item-3 submenu-item hover-color" key="RoomManager">
+                        <a href="#" class="tabLeft">
+                            <span>Phòng thi</span>
+                        </a>
+                    </li>
+                    <li class="flex item-3 submenu-item" key="PeriodExamManager">
+                        <a href="#" class="tabLeft">
+                            <span>Kì thi</span>
+                        </a>
+                    </li>
+                    <li class="menu-group">
+                        <a href="#" class="menu-parent">
+                            <i class="glyphicon glyphicon-cog"></i>
+                            <span>Tùy chọn</span>
+                        </a>
+                    </li>
+                    <li class="flex item-1 submenu-item">
+                        <a href="#" class="tabLeft">
+                            <span>Đổi mật khẩu</span>
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="body-right flex1 main-content">
+                
                 <!-- Nội dung thay thế từng trang -->
                 <div class="container-fluid" id="RoomContainer">
                     <div class="row breadrum">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Quản lý phòng thi</li>
+                              <li class="breadcrumb-item"><a href="#">Quản lý danh mục</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Phòng thi</li>
                             </ol>
                           </nav>
                     </div>
                     <div class="row header-title">
                         <span>DANH SÁCH PHÒNG THI</span>
                     </div>
+
+                    <!-- Toolbar -->
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="toolbar">
@@ -109,10 +124,6 @@
                                     <span class="icon-toolbar glyphicon glyphicon-trash"></span>
                                     <span class="text-toolbar">Xóa</span>
                                 </div>
-                                <div class="toolbar-item" CommanName='Refresh'>
-                                    <span class="icon-toolbar glyphicon glyphicon-refresh"></span>
-                                    <span class="text-toolbar">Nạp</span>
-                                </div>
                                 <div class="toolbar-item" CommanName='Import'>
                                     <span class="icon-toolbar glyphicon glyphicon-cloud-upload"></span>
                                     <span class="text-toolbar">Nhập khẩu</span>
@@ -124,14 +135,15 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Grid  -->
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="Grid" id="GridRoom" useCheckBox='true' useIndex="true">
                                 <div class="column" setField="RoomName">Tên phòng</div>
                                 <div class="column" setField="RoomCode">Mã phòng</div>
-                                <div class="column" setField="SumComputer" dataType="Number">Tổng số máy</div>
-                                <div class="column" setField="PreventiveComputer" dataType="Number" >Số máy dự phòng</div>
-                                <div class="column" setField="Status" dataType="Enum" enumName="Status">Trạng thái</div>
+                                <div class="column" setField="Place">Khu vực</div>
+                                <div class="column" setField="Description">Mô tả</div>
                             </div>
                         </div>
                     </div>
@@ -140,51 +152,45 @@
             </div>
         </div>
     </div>
+
+    <!-- Form thêm mới phòng thi -->
     <div class="wrapper-form">
         <div class="formDialog" id="formRoom">
+
+            <!-- Header form -->
             <div class="header-form">
                 Thêm phòng thi
             </div>
+
+            <!-- Body form -->
             <div class="body-form">
                 <div class="row">
                     <div class="col-md-12 row-custom">
                         <div class="row-grid">
                             <div class="text-field flex1 border-right-none">
                                 <b>Tên phòng <span class="require">(*)</span></b>
-                                <input type="text" id="xuan" Require="true" SetField="RoomName" title="Không được để trống"
-                                    placeholder="Nhập tên phòng...">
+                                <input type="text" Require="true" SetField="RoomName" MaxLength="100" title="Không được để trống" placeholder="Nhập tên phòng...">
                             </div>
                             <div class="text-field flex1">
                                 <b>Mã phòng <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="RoomCode" title="Không được để trống"
-                                    placeholder="Nhập mã sinh viên...">
+                                <input type="text" Require="true" SetField="RoomCode" CheckDuplicate="true" MaxLength="15" title="Không được để trống" placeholder="Nhập mã phòng...">
                             </div>
                         </div>
                         <div class="row-grid">
                             <div class="text-field flex1 border-topright-none">
-                                <b>Tổng số máy <span class="require">(*)</span></b>
-                                <input type="number" Require="true" SetField="SumComputer" DataType="Number" 
-                                    placeholder="Nhập số máy...">
+                                <b>Khu vực </b>
+                                <input type="text" SetField="Place"  MaxLength="100" placeholder="Nhập khu vực...">
                             </div>
                             <div class="text-field flex1 border-top-none">
-                                <b>Số máy dự phòng</b>
-                                <input type="number" SetField="PreventiveComputer" DataType="Number" 
-                                    placeholder="Nhập số máy...">
-                            </div>
-                        </div>
-                        <div class="row-grid">
-                            <div class="text-field flex1 border-top-none">
-                                <b>Trạng thái phòng thi</b>
-                                <select class="speed combox-select" SetField="Status" Enum="Status" DataType="Enum"
-                                    id="speed">
-                                    <option value="1" selected>Sử dụng</option>
-                                    <option value="2">Không sử dụng</option>
-                                </select>
+                                <b>Mô tả</b>
+                                <input type="text" SetField="Description" placeholder="Nhập mô tả..." MaxLength="200">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Footer form -->
             <div class="footer-form">
                 <div class="btn-cancel">
                     <span class="glyphicon glyphicon-remove"></span>
@@ -197,9 +203,13 @@
             </div>
         </div>
     </div>
+
+    <!-- Thông báo cất thành công -->
     <div class="alert alert-success" id="success-alert">
         <strong>Cất dữ liệu thành công! </strong>
     </div>
+
+    <!-- Form xác nhận xóa -->
     <div id="myModal" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
@@ -208,11 +218,13 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal">HỦY BỎ</button>
-                    <button type="button" class="btn btn-danger">XÓA</button>
+                    <button type="button" id="btn-Delete" class="btn btn-danger">XÓA</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Script common -->
     <script src="../Script/Common/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="../Script/Common/jquery-ui.min.js"></script>
@@ -221,7 +233,10 @@
     <script src="../Script/Common/Data.js"></script>
     <script src="../Script/Base/Grid.js"></script>
     <script src="../Script/Base/BaseGrid.js"></script>
-    <script src="../Script/Base/FormDialog.js"></script>
+    <script src="../Script/Base/BaseForm.js"></script>
+
+    <!-- Script từng page -->
+    <script src="../Script/Form/RoomForm.js"></script>
     <script src="../Script/View/RoomManager.js"></script>
 </body>
 </html>
