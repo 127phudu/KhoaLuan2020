@@ -25,6 +25,9 @@ class Layout{
 
         // Khi bấm vào menu
         $(".submenu-item").click(this.redirecPage);
+
+        // Khi bấm vào đổi mật khẩu
+        $("#menuChangePassword").click(this.changePassword);
     }
 
     // Hàm xử lý khi đăng xuất
@@ -45,6 +48,11 @@ class Layout{
         }
     }
 
+    // Hàm xử lý khi thay đổi mật khẩu
+    changePassword(){
+        changePasswordForm.show();
+    }
+
     // Hiển thị và thu gọn menubar
     showMenuBar(){
         $(".body-left").toggleClass("display-none");
@@ -53,3 +61,4 @@ class Layout{
 
 // Khởi tạo một trang layout
 var layout = new Layout();
+

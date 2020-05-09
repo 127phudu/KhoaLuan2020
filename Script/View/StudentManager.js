@@ -30,11 +30,13 @@ class StudentManagerPage extends BaseGrid {
     }
 }
 
-// Khởi tạo trang quản lý sinh viên
+    // Khởi tạo trang quản lý sinh viên
 var studentManagerPage = new StudentManagerPage("#GridStudent");
-// Tạo một form detail
+    // Tạo một form detail
     studentManagerPage.createFormDetail("#formStudent", 500, 235);
-// Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
+    // Khởi tạo form thay đổi mật khẩu
+var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
+    // Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
     studentManagerPage.loadData(students);
     studentManagerPage.listFakeData = students;
 

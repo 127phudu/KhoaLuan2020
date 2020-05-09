@@ -85,7 +85,7 @@
                             <span>Tùy chọn</span>
                         </a>
                     </li>
-                    <li class="flex item-1 submenu-item">
+                    <li class="flex item-1 submenu-item" id='menuChangePassword'>
                         <a href="#" class="tabLeft">
                             <span>Đổi mật khẩu</span>
                         </a>
@@ -156,7 +156,7 @@
     </div>
 
     <!-- Form thêm mới sinh viên -->
-    <div class="wrapper-form">
+    <div class="wrapper-form wrapp-formEntity">
         <div class="formDialog" id="formStudent">
 
             <!-- Header form -->
@@ -223,6 +223,55 @@
             </div>
         </div>
     </div>
+    
+    <!-- Form đổi mật khẩu -->
+    <div class="wrapper-form formChanePassword">
+        <div class="formDialog" id="formChangePassword">
+            <!-- Header form -->
+            <div class="header-form">
+                ĐỔI MẬT KHẨU
+            </div>
+            <!-- Body form -->
+            <div class="body-form">
+                <div class="row">
+                    <div class="col-md-12 row-custom">
+                        <div class="row-grid">
+                            <div class="text-field flex1">
+                                <b>Mật khẩu hiện tại <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="CurrentPassword" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu hiện tại...">
+                            </div>
+                        </div>
+                        <div class="row-grid">
+                            <div class="text-field flex1 border-top-none">
+                                <b>Mật khẩu mới <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="NewPassword" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu mới...">
+                            </div>
+                        </div>
+                        <div class="row-grid">
+                            <div class="text-field flex1 border-top-none">
+                                <b>Xác nhận mật khẩu <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="ConfirmPassWord" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu xác nhận...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer form -->
+            <div class="footer-form">
+                <div class="btn-cancel">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span>HỦY BỎ</span>
+                </div>
+                <div class="btn-save">
+                    <span class="glyphicon glyphicon-save"></span>
+                    <span>CẤT</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Thông báo cất thành công -->
     <div class="alert alert-success" id="success-alert">
@@ -260,6 +309,7 @@
 
     <!-- Script từng page -->
     <script src="../Script/Form/StudentForm.js"></script>
+    <script src="../Script/Form/ChangePasswordForm.js"></script>
     <script src="../Script/View/StudentManager.js"></script>
 </body>
 </html>

@@ -251,18 +251,20 @@ class BaseForm{
 
     // Lưu dữ liệu vào DB
     saveChangeData(data){
-        if(this.jsCaller.editMode == Enum.EditMode.Add){
-            CommonFn.PostPutAjax("POST", this.jsCaller.config.configUrl.urlCreate, data, function(response) {
+        let me = this;
+
+        if(me.jsCaller.editMode == Enum.EditMode.Add){
+            CommonFn.PostPutAjax("POST", me.jsCaller.config.configUrl.urlCreate, data, function(response) {
                 if(response.status == Enum.StatusResponse.Success){
-                    this.showMessageSuccess();
-                    this.jsCaller.loadAjaxData();
+                    me.showMessageSuccess();
+                    me.jsCaller.loadAjaxData();
                 }
             });
         }else{
-            CommonFn.PostPutAjax("PUT", this.jsCaller.config.configUrl.urlUpdate, data, function(response) {
+            CommonFn.PostPutAjax("PUT", me.jsCaller.config.configUrl.urlUpdate, data, function(response) {
                 if(response.status == Enum.StatusResponse.Success){
-                    this.showMessageSuccess();
-                    this.jsCaller.loadAjaxData();
+                    me.showMessageSuccess();
+                    me.jsCaller.loadAjaxData();
                 }
             });
         }
@@ -278,7 +280,11 @@ class BaseForm{
     }
 
     // Hiển thị thông báo cất thành công
-    showMessageSuccess(){
+    showMessageSuccess(customMessage){
+        let message = customMessage || "Cất dữ liệu thành công!";
+
+        $("#success-alert strong").text(message);
+
         $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){
             $("#success-alert").slideUp(500);
         });
@@ -287,7 +293,7 @@ class BaseForm{
     // Hàm hiển thị form
     show(data){
         let title = '';
-        $(".wrapper-form").show();
+        $(".wrapp-formEntity").show();
 
         if(this.jsCaller.editMode == Enum.EditMode.Add){
             title = 'Thêm ' + this.title;

@@ -75,11 +75,15 @@ class Login {
 
     // Gửi dữ liệu lên server
     submitData(param) {
+        let me = this;
+
         CommonFn.LoginAjax(param,function(response) {
             if(response.status){
-                window.location.href = "file:///D:/Project/View/StudentManager.html";
+                localStorage.setItem("UserName", param.Username);
+                localStorage.setItem("Password", param.Password);
+                window.location.replace(Constant.url["PeriodExamManager"]);
             }else{
-                this.setMessageError(Enum.TypeError.LoginInvalid);
+                me.setMessageError(Enum.TypeError.LoginInvalid);
             }
         });
     }

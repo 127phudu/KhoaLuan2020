@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
 </head>
+
 <body>
     <div class="container-wrapp">
         <!-- Header page -->
@@ -85,7 +87,7 @@
                             <span>Tùy chọn</span>
                         </a>
                     </li>
-                    <li class="flex item-1 submenu-item">
+                    <li class="flex item-1 submenu-item" id='menuChangePassword'>
                         <a href="#" class="tabLeft">
                             <span>Đổi mật khẩu</span>
                         </a>
@@ -93,16 +95,16 @@
                 </ul>
             </div>
             <div class="body-right flex1 main-content">
-                
+
                 <!-- Nội dung thay thế từng trang -->
                 <div class="container-fluid" id="SubjectContainer">
                     <div class="row breadrum">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="#">Quản lý danh mục</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Học phần</li>
+                                <li class="breadcrumb-item"><a href="#">Quản lý danh mục</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Học phần</li>
                             </ol>
-                          </nav>
+                        </nav>
                     </div>
                     <div class="row header-title">
                         <span>DANH SÁCH HỌC PHẦN</span>
@@ -154,7 +156,7 @@
     </div>
 
     <!-- Form thêm mới Học phần -->
-    <div class="wrapper-form">
+    <div class="wrapper-form wrapp-formEntity">
         <div class="formDialog" id="formSubject">
 
             <!-- Header form -->
@@ -169,20 +171,20 @@
                         <div class="row-grid">
                             <div class="text-field flex1 border-right-none">
                                 <b>Tên học phần <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="SubjectName" MaxLength="100" title="Không được để trống"
-                                    placeholder="Nhập tên học phần...">
+                                <input type="text" Require="true" SetField="SubjectName" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập tên học phần...">
                             </div>
                             <div class="text-field flex1">
                                 <b>Mã học phần <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="SubjectCode" CheckDuplicate="true" MaxLength="15" title="Không được để trống"
-                                    placeholder="Nhập mã sinh viên...">
+                                <input type="text" Require="true" SetField="SubjectCode" CheckDuplicate="true"
+                                    MaxLength="15" title="Không được để trống" placeholder="Nhập mã sinh viên...">
                             </div>
                         </div>
                         <div class="row-grid">
                             <div class="text-field flex1 border-topright-none">
                                 <b>Số tín chỉ <span class="require">(*)</span> </b>
-                                <input type="number" Require="true" SetField="NumberCredit" DataType="Number"  MaxLength="3"  title="Không được để trống"
-                                    placeholder="Nhập số tín chỉ...">
+                                <input type="number" Require="true" SetField="NumberCredit" DataType="Number"
+                                    MaxLength="3" title="Không được để trống" placeholder="Nhập số tín chỉ...">
                             </div>
                             <div class="text-field flex1 border-top-none">
                                 <b>Mô tả</b>
@@ -193,6 +195,55 @@
                 </div>
             </div>
 
+            <!-- Footer form -->
+            <div class="footer-form">
+                <div class="btn-cancel">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span>HỦY BỎ</span>
+                </div>
+                <div class="btn-save">
+                    <span class="glyphicon glyphicon-save"></span>
+                    <span>CẤT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form đổi mật khẩu -->
+    <div class="wrapper-form formChanePassword">
+        <div class="formDialog" id="formChangePassword">
+            <!-- Header form -->
+            <div class="header-form">
+                ĐỔI MẬT KHẨU
+            </div>
+            <!-- Body form -->
+            <div class="body-form">
+                <div class="row">
+                    <div class="col-md-12 row-custom">
+                        <div class="row-grid">
+                            <div class="text-field flex1">
+                                <b>Mật khẩu hiện tại <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="CurrentPassword" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu hiện tại...">
+                            </div>
+                        </div>
+                        <div class="row-grid">
+                            <div class="text-field flex1 border-top-none">
+                                <b>Mật khẩu mới <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="NewPassword" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu mới...">
+                            </div>
+                        </div>
+                        <div class="row-grid">
+                            <div class="text-field flex1 border-top-none">
+                                <b>Xác nhận mật khẩu <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="ConfirmPassWord" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu xác nhận...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Footer form -->
             <div class="footer-form">
                 <div class="btn-cancel">
@@ -240,9 +291,11 @@
     <script src="../Script/Base/Grid.js"></script>
     <script src="../Script/Base/BaseGrid.js"></script>
     <script src="../Script/Base/BaseForm.js"></script>
-
+    
     <!-- Script từng page -->
     <script src="../Script/Form/SubjectForm.js"></script>
+    <script src="../Script/Form/ChangePasswordForm.js"></script>
     <script src="../Script/View/SubjectManager.js"></script>
 </body>
+
 </html>

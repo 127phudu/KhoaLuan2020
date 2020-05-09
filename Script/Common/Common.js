@@ -1,6 +1,4 @@
 //////////////////////// Các hàm chung //////////////////////////////
-var CommonFn = CommonFn || {};
-
 // Hàm dùng để parse dữ liệu từ Jwt sang json
 function parseJwt (token) {
     var base64Url = token.split('.')[1];
@@ -11,6 +9,25 @@ function parseJwt (token) {
 
     return JSON.parse(jsonPayload);
 };
+
+// Hàm dùng để chuyển một chuỗi Date dạng dd/MM/yyyy sang Date object
+function convertDate(dateStr){
+    let day = dateStr.substr(0,2),
+        month = dateStr.substr(3,2),
+        year = dateStr.substr(6,4),
+        newDateStr = year + '-' + month + '-' + day;
+
+    return new Date(newDateStr);
+}
+
+// Hàm tạo guid mới
+function NewGuid() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+}
+
+var CommonFn = CommonFn || {};
 
 // Clone một đối tượng này sang đối tượng mới
 CommonFn.Clone = function(source){
@@ -26,14 +43,14 @@ CommonFn.Clone = function(source){
 // Hàm dùng login
 CommonFn.LoginAjax = function(param, fnCallBack){
     $.ajax({
-        url: mappingApi.Login.urlLogin,
+        url: mappingApi.Master.urlLogin,
         data: JSON.stringify(param),
         type: "POST",
         crossDomain: true,
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (response) {
-            if(response.status){
+            if(response.status == Enum.StatusResponse.Success){
                 localStorage.setItem("Authorization", response.Token);
                 localStorage.setItem("FullName", parseJwt(response.Token).fullName);
             }
@@ -100,13 +117,6 @@ CommonFn.PostPutAjax = function(type, url, param, fnCallBack, async = true){
     }else{
         window.location.replace(Constant.url["Login"]);
     }
-}
-
-// Hàm tạo guid mới
-function NewGuid() {
-    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
 }
 
 ///////////////////////// Các hằng số ///////////////////////////////

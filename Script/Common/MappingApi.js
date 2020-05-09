@@ -1,7 +1,8 @@
 // Các api map với chương trình
 var mappingApi = {
-    Login:{
+    Master:{
         urlLogin: "http://admin.dkt.vnu.edu.vn:8881/admin/auth/login",
+        urlChangePassword: null,
     },
     Student:{
         urlGetData: null,

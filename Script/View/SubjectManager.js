@@ -30,11 +30,13 @@ class SubjectManagerPage extends BaseGrid {
     }
 }
 
-// Khởi tạo trang quản lý Học phần
+    // Khởi tạo trang quản lý Học phần
 var subjectManagerPage = new SubjectManagerPage("#GridSubject");
-// Tạo một form detail
+    // Tạo một form detail
     subjectManagerPage.createFormDetail("#formSubject", 500, 185);
-// Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
+    // Khởi tạo form thay đổi mật khẩu
+var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
+    // Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
     subjectManagerPage.loadData(subjects);
     subjectManagerPage.listFakeData = subjects;
 

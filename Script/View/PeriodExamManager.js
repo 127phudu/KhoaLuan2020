@@ -54,11 +54,13 @@ class PeriodExamManagerPage extends BaseGrid {
     }
 }
 
-// Khởi tạo trang quản lý Kì thi
+    // Khởi tạo trang quản lý Kì thi
 var periodExamManagerPage = new PeriodExamManagerPage("#GridPeriodExam");
-// Tạo một form detail
+    // Tạo một form detail
     periodExamManagerPage.createFormDetail("#formPeriodExam", 500, 235);
-// Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
+    // Khởi tạo form thay đổi mật khẩu
+var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
+    // Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
     periodExamManagerPage.loadData(periodExams);
     periodExamManagerPage.listFakeData = periodExams;
 
