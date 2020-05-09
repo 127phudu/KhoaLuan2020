@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quản lý phòng thi</title>
+    <title>Danh sách học phần - Sinh viên</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
 </head>
+
 <body>
     <div class="container-wrapp">
         <!-- Header page -->
@@ -43,7 +45,7 @@
                             <span>Kì thi</span>
                         </a>
                     </li>
-                    <li class="flex item-1 submenu-item" key="ListSubject">
+                    <li class="flex item-1 submenu-item hover-color" key="ListSubject">
                         <a href="#" class="tabLeft">
                             <span>Danh sách học phần - SV</span>
                         </a>
@@ -74,7 +76,7 @@
                             <span>Học phần</span>
                         </a>
                     </li>
-                    <li class="flex item-3 submenu-item hover-color" key="RoomManager">
+                    <li class="flex item-3 submenu-item" key="RoomManager">
                         <a href="#" class="tabLeft">
                             <span>Phòng thi</span>
                         </a>
@@ -93,44 +95,43 @@
                 </ul>
             </div>
             <div class="body-right flex1 main-content">
-                
+
                 <!-- Nội dung thay thế từng trang -->
-                <div class="container-fluid" id="RoomContainer">
+                <div class="container-fluid" id="SubjectContainer">
+
                     <div class="row breadrum">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="#">Quản lý danh mục</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Phòng thi</li>
+                                <li class="breadcrumb-item"><a href="#">Quản lý kì thi</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Danh sách học phần - Sinh viên
+                                </li>
                             </ol>
-                          </nav>
+                        </nav>
                     </div>
-                    <div class="row header-title">
-                        <span>DANH SÁCH PHÒNG THI</span>
+
+                    <div class="row header-title header-title-combo">
+                        <select class="speed combox-select" aria-placeholder="Chọn kì thi..." DataType="EnumCombobox" id="chooseExam">
+                            <option value="1" selected="selected">Kì thi học kì I</option>
+                            <option value="2">Kì thi học kì phụ</option>
+                            <option value="3">Kì thi đánh giá năng lực</option>
+                        </select>
                     </div>
 
                     <!-- Toolbar -->
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="toolbar" id="ToolbarGridRoom">
-                                <div class="toolbar-item" CommanName='Add'>
+                            <div class="toolbar" id="ToolbarGridListSubject">
+                                <div class="toolbar-item" CommanName='Choose'>
                                     <span class="icon-toolbar glyphicon glyphicon-plus"></span>
-                                    <span class="text-toolbar">Thêm</span>
+                                    <span class="text-toolbar">Chọn học phần</span>
                                 </div>
-                                <div class="toolbar-item" CommanName='Edit'>
-                                    <span class="icon-toolbar glyphicon glyphicon-pencil"></span>
-                                    <span class="text-toolbar">Sửa</span>
+                                <div class="toolbar-item" CommanName='ViewDetail'>
+                                    <span class="icon-toolbar glyphicon glyphicon-random"></span>
+                                    <span class="text-toolbar">Xem chi tiết</span>
                                 </div>
                                 <div class="toolbar-item" CommanName='Delete'>
                                     <span class="icon-toolbar glyphicon glyphicon-trash"></span>
                                     <span class="text-toolbar">Xóa</span>
-                                </div>
-                                <div class="toolbar-item" CommanName='Import'>
-                                    <span class="icon-toolbar glyphicon glyphicon-cloud-upload"></span>
-                                    <span class="text-toolbar">Nhập khẩu</span>
-                                </div>
-                                <div class="toolbar-item" CommanName='Export'>
-                                    <span class="icon-toolbar glyphicon glyphicon-cloud-download"></span>
-                                    <span class="text-toolbar">Xuất khẩu</span>
                                 </div>
                             </div>
                         </div>
@@ -139,10 +140,11 @@
                     <!-- Grid  -->
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="Grid" id="GridRoom" useCheckBox='true' useIndex="true">
-                                <div class="column" setField="RoomName">Tên phòng</div>
-                                <div class="column" setField="RoomCode">Mã phòng</div>
-                                <div class="column" setField="Place">Khu vực</div>
+                            <div class="Grid" id="GridListSubject" useCheckBox='true' useIndex="true">
+                                <div class="column" setField="SubjectName">Tên học phần</div>
+                                <div class="column" setField="SubjectCode">Mã học phần</div>
+                                <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
+                                <div class="column" setField="NumberStudent" dataType="Number">Số sinh viên</div>
                                 <div class="column" setField="Description">Mô tả</div>
                             </div>
                         </div>
@@ -153,57 +155,43 @@
         </div>
     </div>
 
-    <!-- Form thêm mới phòng thi -->
+    <!-- Form thêm mới Học phần -->
     <div class="wrapper-form wrapp-formEntity">
-        <div class="formDialog" id="formRoom">
+        <div class="formDialog" id="formSubject">
 
             <!-- Header form -->
             <div class="header-form">
-                Thêm phòng thi
+                Chọn danh sách học phần
             </div>
 
             <!-- Body form -->
             <div class="body-form">
                 <div class="row">
                     <div class="col-md-12 row-custom">
-                        <div class="row-grid">
-                            <div class="text-field flex1 border-right-none">
-                                <b>Tên phòng <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="RoomName" MaxLength="100" title="Không được để trống" placeholder="Nhập tên phòng...">
-                            </div>
-                            <div class="text-field flex1">
-                                <b>Mã phòng <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="RoomCode" CheckDuplicate="true" MaxLength="15" title="Không được để trống" placeholder="Nhập mã phòng...">
-                            </div>
-                        </div>
-                        <div class="row-grid">
-                            <div class="text-field flex1 border-topright-none">
-                                <b>Khu vực </b>
-                                <input type="text" SetField="Place"  MaxLength="100" placeholder="Nhập khu vực...">
-                            </div>
-                            <div class="text-field flex1 border-top-none">
-                                <b>Mô tả</b>
-                                <input type="text" SetField="Description" placeholder="Nhập mô tả..." MaxLength="200">
-                            </div>
+                        <div class="Grid" id="GridSubject" useCheckBox='true' useIndex="true">
+                            <div class="column" setField="SubjectName">Tên học phần</div>
+                            <div class="column" setField="SubjectCode">Mã học phần</div>
+                            <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
+                            <div class="column" setField="Description">Mô tả</div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Footer form -->
-            <div class="footer-form">
+            <div class="footer-form" id="ToolbarChooseSubject">
                 <div class="btn-cancel">
                     <span class="glyphicon glyphicon-remove"></span>
                     <span>HỦY BỎ</span>
                 </div>
-                <div class="btn-save">
+                <div class="btn-save" CommanName='ChooseSave'>
                     <span class="glyphicon glyphicon-save"></span>
                     <span>CẤT</span>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Form đổi mật khẩu -->
     <div class="wrapper-form formChanePassword">
         <div class="formDialog" id="formChangePassword">
@@ -285,11 +273,13 @@
     <script src="../Script/Common/Data.js"></script>
     <script src="../Script/Base/Grid.js"></script>
     <script src="../Script/Base/BaseGrid.js"></script>
+    <script src="../Script/Base/BaseDetail.js"></script>
     <script src="../Script/Base/BaseForm.js"></script>
 
     <!-- Script từng page -->
-    <script src="../Script/Form/RoomForm.js"></script>
+    <script src="../Script/Form/ChooseSubjectForm.js"></script>
     <script src="../Script/Form/ChangePasswordForm.js"></script>
-    <script src="../Script/View/RoomManager.js"></script>
+    <script src="../Script/View/ListSubject.js"></script>
 </body>
+
 </html>

@@ -2,8 +2,8 @@
 class RoomManagerPage extends BaseGrid {
 
     // Hàm khởi tạo grid
-    constructor(gridId) {
-        super(gridId);
+    constructor(gridId, toolbarId) {
+        super(gridId, toolbarId);
     }
     
     // Tạo form detail
@@ -31,7 +31,7 @@ class RoomManagerPage extends BaseGrid {
 }
 
     // Khởi tạo trang quản lý Phòng thi
-var roomManagerPage = new RoomManagerPage("#GridRoom");
+var roomManagerPage = new RoomManagerPage("#GridRoom", "#ToolbarGridRoom");
     // Tạo một form detail
     roomManagerPage.createFormDetail("#formRoom", 500, 185);
     // Khởi tạo form thay đổi mật khẩu

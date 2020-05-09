@@ -532,3 +532,15 @@ i.fa.fa-address-book {
     font-size: 17px;
     margin-right: 5px;
 }
+
+.header-title-combo.row.header-title{
+    padding-top: 0;
+}
+
+.row.header-title.header-title-combo > span {
+    border-radius: 0;
+    font-weight: bold;
+    width: 260px;
+    color: #3276c3;
+    border: 1px solid #a7a9b1;
+}

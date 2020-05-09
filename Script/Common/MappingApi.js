@@ -32,4 +32,10 @@ var mappingApi = {
         urlDelete: null,
         urlCheckDuplicate: null
     },
+    ListSubject:{
+        urlGetData: null,
+        urlCreate: null,
+        urlDelete: null,
+        urlGetDataDetail: null
+    }
 }

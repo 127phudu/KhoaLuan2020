@@ -1,8 +1,9 @@
 // Lớp dùng để render ra các table
 class Grid{
     // Hàm khởi tạo, lúc đầu tuyền id grid và id container
-    constructor(gridId){
+    constructor(gridId, toolbarId){
         this.grid = $(gridId);
+        this.toolbar = $(toolbarId);
         this.columns = this.grid.find(".column");
         this.useCheckBox = this.grid.attr("useCheckBox");
         this.useIndex = this.grid.attr("useIndex");
@@ -162,9 +163,9 @@ class Grid{
         let me = this,
             listToolbarDisable = me.getDisableToolbarItem();
 
-        $(".disable-button").removeClass("disable-button");
+        me.toolbar.find(".disable-button").removeClass("disable-button");
 
-        $(".toolbar-item[CommanName]").each(function(){
+        me.toolbar.find("[CommanName]").each(function(){
             let commanName = $(this).attr("CommanName");
 
             if(listToolbarDisable.includes(commanName)){
@@ -182,6 +183,7 @@ class Grid{
         if(data.length == 0){
             listItemDisable.push("Edit");
             listItemDisable.push("Delete");
+            listItemDisable.push("ViewDetail");
         }
 
         return me.getCustomToolbarDisable(listItemDisable);
@@ -194,11 +196,10 @@ class Grid{
 
     // Khởi tạo các sự kiện
     initEvent(){
-        let grid = this.grid;
         let me = this;
 
         // Sự kiện khi click vào check box ở body
-        this.grid.on("click","td .checkbox",function(){
+        me.grid.on("click","td .checkbox",function(){
             let className = $(this).attr("class");
 
             if(className.indexOf("unchecked") != -1){
@@ -213,22 +214,22 @@ class Grid{
         });
 
         // Sự kiện khi click vào checkbox ở tiêu đề bảng (Checkbox tổng)
-        this.grid.on("click","th .checkbox",function(){
+        me.grid.on("click","th .checkbox",function(){
             let className = $(this).attr("class");
 
             if(className.indexOf("unchecked") != -1){
-                grid.find(".checkbox").attr("class","checkbox checked");
-                grid.find("tbody tr").addClass("row-focus");
+                me.grid.find(".checkbox").attr("class","checkbox checked");
+                me.grid.find("tbody tr").addClass("row-focus");
             }else{
-                grid.find(".checkbox").attr("class","checkbox unchecked");
-                grid.find("tbody tr").removeClass("row-focus");
+                me.grid.find(".checkbox").attr("class","checkbox unchecked");
+                me.grid.find("tbody tr").removeClass("row-focus");
             }
 
             me.setStatusToolbar();
         });
 
         // Sự kiện khi click vào các ô khác
-        this.grid.on("click","td:not(:first-child)",function(){
+        me.grid.on("click","td:not(:first-child)",function(){
            $(".row-focus").removeClass("row-focus");
            $(".checkbox").attr("class","checkbox unchecked");
            $(this).parent("tr").addClass("row-focus");
@@ -237,7 +238,4 @@ class Grid{
            me.setStatusToolbar();
         });
     }
-
-    // Dùng custom trạng thái toolbar khi cần
-    customToolBarState(){}
 }

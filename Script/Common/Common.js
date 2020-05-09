@@ -130,7 +130,7 @@ Constant.url = {
     RoomManager:"file:///D:/KhoaLuan2020/View/RoomManager.html",
     PeriodExamManager: "file:///D:/KhoaLuan2020/View/PeriodExamManager.html",
 
-    SubjectList: "file:///D:/KhoaLuan2020/View/SubjectList.html",
+    ListSubject: "file:///D:/KhoaLuan2020/View/ListSubject.html",
     SettingRoom: "file:///D:/KhoaLuan2020/View/SettingRoom.html",
     CreateExam: "file:///D:/KhoaLuan2020/View/CreateExam.html"
 }

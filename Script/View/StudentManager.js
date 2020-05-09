@@ -2,8 +2,8 @@
 class StudentManagerPage extends BaseGrid {
 
     // Hàm khởi tạo grid
-    constructor(gridId) {
-        super(gridId);
+    constructor(gridId, toolbarId) {
+        super(gridId, toolbarId);
     }
     
     // Tạo form detail
@@ -31,7 +31,7 @@ class StudentManagerPage extends BaseGrid {
 }
 
     // Khởi tạo trang quản lý sinh viên
-var studentManagerPage = new StudentManagerPage("#GridStudent");
+var studentManagerPage = new StudentManagerPage("#GridStudent", "#ToolbarGridStudent");
     // Tạo một form detail
     studentManagerPage.createFormDetail("#formStudent", 500, 235);
     // Khởi tạo form thay đổi mật khẩu

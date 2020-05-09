@@ -2,8 +2,8 @@
 class PeriodExamManagerPage extends BaseGrid {
 
     // Hàm khởi tạo grid
-    constructor(gridId) {
-        super(gridId);
+    constructor(gridId, toolbarId) {
+        super(gridId, toolbarId);
     }
     
     // Tạo form detail
@@ -55,7 +55,7 @@ class PeriodExamManagerPage extends BaseGrid {
 }
 
     // Khởi tạo trang quản lý Kì thi
-var periodExamManagerPage = new PeriodExamManagerPage("#GridPeriodExam");
+var periodExamManagerPage = new PeriodExamManagerPage("#GridPeriodExam", "#ToolbarGridPeriodExam");
     // Tạo một form detail
     periodExamManagerPage.createFormDetail("#formPeriodExam", 500, 235);
     // Khởi tạo form thay đổi mật khẩu

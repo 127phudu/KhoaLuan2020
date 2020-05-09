@@ -2,8 +2,8 @@
 class SubjectManagerPage extends BaseGrid {
 
     // Hàm khởi tạo grid
-    constructor(gridId) {
-        super(gridId);
+    constructor(gridId, toolbarId) {
+        super(gridId, toolbarId);
     }
     
     // Tạo form detail
@@ -31,7 +31,7 @@ class SubjectManagerPage extends BaseGrid {
 }
 
     // Khởi tạo trang quản lý Học phần
-var subjectManagerPage = new SubjectManagerPage("#GridSubject");
+var subjectManagerPage = new SubjectManagerPage("#GridSubject", "#ToolbarGridSubject");
     // Tạo một form detail
     subjectManagerPage.createFormDetail("#formSubject", 500, 185);
     // Khởi tạo form thay đổi mật khẩu

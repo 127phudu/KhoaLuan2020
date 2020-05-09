@@ -1,7 +1,7 @@
 class BaseGrid extends Grid{
     // Hàm khởi tạo grid
-    constructor(gridId){
-        super(gridId);
+    constructor(gridId, toolbarId){
+        super(gridId, toolbarId);
 
         this.editMode = null;
         this.formDetail = null;
@@ -38,7 +38,7 @@ class BaseGrid extends Grid{
     initEventToolbar(){
         var me = this;
 
-        $(".toolbar-item").click(function(){
+        me.toolbar.find("[CommanName]").click(function(){
             let commandName = $(this).attr("CommanName");
             switch(commandName){
                 case "Add":
@@ -125,12 +125,12 @@ class BaseGrid extends Grid{
 
     //Hàm load dữ liệu
     loadAjaxData(){
-        let grid = this;
+        let me = this;
 
-        if(this.config.urlGetData){
+        if(me.config.configUrl.urlGetData){
             // Ajax load data
-            CommonFn.GetAjax(this.config.configUrl.urlGetData, function (response) {
-                grid.loadData(response);
+            CommonFn.GetAjax(me.config.configUrl.urlGetData, function (response) {
+                me.loadData(response);
             });
         }
     }
