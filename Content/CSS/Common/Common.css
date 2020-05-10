@@ -545,3 +545,58 @@ i.fa.fa-address-book {
     background: white;
     border: 1px solid #a7a9b1;
 }
+
+td.text-align-right input {
+    width: 100%;
+    text-align: right;
+    border: 1px solid #a7a9b1;
+    padding-right: 8px;
+}
+
+td.text-align-right input.notEdit {
+    background: none;
+    border-color: transparent;
+    pointer-events: none;
+}
+
+.inputError{
+    border-color: red !important;
+}
+
+#formRoom .body-form,
+#formSubject .body-form{
+    height: 429px !important;
+    padding-bottom: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#formRoom .table,
+#formSubject .table,
+#formRoom .row-custom,
+#formSubject .row-custom{
+    margin-bottom: 0;
+}
+
+#formSubject .body-wrapper,
+#formRoom .body-wrapper {
+    min-height: 97.7%;
+    border: 1px solid #dddddd;
+    margin: 10px;
+    margin-bottom: 0;
+}
+
+#formSubject .table-responsive table,
+#formRoom .table-responsive table {
+    border: none;
+    border-bottom: 1px solid #dddddd;
+}
+
+#formSubject  .col-md-12.row-custom,
+#formRoom  .col-md-12.row-custom {
+    margin: 0;
+    width: 100%;
+}
+
+
+

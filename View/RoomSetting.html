@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quản lý kì thi</title>
+    <title>Thiết lập phòng thi</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
 </head>
+
 <body>
     <div class="container-wrapp">
         <!-- Header page -->
@@ -38,7 +40,7 @@
                             <span>Quản lý kì thi</span>
                         </a>
                     </li>
-                    <li class="flex item-3 submenu-item hover-color" key="PeriodExamManager">
+                    <li class="flex item-3 submenu-item" key="PeriodExamManager">
                         <a href="#" class="tabLeft">
                             <span>Kì thi</span>
                         </a>
@@ -48,7 +50,7 @@
                             <span>Danh sách học phần - SV</span>
                         </a>
                     </li>
-                    <li class="flex item-2 submenu-item" key="SettingRoom">
+                    <li class="flex item-2 submenu-item  hover-color" key="SettingRoom">
                         <a href="#" class="tabLeft">
                             <span>Thiết lập phòng thi</span>
                         </a>
@@ -93,110 +95,98 @@
                 </ul>
             </div>
             <div class="body-right flex1 main-content">
-                
+
                 <!-- Nội dung thay thế từng trang -->
-                <div class="container-fluid" id="PeriodExamContainer">
+                <div class="container-fluid" id="GridRoomSettingContainer">
+
                     <div class="row breadrum">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="#">Quản lý danh mục</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Kì thi</li>
+                                <li class="breadcrumb-item"><a href="#">Quản lý kì thi</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Thiết lập phòng thi
+                                </li>
                             </ol>
-                          </nav>
+                        </nav>
                     </div>
-                    <div class="row header-title">
-                        <span>DANH SÁCH KÌ THI</span>
+
+                    <div class="row header-title header-title-combo">
+                        <select class="speed combox-select" aria-placeholder="Chọn kì thi..." DataType="EnumCombobox"
+                            id="chooseExam">
+                            <option value="1" selected="selected">Kì thi học kì I</option>
+                            <option value="2">Kì thi học kì phụ</option>
+                            <option value="3">Kì thi đánh giá năng lực</option>
+                        </select>
                     </div>
 
                     <!-- Toolbar -->
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="toolbar" id="ToolbarGridPeriodExam">
-                                <div class="toolbar-item" CommanName='Add'>
+                            <div class="toolbar" id="ToolbarGridRoomSetting">
+                                <div class="toolbar-item" CommanName='Choose'>
                                     <span class="icon-toolbar glyphicon glyphicon-plus"></span>
-                                    <span class="text-toolbar">Thêm</span>
+                                    <span class="text-toolbar">Chọn phòng thi</span>
                                 </div>
-                                <div class="toolbar-item" CommanName='Edit'>
-                                    <span class="icon-toolbar glyphicon glyphicon-pencil"></span>
-                                    <span class="text-toolbar">Sửa</span>
+                                <div class="toolbar-item" CommanName='Save'>
+                                    <span class="icon-toolbar glyphicon glyphicon-download-alt"></span>
+                                    <span class="text-toolbar">Cất</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Setting'>
+                                    <span class="icon-toolbar glyphicon glyphicon-edit"></span>
+                                    <span class="text-toolbar">Thiết lập số máy</span>
                                 </div>
                                 <div class="toolbar-item" CommanName='Delete'>
                                     <span class="icon-toolbar glyphicon glyphicon-trash"></span>
                                     <span class="text-toolbar">Xóa</span>
                                 </div>
-                                <div class="toolbar-item" CommanName='StartRegister'>
-                                    <span class="icon-toolbar glyphicon glyphicon-ok"></span>
-                                    <span class="text-toolbar">Bắt đầu đăng ký</span>
-                                </div>
-                                <div class="toolbar-item" CommanName='DoneRegister'>
-                                    <span class="icon-toolbar glyphicon glyphicon-remove"></span>
-                                    <span class="text-toolbar">Kết thúc đăng ký</span>
+                                <div class="toolbar-item" CommanName='Export'>
+                                    <span class="icon-toolbar glyphicon glyphicon-cloud-download"></span>
+                                    <span class="text-toolbar">Xuất khẩu</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Grid  -->
-                    <div class="row">
+                    <div class="row" Layout="Master">
                         <div class="col-xl-12">
-                            <div class="Grid" id="GridPeriodExam" useCheckBox='true' useIndex="true">
-                                <div class="column" setField="PeriodName">Tên kì thi</div>
-                                <div class="column" setField="PeriodCode">Mã kì thi</div>
-                                <div class="column" setField="Year" dataType="Number">Năm</div>
-                                <div class="column" setField="StartDate" dataType="DateTime">Ngày bắt đầu đăng ký</div>
-                                <div class="column" setField="EndDate" dataType="DateTime">Ngày kết thúc đăng ký</div>
-                                <div class="column" setField="Status" dataType="Enum" enumName="StatusPeriod">Trạng thái</div>
+                            <div class="Grid" id="GridRoomSetting" useCheckBox='true' useIndex="true">
+                                <div class="column" setField="RoomName">Tên phòng</div>
+                                <div class="column" setField="RoomCode">Mã phòng</div>
+                                <div class="column" setField="Place">Khu vực</div>
+                                <div class="column" setField="Description">Mô tả</div>
+                                <div class="column" setField="CountRoom" dataType="Number" allowEdit="true">Số máy hiện
+                                    có</div>
+                                <div class="column" setField="CountRoomBackup" dataType="Number" allowEdit="true">Số máy
+                                    dự phòng</div>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- end content -->
             </div>
         </div>
     </div>
 
-    <!-- Form thêm mới kì thi -->
+    <!-- Form thêm mới Học phần -->
     <div class="wrapper-form">
-        <div class="formDialog" id="formPeriodExam">
+        <div class="formDialog" id="formRoom">
 
             <!-- Header form -->
             <div class="header-form">
-                Thêm kì thi
+                Chọn danh sách phòng thi
             </div>
 
             <!-- Body form -->
             <div class="body-form">
-                <div class="row">
-                    <div class="col-md-12 row-custom">
-                        <div class="row-grid">
-                            <div class="text-field flex1">
-                                <b>Tên kì thi <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="PeriodName" MaxLength="100" title="Không được để trống"
-                                    placeholder="Nhập tên kì thi...">
-                            </div>
-                        </div>
-                        <div class="row-grid">
-                            <div class="text-field flex1 border-topright-none">
-                                <b>Mã kì thi <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="PeriodCode" CheckDuplicate="true" MaxLength="10" title="Không được để trống"
-                                    placeholder="Nhập mã kì thi...">
-                            </div>
-                            <div class="text-field flex1 border-top-none">
-                                <b>Năm <span class="require">(*)</span></b>
-                                <input type="number" Require="true" min="2020" max="9999" SetField="Year" DataType="Number"  MaxLength="5"  title="Không được để trống"
-                                placeholder="Nhập năm...">
-                            </div>
-                        </div>
-                        <div class="row-grid">
-                            <div class="text-field flex1 border-topright-none">
-                                <b>Ngày bắt đầu đăng ký</b>
-                                <input type="text" SetField="StartDate" DataType="Date"  MaxLength="10" class="datepicker"
-                                    placeholder="Nhập ngày bắt đầu đăng ký...">
-                            </div>
-                            <div class="text-field flex1 border-top-none">
-                                <b>Ngày kết thúc đăng ký</b>
-                                <input type="text" SetField="EndDate" DataType="Date"  MaxLength="10" class="datepicker"
-                                    placeholder="Nhập ngày kết thúc đăng ký...">
+                <div class="body-wrapper">
+                    <div class="row">
+                        <div class="col-md-12 row-custom">
+                            <div class="Grid" id="GridRoom" useCheckBox='true' useIndex="true">
+                                <div class="column" setField="RoomName">Tên phòng</div>
+                                <div class="column" setField="RoomCode">Mã phòng</div>
+                                <div class="column" setField="Place">Khu vực</div>
+                                <div class="column" setField="Description">Mô tả</div>
                             </div>
                         </div>
                     </div>
@@ -204,21 +194,21 @@
             </div>
 
             <!-- Footer form -->
-            <div class="footer-form">
+            <div class="footer-form" id="ToolbarChooseRoom">
                 <div class="btn-cancel">
                     <span class="glyphicon glyphicon-remove"></span>
                     <span>HỦY BỎ</span>
                 </div>
-                <div class="btn-save">
+                <div class="btn-save" CommanName='ChooseSave'>
                     <span class="glyphicon glyphicon-save"></span>
                     <span>CẤT</span>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Form đổi mật khẩu -->
-    <div class="wrapper-form formChanePassword">
+    <div class="wrapper-form">
         <div class="formDialog" id="formChangePassword">
             <!-- Header form -->
             <div class="header-form">
@@ -298,11 +288,13 @@
     <script src="../Script/Common/Data.js"></script>
     <script src="../Script/Base/Grid.js"></script>
     <script src="../Script/Base/BaseGrid.js"></script>
+    <script src="../Script/Base/BaseDetail.js"></script>
     <script src="../Script/Base/BaseForm.js"></script>
 
     <!-- Script từng page -->
-    <script src="../Script/Form/PeriodExamForm.js"></script>
+    <script src="../Script/Form/ChooseRoomForm.js"></script>
     <script src="../Script/Form/ChangePasswordForm.js"></script>
-    <script src="../Script/View/PeriodExamManager.js"></script>
+    <script src="../Script/View/RoomSetting.js"></script>
 </body>
+
 </html>

@@ -31,8 +31,7 @@ class BaseDetail extends Grid{
         let me = this,
             data = me.getSubmitData();
 
-        //this.saveChangeData(data); Tạm thời comment
-        me.saveFakeData(data); // Sau này xóa
+        me.saveChangeData(data); 
 
         me.close();
     }
@@ -59,12 +58,14 @@ class BaseDetail extends Grid{
                 Ids: ids
             };
 
-        CommonFn.PostPutAjax("POST", me.jsCaller.config.configUrl.urlCreate, data, function(response) {
-            if(response.status == Enum.StatusResponse.Success){
-                me.showMessageSuccess();
-                me.jsCaller.loadAjaxData();
-            }
-        });
+        if(data){
+            CommonFn.PostPutAjax("POST", me.jsCaller.config.configUrl.urlCreate, data, function(response) {
+                if(response.status == Enum.StatusResponse.Success){
+                    me.showMessageSuccess();
+                    me.jsCaller.loadAjaxData();
+                }
+            });
+        }
     }
 
     // Hàm hiển thị form

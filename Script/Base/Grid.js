@@ -59,7 +59,8 @@ class Grid{
             data.forEach(record => {
                 body.append(grid.renderBody(record));
             });
-            this.grid.find("tbody").html("");
+
+            this.grid.find("tbody").remove();
             this.grid.find(".table").append(body);
             // Đánh lại số thứ tự
             this.setIndex();
@@ -67,6 +68,7 @@ class Grid{
             this.setSelectedFirstRow();
         }
         this.setStatusToolbar();
+        this.loadDataComplete();
     }
 
     // Hàm dùng để render body của bảng
@@ -78,9 +80,16 @@ class Grid{
             let setField = $(this).attr("setField"),
                 dataType = $(this).attr("dataType") || "String",
                 enumName = $(this).attr("enumName") || "",
+                allowEdit = $(this).attr("allowEdit") || "",
                 value = grid.getTextValue(dataType, enumName, data[setField]),
-                element = $("<td></td>").text(value);
+                element;
 
+            if(allowEdit){
+                element = $('<td><input type="text" class="notEdit" value="'+ value + '"/></td>');
+            }else{
+                element = $("<td></td>").text(value);
+            }
+                
             element = grid.addClassFormat(element, dataType);
             row.append(element);
         });
@@ -158,6 +167,17 @@ class Grid{
         return data;
     }
 
+    // Hàm lấy tất cả các bản ghi
+    getAllRecord(){
+        let data = [];
+        this.grid.find("tbody tr").each(function(){
+            let item = $(this).data("value");
+            data.push(item);
+        });
+
+        return data;
+    }
+
     // Thiết lập nếu không có bản ghi nào chọn thì disable sửa, xóa
     setStatusToolbar(){
         let me = this,
@@ -178,12 +198,17 @@ class Grid{
     getDisableToolbarItem(){
         let me = this,
             data = me.getSelection(),
+            allRecord = me.getAllRecord(),
             listItemDisable = [];
 
         if(data.length == 0){
             listItemDisable.push("Edit");
             listItemDisable.push("Delete");
             listItemDisable.push("ViewDetail");
+        }
+
+        if(allRecord.length == 0){
+            listItemDisable.push("Export");
         }
 
         return me.getCustomToolbarDisable(listItemDisable);
@@ -230,12 +255,15 @@ class Grid{
 
         // Sự kiện khi click vào các ô khác
         me.grid.on("click","td:not(:first-child)",function(){
-           $(".row-focus").removeClass("row-focus");
-           $(".checkbox").attr("class","checkbox unchecked");
+           me.grid.find(".row-focus").removeClass("row-focus");
+           me.grid.find(".checkbox").attr("class","checkbox unchecked");
            $(this).parent("tr").addClass("row-focus");
            $(this).parent("tr").find(".checkbox").attr("class","checkbox checked");
 
            me.setStatusToolbar();
         });
     }
+
+    // Hàm chạy khi load data xong
+    loadDataComplete(){}
 }

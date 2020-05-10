@@ -16,6 +16,7 @@ class ListSubject extends BaseGrid {
     // Tạo page detail
     createPageDetail(gridId, toolbarId){
         this.pageDetail = new StudentSubjectDetail(gridId, toolbarId);
+        this.pageDetail.createFormDetail("#formStudentSubjectDetail", 400, 133);
         this.pageDetail.pageMaster = this;
     }
 
@@ -25,7 +26,6 @@ class ListSubject extends BaseGrid {
             periodExamId = localStorage.getItem("PeriodExamId");
 
         if(me.config.configUrl.urlGetData && periodExamId){
-            // Ajax load data
             CommonFn.PostPutAjax("POST", me.config.configUrl.urlGetData, periodExamId, function(response) {
                 if(response.status == Enum.StatusResponse.Success){
                     me.loadData(response.Data);
@@ -103,7 +103,7 @@ class ListSubject extends BaseGrid {
     // Khởi tạo trang quản lý Học phần
 var listSubject = new ListSubject("#GridListSubject", "#ToolbarGridListSubject");
     // Tạo một form detail
-    listSubject.createFormDetail("#formSubject","#GridSubject", "#ToolbarChooseSubject", 800, 600);
+    listSubject.createFormDetail("#formSubject","#GridSubject", "#ToolbarChooseSubject", 800, 500);
     // Tạo trang chi tiết bên trong
     listSubject.createPageDetail("#StudentSubjectDetail", "#ToolbarStudentSubjectDetail");
     // Khởi tạo form thay đổi mật khẩu

@@ -131,7 +131,7 @@ Constant.url = {
     PeriodExamManager: "file:///D:/KhoaLuan2020/View/PeriodExamManager.html",
 
     ListSubject: "file:///D:/KhoaLuan2020/View/ListSubject.html",
-    SettingRoom: "file:///D:/KhoaLuan2020/View/SettingRoom.html",
+    SettingRoom: "file:///D:/KhoaLuan2020/View/RoomSetting.html",
     CreateExam: "file:///D:/KhoaLuan2020/View/CreateExam.html"
 }
 
@@ -150,7 +150,8 @@ Enum.TypeError = {
 Enum.EditMode = {
     Add: 1,
     Edit: 2,
-    Delete: 3
+    Delete: 3,
+    View: 4
 };
 
 // Các trạng thái lỗi khi gọi ajax

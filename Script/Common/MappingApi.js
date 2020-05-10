@@ -44,5 +44,12 @@ var mappingApi = {
         urlUpdate: null,
         urlDelete: null,
         urlCheckDuplicate: null
+    },
+    RoomSetting:{
+        urlGetData: null,
+        urlCreate: null,
+        urlUpdate: null,
+        urlDelete: null,
+        urlCheckDuplicate: null
     }
 }

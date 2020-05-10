@@ -69,11 +69,102 @@ var subjects = [
         SubjectCode: "INT3305 4",
         NumberCredit: 3,
         Description: "Môn học bắt buộc"
+    },
+    {
+        Id:"a0c6575c-332c-4637-be39-088734e92265",
+        SubjectName: "Giải tích 1",
+        SubjectCode: "INT3305",
+        NumberCredit: 3,
+        Description: "Học phần mới"
+    },
+    {
+        Id:"e5c3a07d-22df-4d74-a08b-36d057a6212d",
+        SubjectName: "Đại số",
+        SubjectCode: "INT1303",
+        NumberCredit: 2,
+        Description: ""
+    },
+    {
+        Id:"104161c8-8017-4eef-a70f-68a73458739d",
+        SubjectName: "Phát triển ứng dụng web",
+        SubjectCode: "INT3305 4",
+        NumberCredit: 3,
+        Description: "Môn học bắt buộc"
+    },
+    {
+        Id:"a0c6575c-332c-4637-be39-088734e92265",
+        SubjectName: "Giải tích 1",
+        SubjectCode: "INT3305",
+        NumberCredit: 3,
+        Description: "Học phần mới"
+    },
+    {
+        Id:"e5c3a07d-22df-4d74-a08b-36d057a6212d",
+        SubjectName: "Đại số",
+        SubjectCode: "INT1303",
+        NumberCredit: 2,
+        Description: ""
+    },
+    {
+        Id:"104161c8-8017-4eef-a70f-68a73458739d",
+        SubjectName: "Phát triển ứng dụng web",
+        SubjectCode: "INT3305 4",
+        NumberCredit: 3,
+        Description: "Môn học bắt buộc"
+    },
+    {
+        Id:"a0c6575c-332c-4637-be39-088734e92265",
+        SubjectName: "Giải tích 1",
+        SubjectCode: "INT3305",
+        NumberCredit: 3,
+        Description: "Học phần mới"
+    },
+    {
+        Id:"e5c3a07d-22df-4d74-a08b-36d057a6212d",
+        SubjectName: "Đại số",
+        SubjectCode: "INT1303",
+        NumberCredit: 2,
+        Description: ""
+    },
+    {
+        Id:"104161c8-8017-4eef-a70f-68a73458739d",
+        SubjectName: "Phát triển ứng dụng web",
+        SubjectCode: "INT3305 4",
+        NumberCredit: 3,
+        Description: "Môn học bắt buộc"
     }
 ];
 
 // Dữ liệu các phòng thi
 var rooms = [
+    {
+        Id: 1,
+        RoomName: "309G2",
+        RoomCode: "PT0001",
+        Place: "Đại học ngoại ngữ",
+        Description: "Khu vực đại học quốc gia"
+    },
+    {
+        Id: 2,
+        RoomName: "303G2",
+        RoomCode: "PT0002",
+        Place: "Đại học gtvt",
+        Description: ""
+    },
+    {
+        Id: 3,
+        RoomName: "304G3",
+        RoomCode: "PT0003",
+        Place: "Khu vực ký túc xá",
+        Description: "Gần kí túc"
+    },
+    {
+        Id: 3,
+        RoomName: "304G3",
+        RoomCode: "PT0003",
+        Place: "Khu vực ký túc xá",
+        Description: "Gần kí túc"
+    },
     {
         Id: 1,
         RoomName: "309G2",
@@ -187,5 +278,36 @@ var studentSubjects = [
         Email: "caoducmanh@gmail.com",
         Course: "K61",
         Status: 1
+    }
+];
+
+// Danh sách phòng thi thuộc kì thi
+var roomSettings = [
+    {
+        Id: 1,
+        RoomName: "309G2",
+        RoomCode: "PT0001",
+        Place: "Đại học ngoại ngữ",
+        Description: "Khu vực đại học quốc gia",
+        CountRoom: 20,
+        CountRoomBackup: 2
+    },
+    {
+        Id: 2,
+        RoomName: "303G2",
+        RoomCode: "PT0002",
+        Place: "Đại học gtvt",
+        Description: "",
+        CountRoom: 30,
+        CountRoomBackup: 2
+    },
+    {
+        Id: 3,
+        RoomName: "304G3",
+        RoomCode: "PT0003",
+        Place: "Khu vực ký túc xá",
+        Description: "Gần kí túc",
+        CountRoom: 25,
+        CountRoomBackup: 2
     }
 ];

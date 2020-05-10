@@ -75,7 +75,7 @@ class BaseForm{
             }
 
             if(isValid){
-                isValid = me.validateCheckDuplicate(); // Validate check trùng
+               // isValid = me.validateCheckDuplicate(); // Validate check trùng
             }
 
         return isValid;
@@ -200,36 +200,22 @@ class BaseForm{
     }
 
     // Thực hiện check trùng
-    // executeCheckDuplicate(value, setField){
-    //     let me = this,
-    //         isDuplicate = false,
-    //         data = {
-    //             value: value,
-    //             editMode: me.jsCaller.editMode,
-    //             id: me.jsCaller.recordCache.Id
-    //         };
-
-    //     CommonFn.PostPutAjax("POST", me.jsCaller.config.configUrl.urlCheckDuplicate, data, function(response) {
-    //         if(response.status == Enum.StatusResponse.Success){
-    //             isDuplicate = response.data;
-    //         }
-    //     }, false);
-        
-    //     return isDuplicate;
-    // }
-
-    // Sau này xóa bỏ
     executeCheckDuplicate(value, setField){
         let me = this,
-            isDuplicate = false;
+            isDuplicate = false,
+            data = {
+                value: value,
+                editMode: me.jsCaller.editMode,
+                id: me.jsCaller.recordCache.Id
+            };
 
-        me.jsCaller.listFakeData.filter(function(item){
-            if(item[setField] == value){
-                isDuplicate = true;
+        CommonFn.PostPutAjax("POST", me.jsCaller.config.configUrl.urlCheckDuplicate, data, function(response) {
+            if(response.status == Enum.StatusResponse.Success){
+                isDuplicate = response.data;
             }
-        });
+        }, false);
         
-        return false;
+        return isDuplicate;
     }
 
     // Sau này xóa bỏ

@@ -49,11 +49,6 @@ class StudentForm extends BaseForm {
 
         return result;
     }
-
-    // Tạo các combo dữ liệu
-    buildEnumDynamic(){
-        
-    }
 }
 
 

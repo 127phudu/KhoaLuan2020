@@ -67,7 +67,7 @@ class BaseGrid extends Grid{
         let me = this;
 
         // Nếu chọn ô input thì mặc định bôi đen văn bản
-        $("input").focus(function(){
+        $("input").on("focus",function(){
             $(this).select();
         });
 
@@ -103,6 +103,7 @@ class BaseGrid extends Grid{
         });
 
         $("#myModal").modal("hide");
+        me.editMode = Enum.EditMode.View;
         me.loadData(me.listFakeData);
     }
 
@@ -132,6 +133,7 @@ class BaseGrid extends Grid{
             // Ajax load data
             CommonFn.GetAjax(me.config.configUrl.urlGetData, function (response) {
                 me.loadData(response);
+                me.editMode = Enum.EditMode.View;
             });
         }
     }

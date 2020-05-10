@@ -6,6 +6,7 @@ class StudentSubjectDetail extends BaseGrid {
         super(gridId, toolbarId);
 
         this.pageMaster = null;
+        this.masterId = null;
     }
     
     // Tạo form detail
@@ -21,7 +22,9 @@ class StudentSubjectDetail extends BaseGrid {
                 urlCreate: mappingApi.StudentSubjectDetail.urlCreate,
                 urlUpdate: mappingApi.StudentSubjectDetail.urlUpdate,
                 urlDelete: mappingApi.StudentSubjectDetail.urlDelete,
-                urlCheckDuplicate: mappingApi.StudentSubjectDetail.urlCheckDuplicate
+                urlCheckDuplicate: mappingApi.StudentSubjectDetail.urlCheckDuplicate,
+                urlChangeStatus: null,
+                urlCheckExistItem: null
             },
             role: "Admin",
             entityName: "Rooms",
@@ -35,14 +38,16 @@ class StudentSubjectDetail extends BaseGrid {
     loadAjaxData(masterData){
         let me = this,
             periodExamId = localStorage.getItem("PeriodExamId"),
-            listSubjectId = masterData.Id,
+            listSubjectId = masterData ? masterData.Id : me.masterId,
             data = {
                 PeriodExamId: periodExamId,
                 ListSubjectId: listSubjectId
             };
 
+        // Gán masterId lưu lại dùng 
+        me.masterId = masterData ? masterData.Id : me.masterId;
+
         if(me.config.configUrl.urlGetData && periodExamId){
-            // Ajax load data
             CommonFn.PostPutAjax("POST", me.config.configUrl.urlGetData, data, function(response) {
                 if(response.status == Enum.StatusResponse.Success){
                     me.loadData(response.Data);
@@ -86,6 +91,13 @@ class StudentSubjectDetail extends BaseGrid {
         switch(commandName){
             case "Back":
                 me.back();
+                break;
+            case "Accept":
+                me.accept();
+                break;
+            case "Reject":
+                me.reject();
+                break;
         }
     }
 
@@ -98,6 +110,44 @@ class StudentSubjectDetail extends BaseGrid {
         
         //me.pageMaster.loadAjaxData();
         me.pageMaster.loadData(listSubjects); // sau này xóa
+    }
+
+    // Hàm dùng để cho phép thi
+    accept(){
+        let me = this,
+            record = me.getSelection()[0],
+            studentSubjectId = record.Id,
+            data = {
+                studentSubjectId: studentSubjectId,
+                Status: 1
+            };
+
+        if(data){
+            CommonFn.PostPutAjax("POST", me.config.configUrl.urlChangeStatus, data, function(response) {
+                if(response.status == Enum.StatusResponse.Success){
+                    me.loadAjaxData();
+                }
+            });
+        }
+    }
+
+    // Hàm dùng để cấm thi
+    reject(){
+        let me = this,
+            record = me.getSelection()[0],
+            studentSubjectId = record.Id,
+            data = {
+                studentSubjectId: studentSubjectId,
+                Status: 2
+            };
+
+        if(data){
+            CommonFn.PostPutAjax("POST", me.config.configUrl.urlChangeStatus, data, function(response) {
+                if(response.status == Enum.StatusResponse.Success){
+                    me.loadAjaxData();
+                }
+            });
+        }
     }
 
     // Custom các button bị disable

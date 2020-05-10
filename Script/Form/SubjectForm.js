@@ -5,11 +5,6 @@ class SubjectForm extends BaseForm {
     constructor(jsCaller, idForm, width, height, title){
         super(jsCaller, idForm, width, height, title);
     }
-
-    // Tạo các combo dữ liệu
-    buildEnumDynamic(){
-        
-    }
 }
 
 

@@ -110,7 +110,8 @@
                     </div>
 
                     <div class="row header-title header-title-combo" Layout="Master">
-                        <select class="speed combox-select" aria-placeholder="Chọn kì thi..." DataType="EnumCombobox" id="chooseExam">
+                        <select class="speed combox-select" aria-placeholder="Chọn kì thi..." DataType="EnumCombobox"
+                            id="chooseExam">
                             <option value="1" selected="selected">Kì thi học kì I</option>
                             <option value="2">Kì thi học kì phụ</option>
                             <option value="3">Kì thi đánh giá năng lực</option>
@@ -200,12 +201,51 @@
                                 <div class="column" setField="Gender" dataType="Enum" enumName="Gender">Giới tính</div>
                                 <div class="column" setField="DateOfBirth" dataType="DateTime">Ngày sinh</div>
                                 <div class="column" setField="Course">Khóa học</div>
-                                <div class="column" setField="Status" dataType="Enum" enumName="StatusStudent">Trạng thái</div>
+                                <div class="column" setField="Status" dataType="Enum" enumName="StatusStudent">Trạng
+                                    thái</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- end content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Form thêm mới sinh viên -->
+    <div class="wrapper-form">
+        <div class="formDialog" id="formStudentSubjectDetail">
+
+            <!-- Header form -->
+            <div class="header-form">
+                Thêm sinh viên
+            </div>
+
+            <!-- Body form -->
+            <div class="body-form">
+                <div class="row">
+                    <div class="col-md-12 row-custom">
+                        <div class="row-grid">
+                            <div class="text-field flex1">
+                                <b>Mã sinh viên <span class="require">(*)</span></b>
+                                <input type="text" Require="true" SetField="StudentCode" CheckDuplicate="true"
+                                    MaxLength="10" title="Không được để trống" placeholder="Nhập mã sinh viên...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer form -->
+            <div class="footer-form">
+                <div class="btn-cancel">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span>HỦY BỎ</span>
+                </div>
+                <div class="btn-save">
+                    <span class="glyphicon glyphicon-save"></span>
+                    <span>CẤT</span>
+                </div>
             </div>
         </div>
     </div>
@@ -221,13 +261,15 @@
 
             <!-- Body form -->
             <div class="body-form">
-                <div class="row">
-                    <div class="col-md-12 row-custom">
-                        <div class="Grid" id="GridSubject" useCheckBox='true' useIndex="true">
-                            <div class="column" setField="SubjectName">Tên học phần</div>
-                            <div class="column" setField="SubjectCode">Mã học phần</div>
-                            <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
-                            <div class="column" setField="Description">Mô tả</div>
+                <div class="body-wrapper">
+                    <div class="row">
+                        <div class="col-md-12 row-custom">
+                            <div class="Grid" id="GridSubject" useCheckBox='true' useIndex="true">
+                                <div class="column" setField="SubjectName">Tên học phần</div>
+                                <div class="column" setField="SubjectCode">Mã học phần</div>
+                                <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
+                                <div class="column" setField="Description">Mô tả</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -334,6 +376,7 @@
     <!-- Script từng page -->
     <script src="../Script/Form/ChooseSubjectForm.js"></script>
     <script src="../Script/Form/ChangePasswordForm.js"></script>
+    <script src="../Script/Form/StudentSubjectDetailForm.js"></script>
     <script src="../Script/View/StudentSubjectDetail.js"></script>
     <script src="../Script/View/ListSubject.js"></script>
 </body>
