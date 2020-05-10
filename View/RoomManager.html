@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
 </head>
+
 <body>
     <div class="container-wrapp">
         <!-- Header page -->
@@ -93,16 +95,16 @@
                 </ul>
             </div>
             <div class="body-right flex1 main-content">
-                
+
                 <!-- Nội dung thay thế từng trang -->
                 <div class="container-fluid" id="RoomContainer">
                     <div class="row breadrum">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="#">Quản lý danh mục</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Phòng thi</li>
+                                <li class="breadcrumb-item"><a href="#">Quản lý danh mục</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Phòng thi</li>
                             </ol>
-                          </nav>
+                        </nav>
                     </div>
                     <div class="row header-title">
                         <span>DANH SÁCH PHÒNG THI</span>
@@ -137,13 +139,15 @@
                     </div>
 
                     <!-- Grid  -->
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="Grid" id="GridRoom" useCheckBox='true' useIndex="true">
-                                <div class="column" setField="RoomName">Tên phòng</div>
-                                <div class="column" setField="RoomCode">Mã phòng</div>
-                                <div class="column" setField="Place">Khu vực</div>
-                                <div class="column" setField="Description">Mô tả</div>
+                    <div class="grid-wrapper">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="Grid" id="GridRoom" useCheckBox='true' useIndex="true">
+                                    <div class="column" setField="RoomName">Tên phòng</div>
+                                    <div class="column" setField="RoomCode">Mã phòng</div>
+                                    <div class="column" setField="Place">Khu vực</div>
+                                    <div class="column" setField="Description">Mô tả</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -155,7 +159,7 @@
 
     <!-- Form thêm mới phòng thi -->
     <div class="wrapper-form">
-        <div class="formDialog" id="formRoom">
+        <div class="formDialog" id="formRoomDetail">
 
             <!-- Header form -->
             <div class="header-form">
@@ -169,17 +173,19 @@
                         <div class="row-grid">
                             <div class="text-field flex1 border-right-none">
                                 <b>Tên phòng <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="RoomName" MaxLength="100" title="Không được để trống" placeholder="Nhập tên phòng...">
+                                <input type="text" Require="true" SetField="RoomName" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập tên phòng...">
                             </div>
                             <div class="text-field flex1">
                                 <b>Mã phòng <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="RoomCode" CheckDuplicate="true" MaxLength="15" title="Không được để trống" placeholder="Nhập mã phòng...">
+                                <input type="text" Require="true" SetField="RoomCode" CheckDuplicate="true"
+                                    MaxLength="15" title="Không được để trống" placeholder="Nhập mã phòng...">
                             </div>
                         </div>
                         <div class="row-grid">
                             <div class="text-field flex1 border-topright-none">
                                 <b>Khu vực </b>
-                                <input type="text" SetField="Place"  MaxLength="100" placeholder="Nhập khu vực...">
+                                <input type="text" SetField="Place" MaxLength="100" placeholder="Nhập khu vực...">
                             </div>
                             <div class="text-field flex1 border-top-none">
                                 <b>Mô tả</b>
@@ -203,7 +209,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Form đổi mật khẩu -->
     <div class="wrapper-form formChanePassword">
         <div class="formDialog" id="formChangePassword">
@@ -292,4 +298,5 @@
     <script src="../Script/Form/ChangePasswordForm.js"></script>
     <script src="../Script/View/RoomManager.js"></script>
 </body>
+
 </html>

@@ -197,6 +197,14 @@ body{
 
 *{}
 
+.grid-wrapper {
+    margin-right: -15px;
+    margin-left: -15px;
+    border: 1px solid #dddddd;
+    height: calc(100% - 176px);
+    overflow-y: auto;
+}
+
 .col-md-12.row-custom {
     margin: 10px;
     width: calc(100% - 20px);
@@ -473,6 +481,20 @@ span#speed-button {
 }
 /* ------------------------------------- */
 *{}
+
+.grid-wrapper table {
+    border: none;
+    border-bottom: 1px solid #dddddd;
+}
+
+.container-fluid {
+    height: 100%;
+}
+
+.grid-wrapper .row {
+    margin-right: 0;
+    margin-left: 0;
+}
 
 ol.breadcrumb {
     font-weight: 600;

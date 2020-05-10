@@ -216,6 +216,258 @@ var periodExams = [
         StartDate: "05/03/2020 02:03:05",
         EndDate: "03/04/2020 02:03:05",
         Status: 3
+    },
+    {
+        Id: 1,
+        PeriodName: "Kì thi học kì I",
+        PeriodCode: "PT0001",
+        Year: 2019,
+        StartDate: "19/03/2020 02:03:05",
+        EndDate: "19/04/2020 02:03:05",
+        Status: 1
+    },
+    {
+        Id: 2,
+        PeriodName: "Kì thi học kì II",
+        PeriodCode: "PT0002",
+        Year: 2018,
+        StartDate: "12/03/2020 02:03:05",
+        EndDate: "14/04/2020 02:03:05",
+        Status: 2
+    },
+    {
+        Id: 3,
+        PeriodName: "Kì thi học kì phụ",
+        PeriodCode: "PT0003",
+        Year: 2020,
+        StartDate: "05/03/2020 02:03:05",
+        EndDate: "03/04/2020 02:03:05",
+        Status: 3
+    },
+    {
+        Id: 1,
+        PeriodName: "Kì thi học kì I",
+        PeriodCode: "PT0001",
+        Year: 2019,
+        StartDate: "19/03/2020 02:03:05",
+        EndDate: "19/04/2020 02:03:05",
+        Status: 1
+    },
+    {
+        Id: 2,
+        PeriodName: "Kì thi học kì II",
+        PeriodCode: "PT0002",
+        Year: 2018,
+        StartDate: "12/03/2020 02:03:05",
+        EndDate: "14/04/2020 02:03:05",
+        Status: 2
+    },
+    {
+        Id: 3,
+        PeriodName: "Kì thi học kì phụ",
+        PeriodCode: "PT0003",
+        Year: 2020,
+        StartDate: "05/03/2020 02:03:05",
+        EndDate: "03/04/2020 02:03:05",
+        Status: 3
+    },
+    {
+        Id: 1,
+        PeriodName: "Kì thi học kì I",
+        PeriodCode: "PT0001",
+        Year: 2019,
+        StartDate: "19/03/2020 02:03:05",
+        EndDate: "19/04/2020 02:03:05",
+        Status: 1
+    },
+    {
+        Id: 2,
+        PeriodName: "Kì thi học kì II",
+        PeriodCode: "PT0002",
+        Year: 2018,
+        StartDate: "12/03/2020 02:03:05",
+        EndDate: "14/04/2020 02:03:05",
+        Status: 2
+    },
+    {
+        Id: 3,
+        PeriodName: "Kì thi học kì phụ",
+        PeriodCode: "PT0003",
+        Year: 2020,
+        StartDate: "05/03/2020 02:03:05",
+        EndDate: "03/04/2020 02:03:05",
+        Status: 3
+    },
+    {
+        Id: 1,
+        PeriodName: "Kì thi học kì I",
+        PeriodCode: "PT0001",
+        Year: 2019,
+        StartDate: "19/03/2020 02:03:05",
+        EndDate: "19/04/2020 02:03:05",
+        Status: 1
+    },
+    {
+        Id: 2,
+        PeriodName: "Kì thi học kì II",
+        PeriodCode: "PT0002",
+        Year: 2018,
+        StartDate: "12/03/2020 02:03:05",
+        EndDate: "14/04/2020 02:03:05",
+        Status: 2
+    },
+    {
+        Id: 3,
+        PeriodName: "Kì thi học kì phụ",
+        PeriodCode: "PT0003",
+        Year: 2020,
+        StartDate: "05/03/2020 02:03:05",
+        EndDate: "03/04/2020 02:03:05",
+        Status: 3
+    },
+    {
+        Id: 1,
+        PeriodName: "Kì thi học kì I",
+        PeriodCode: "PT0001",
+        Year: 2019,
+        StartDate: "19/03/2020 02:03:05",
+        EndDate: "19/04/2020 02:03:05",
+        Status: 1
+    },
+    {
+        Id: 2,
+        PeriodName: "Kì thi học kì II",
+        PeriodCode: "PT0002",
+        Year: 2018,
+        StartDate: "12/03/2020 02:03:05",
+        EndDate: "14/04/2020 02:03:05",
+        Status: 2
+    },
+    {
+        Id: 3,
+        PeriodName: "Kì thi học kì phụ",
+        PeriodCode: "PT0003",
+        Year: 2020,
+        StartDate: "05/03/2020 02:03:05",
+        EndDate: "03/04/2020 02:03:05",
+        Status: 3
+    },
+    {
+        Id: 1,
+        PeriodName: "Kì thi học kì I",
+        PeriodCode: "PT0001",
+        Year: 2019,
+        StartDate: "19/03/2020 02:03:05",
+        EndDate: "19/04/2020 02:03:05",
+        Status: 1
+    },
+    {
+        Id: 2,
+        PeriodName: "Kì thi học kì II",
+        PeriodCode: "PT0002",
+        Year: 2018,
+        StartDate: "12/03/2020 02:03:05",
+        EndDate: "14/04/2020 02:03:05",
+        Status: 2
+    },
+    {
+        Id: 3,
+        PeriodName: "Kì thi học kì phụ",
+        PeriodCode: "PT0003",
+        Year: 2020,
+        StartDate: "05/03/2020 02:03:05",
+        EndDate: "03/04/2020 02:03:05",
+        Status: 3
+    },
+    {
+        Id: 2,
+        PeriodName: "Kì thi học kì II",
+        PeriodCode: "PT0002",
+        Year: 2018,
+        StartDate: "12/03/2020 02:03:05",
+        EndDate: "14/04/2020 02:03:05",
+        Status: 2
+    },
+    {
+        Id: 3,
+        PeriodName: "Kì thi học kì phụ",
+        PeriodCode: "PT0003",
+        Year: 2020,
+        StartDate: "05/03/2020 02:03:05",
+        EndDate: "03/04/2020 02:03:05",
+        Status: 3
+    },
+    {
+        Id: 1,
+        PeriodName: "Kì thi học kì I",
+        PeriodCode: "PT0001",
+        Year: 2019,
+        StartDate: "19/03/2020 02:03:05",
+        EndDate: "19/04/2020 02:03:05",
+        Status: 1
+    },
+    {
+        Id: 2,
+        PeriodName: "Kì thi học kì II",
+        PeriodCode: "PT0002",
+        Year: 2018,
+        StartDate: "12/03/2020 02:03:05",
+        EndDate: "14/04/2020 02:03:05",
+        Status: 2
+    },
+    {
+        Id: 3,
+        PeriodName: "Kì thi học kì phụ",
+        PeriodCode: "PT0003",
+        Year: 2020,
+        StartDate: "05/03/2020 02:03:05",
+        EndDate: "03/04/2020 02:03:05",
+        Status: 3
+    },
+    {
+        Id: 2,
+        PeriodName: "Kì thi học kì II",
+        PeriodCode: "PT0002",
+        Year: 2018,
+        StartDate: "12/03/2020 02:03:05",
+        EndDate: "14/04/2020 02:03:05",
+        Status: 2
+    },
+    {
+        Id: 3,
+        PeriodName: "Kì thi học kì phụ",
+        PeriodCode: "PT0003",
+        Year: 2020,
+        StartDate: "05/03/2020 02:03:05",
+        EndDate: "03/04/2020 02:03:05",
+        Status: 3
+    },
+    {
+        Id: 1,
+        PeriodName: "Kì thi học kì I",
+        PeriodCode: "PT0001",
+        Year: 2019,
+        StartDate: "19/03/2020 02:03:05",
+        EndDate: "19/04/2020 02:03:05",
+        Status: 1
+    },
+    {
+        Id: 2,
+        PeriodName: "Kì thi học kì II",
+        PeriodCode: "PT0002",
+        Year: 2018,
+        StartDate: "12/03/2020 02:03:05",
+        EndDate: "14/04/2020 02:03:05",
+        Status: 2
+    },
+    {
+        Id: 3,
+        PeriodName: "Kì thi học kì phụ",
+        PeriodCode: "PT0003",
+        Year: 2020,
+        StartDate: "05/03/2020 02:03:05",
+        EndDate: "03/04/2020 02:03:05",
+        Status: 3
     }
 ];
 

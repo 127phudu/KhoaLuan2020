@@ -139,13 +139,15 @@
                     </div>
 
                     <!-- Grid  -->
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="Grid" id="GridSubject" useCheckBox='true' useIndex="true">
-                                <div class="column" setField="SubjectName">Tên học phần</div>
-                                <div class="column" setField="SubjectCode">Mã học phần</div>
-                                <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
-                                <div class="column" setField="Description">Mô tả</div>
+                    <div class="grid-wrapper">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="Grid" id="GridSubject" useCheckBox='true' useIndex="true">
+                                    <div class="column" setField="SubjectName">Tên học phần</div>
+                                    <div class="column" setField="SubjectCode">Mã học phần</div>
+                                    <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
+                                    <div class="column" setField="Description">Mô tả</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -157,7 +159,7 @@
 
     <!-- Form thêm mới Học phần -->
     <div class="wrapper-form">
-        <div class="formDialog" id="formSubject">
+        <div class="formDialog" id="formSubjectDetail">
 
             <!-- Header form -->
             <div class="header-form">
@@ -291,7 +293,7 @@
     <script src="../Script/Base/Grid.js"></script>
     <script src="../Script/Base/BaseGrid.js"></script>
     <script src="../Script/Base/BaseForm.js"></script>
-    
+
     <!-- Script từng page -->
     <script src="../Script/Form/SubjectForm.js"></script>
     <script src="../Script/Form/ChangePasswordForm.js"></script>

@@ -33,7 +33,7 @@ class RoomManagerPage extends BaseGrid {
     // Khởi tạo trang quản lý Phòng thi
 var roomManagerPage = new RoomManagerPage("#GridRoom", "#ToolbarGridRoom");
     // Tạo một form detail
-    roomManagerPage.createFormDetail("#formRoom", 500, 185);
+    roomManagerPage.createFormDetail("#formRoomDetail", 500, 185);
     // Khởi tạo form thay đổi mật khẩu
 var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
     // Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)

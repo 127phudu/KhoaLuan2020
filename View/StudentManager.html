@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
 </head>
+
 <body>
     <div class="container-wrapp">
         <!-- Header page -->
@@ -93,16 +95,16 @@
                 </ul>
             </div>
             <div class="body-right flex1 main-content">
-                
+
                 <!-- Nội dung thay thế từng trang -->
                 <div class="container-fluid" id="StudentContainer">
                     <div class="row breadrum">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="#">Quản lý danh mục</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Sinh viên</li>
+                                <li class="breadcrumb-item"><a href="#">Quản lý danh mục</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Sinh viên</li>
                             </ol>
-                          </nav>
+                        </nav>
                     </div>
                     <div class="row header-title">
                         <span>DANH SÁCH SINH VIÊN</span>
@@ -137,15 +139,18 @@
                     </div>
 
                     <!-- Grid  -->
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="Grid" id="GridStudent" useCheckBox='true' useIndex="true">
-                                <div class="column" setField="FullName">Họ và tên</div>
-                                <div class="column" setField="StudentCode">Mã sinh viên</div>
-                                <div class="column" setField="Email">Địa chỉ email</div>
-                                <div class="column" setField="Gender" dataType="Enum" enumName="Gender">Giới tính</div>
-                                <div class="column" setField="DateOfBirth" dataType="DateTime">Ngày sinh</div>
-                                <div class="column" setField="Course">Khóa học</div>
+                    <div class="grid-wrapper">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="Grid" id="GridStudent" useCheckBox='true' useIndex="true">
+                                    <div class="column" setField="FullName">Họ và tên</div>
+                                    <div class="column" setField="StudentCode">Mã sinh viên</div>
+                                    <div class="column" setField="Email">Địa chỉ email</div>
+                                    <div class="column" setField="Gender" dataType="Enum" enumName="Gender">Giới tính
+                                    </div>
+                                    <div class="column" setField="DateOfBirth" dataType="DateTime">Ngày sinh</div>
+                                    <div class="column" setField="Course">Khóa học</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -171,25 +176,25 @@
                         <div class="row-grid">
                             <div class="text-field flex1 border-right-none">
                                 <b>Họ và tên <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="FullName" MaxLength="100" title="Không được để trống"
-                                    placeholder="Nhập họ và tên...">
+                                <input type="text" Require="true" SetField="FullName" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập họ và tên...">
                             </div>
                             <div class="text-field flex1">
                                 <b>Mã sinh viên <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="StudentCode" CheckDuplicate="true" MaxLength="10" title="Không được để trống"
-                                    placeholder="Nhập mã sinh viên...">
+                                <input type="text" Require="true" SetField="StudentCode" CheckDuplicate="true"
+                                    MaxLength="10" title="Không được để trống" placeholder="Nhập mã sinh viên...">
                             </div>
                         </div>
                         <div class="row-grid">
                             <div class="text-field flex1 border-topright-none">
                                 <b>Ngày sinh</b>
-                                <input type="text" SetField="DateOfBirth" DataType="Date"  MaxLength="10" class="datepicker"
-                                    placeholder="Nhập ngày sinh...">
+                                <input type="text" SetField="DateOfBirth" DataType="Date" MaxLength="10"
+                                    class="datepicker" placeholder="Nhập ngày sinh...">
                             </div>
                             <div class="text-field flex1 border-top-none">
                                 <b>Giới tính</b>
-                                <select class="speed combox-select" SetField="Gender" Enum="Gender" aria-placeholder="Chọn giới tính..." DataType="Enum"
-                                    id="speed">
+                                <select class="speed combox-select" SetField="Gender" Enum="Gender"
+                                    aria-placeholder="Chọn giới tính..." DataType="Enum" id="speed">
                                     <option value="1" selected="selected">Nam</option>
                                     <option value="2">Nữ</option>
                                     <option value="3">Khác</option>
@@ -199,11 +204,13 @@
                         <div class="row-grid">
                             <div class="text-field flex1 border-right-none border-top-none">
                                 <b>Địa chỉ email <span class="require">(*)</span></b>
-                                <input  type="text" Require="true" SetField="Email" MaxLength="50" title="Không được để trống" placeholder="Nhập địa chỉ email...">
+                                <input type="text" Require="true" SetField="Email" MaxLength="50"
+                                    title="Không được để trống" placeholder="Nhập địa chỉ email...">
                             </div>
                             <div class="text-field flex1 border-top-none">
                                 <b>Khóa học</b>
-                                <input type="text" SetField="Course" placeholder="Nhập khóa học..." MaxLength="10" title="Cần nhập đúng định dạng K61,K62...">
+                                <input type="text" SetField="Course" placeholder="Nhập khóa học..." MaxLength="10"
+                                    title="Cần nhập đúng định dạng K61,K62...">
                             </div>
                         </div>
                     </div>
@@ -223,7 +230,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Form đổi mật khẩu -->
     <div class="wrapper-form formChanePassword">
         <div class="formDialog" id="formChangePassword">
@@ -312,4 +319,5 @@
     <script src="../Script/Form/ChangePasswordForm.js"></script>
     <script src="../Script/View/StudentManager.js"></script>
 </body>
+
 </html>

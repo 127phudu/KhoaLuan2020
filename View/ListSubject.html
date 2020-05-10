@@ -139,14 +139,16 @@
                     </div>
 
                     <!-- Grid  -->
-                    <div class="row" Layout="Master">
-                        <div class="col-xl-12">
-                            <div class="Grid" id="GridListSubject" useCheckBox='true' useIndex="true">
-                                <div class="column" setField="SubjectName">Tên học phần</div>
-                                <div class="column" setField="SubjectCode">Mã học phần</div>
-                                <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
-                                <div class="column" setField="NumberStudent" dataType="Number">Số sinh viên</div>
-                                <div class="column" setField="Description">Mô tả</div>
+                    <div class="grid-wrapper" Layout="Master">
+                        <div class="row" Layout="Master">
+                            <div class="col-xl-12">
+                                <div class="Grid" id="GridListSubject" useCheckBox='true' useIndex="true">
+                                    <div class="column" setField="SubjectName">Tên học phần</div>
+                                    <div class="column" setField="SubjectCode">Mã học phần</div>
+                                    <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
+                                    <div class="column" setField="NumberStudent" dataType="Number">Số sinh viên</div>
+                                    <div class="column" setField="Description">Mô tả</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -192,17 +194,20 @@
                     </div>
 
                     <!-- Grid  -->
-                    <div class="row" Layout="Detail" style="display: none;">
-                        <div class="col-xl-12">
-                            <div class="Grid" id="StudentSubjectDetail" useCheckBox='true' useIndex="true">
-                                <div class="column" setField="FullName">Họ và tên</div>
-                                <div class="column" setField="StudentCode">Mã sinh viên</div>
-                                <div class="column" setField="Email">Địa chỉ email</div>
-                                <div class="column" setField="Gender" dataType="Enum" enumName="Gender">Giới tính</div>
-                                <div class="column" setField="DateOfBirth" dataType="DateTime">Ngày sinh</div>
-                                <div class="column" setField="Course">Khóa học</div>
-                                <div class="column" setField="Status" dataType="Enum" enumName="StatusStudent">Trạng
-                                    thái</div>
+                    <div class="grid-wrapper" Layout="Detail" style="display: none;">
+                        <div class="row" Layout="Detail" style="display: none;">
+                            <div class="col-xl-12">
+                                <div class="Grid" id="StudentSubjectDetail" useCheckBox='true' useIndex="true">
+                                    <div class="column" setField="FullName">Họ và tên</div>
+                                    <div class="column" setField="StudentCode">Mã sinh viên</div>
+                                    <div class="column" setField="Email">Địa chỉ email</div>
+                                    <div class="column" setField="Gender" dataType="Enum" enumName="Gender">Giới tính
+                                    </div>
+                                    <div class="column" setField="DateOfBirth" dataType="DateTime">Ngày sinh</div>
+                                    <div class="column" setField="Course">Khóa học</div>
+                                    <div class="column" setField="Status" dataType="Enum" enumName="StatusStudent">Trạng
+                                        thái</div>
+                                </div>
                             </div>
                         </div>
                     </div>

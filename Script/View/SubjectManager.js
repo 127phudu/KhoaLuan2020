@@ -33,7 +33,7 @@ class SubjectManagerPage extends BaseGrid {
     // Khởi tạo trang quản lý Học phần
 var subjectManagerPage = new SubjectManagerPage("#GridSubject", "#ToolbarGridSubject");
     // Tạo một form detail
-    subjectManagerPage.createFormDetail("#formSubject", 500, 185);
+    subjectManagerPage.createFormDetail("#formSubjectDetail", 500, 185);
     // Khởi tạo form thay đổi mật khẩu
 var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
     // Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
