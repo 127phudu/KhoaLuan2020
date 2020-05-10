@@ -109,7 +109,7 @@
                         </nav>
                     </div>
 
-                    <div class="row header-title header-title-combo">
+                    <div class="row header-title header-title-combo" Layout="Master">
                         <select class="speed combox-select" aria-placeholder="Chọn kì thi..." DataType="EnumCombobox" id="chooseExam">
                             <option value="1" selected="selected">Kì thi học kì I</option>
                             <option value="2">Kì thi học kì phụ</option>
@@ -118,7 +118,7 @@
                     </div>
 
                     <!-- Toolbar -->
-                    <div class="row">
+                    <div class="row" Layout="Master">
                         <div class="col-xl-12">
                             <div class="toolbar" id="ToolbarGridListSubject">
                                 <div class="toolbar-item" CommanName='Choose'>
@@ -138,7 +138,7 @@
                     </div>
 
                     <!-- Grid  -->
-                    <div class="row">
+                    <div class="row" Layout="Master">
                         <div class="col-xl-12">
                             <div class="Grid" id="GridListSubject" useCheckBox='true' useIndex="true">
                                 <div class="column" setField="SubjectName">Tên học phần</div>
@@ -149,6 +149,61 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row header-title" Layout="Detail" style="display: none;">
+                        <span>DANH SÁCH SINH VIÊN - PHÁT TRIỂN ỨNG DỤNG WEB (INT3306)</span>
+                    </div>
+
+                    <!-- Toolbar -->
+                    <div class="row" Layout="Detail" style="display: none;">
+                        <div class="col-xl-12">
+                            <div class="toolbar" id="ToolbarStudentSubjectDetail">
+                                <div class="toolbar-item" CommanName='Back'>
+                                    <span class="icon-toolbar glyphicon glyphicon-share-alt"></span>
+                                    <span class="text-toolbar">Quay lại</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Import'>
+                                    <span class="icon-toolbar glyphicon glyphicon-cloud-upload"></span>
+                                    <span class="text-toolbar">Nhập khẩu</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Export'>
+                                    <span class="icon-toolbar glyphicon glyphicon-cloud-download"></span>
+                                    <span class="text-toolbar">Xuất khẩu</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Add'>
+                                    <span class="icon-toolbar glyphicon glyphicon-plus"></span>
+                                    <span class="text-toolbar">Thêm</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Delete'>
+                                    <span class="icon-toolbar glyphicon glyphicon-trash"></span>
+                                    <span class="text-toolbar">Xóa</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Accept'>
+                                    <span class="icon-toolbar glyphicon glyphicon-ok"></span>
+                                    <span class="text-toolbar">Cho phép thi</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Reject'>
+                                    <span class="icon-toolbar glyphicon glyphicon-remove"></span>
+                                    <span class="text-toolbar">Cấm thi</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid  -->
+                    <div class="row" Layout="Detail" style="display: none;">
+                        <div class="col-xl-12">
+                            <div class="Grid" id="StudentSubjectDetail" useCheckBox='true' useIndex="true">
+                                <div class="column" setField="FullName">Họ và tên</div>
+                                <div class="column" setField="StudentCode">Mã sinh viên</div>
+                                <div class="column" setField="Email">Địa chỉ email</div>
+                                <div class="column" setField="Gender" dataType="Enum" enumName="Gender">Giới tính</div>
+                                <div class="column" setField="DateOfBirth" dataType="DateTime">Ngày sinh</div>
+                                <div class="column" setField="Course">Khóa học</div>
+                                <div class="column" setField="Status" dataType="Enum" enumName="StatusStudent">Trạng thái</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- end content -->
             </div>
@@ -156,7 +211,7 @@
     </div>
 
     <!-- Form thêm mới Học phần -->
-    <div class="wrapper-form wrapp-formEntity">
+    <div class="wrapper-form">
         <div class="formDialog" id="formSubject">
 
             <!-- Header form -->
@@ -193,7 +248,7 @@
     </div>
 
     <!-- Form đổi mật khẩu -->
-    <div class="wrapper-form formChanePassword">
+    <div class="wrapper-form">
         <div class="formDialog" id="formChangePassword">
             <!-- Header form -->
             <div class="header-form">
@@ -279,6 +334,7 @@
     <!-- Script từng page -->
     <script src="../Script/Form/ChooseSubjectForm.js"></script>
     <script src="../Script/Form/ChangePasswordForm.js"></script>
+    <script src="../Script/View/StudentSubjectDetail.js"></script>
     <script src="../Script/View/ListSubject.js"></script>
 </body>
 

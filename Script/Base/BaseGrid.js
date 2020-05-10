@@ -10,7 +10,6 @@ class BaseGrid extends Grid{
         this.listFakeData = null; // Sau này xóa bỏ
         //this.checkRoleUser(); Tạm thời comment
         this.initEvent();
-        //this.loadAjaxData(); Tạm thời comment
     }
 
     // Kiểm tra quyền truy cập
@@ -38,7 +37,8 @@ class BaseGrid extends Grid{
     initEventToolbar(){
         var me = this;
 
-        me.toolbar.find("[CommanName]").click(function(){
+        me.toolbar.find("[CommanName]").off("click");
+        me.toolbar.find("[CommanName]").on("click", function(){
             let commandName = $(this).attr("CommanName");
             switch(commandName){
                 case "Add":
@@ -72,7 +72,7 @@ class BaseGrid extends Grid{
         });
 
         // Thêm datepicker cho ô input chọn ngày tháng
-        $(".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+        $(".datepicker").datepicker({ dateFormat: 'dd/mm/yy' });
 
         // Hiển thị các tooltip
         $(document).tooltip({track: true});
@@ -81,7 +81,8 @@ class BaseGrid extends Grid{
         $(".combox-select").selectmenu();
 
         // Khi xóa
-        $("#btn-Delete").click(function(){
+        $("#btn-Delete").off('click');
+        $("#btn-Delete").on("click",function(){
             //me.executeDelete();
             me.executeDeleteFake(); // sau này xóa bỏ
         });
@@ -89,7 +90,7 @@ class BaseGrid extends Grid{
 
     // Sau này xóa bỏ
     executeDeleteFake(){
-        let me = this,
+        let me = $("#myModal").data("gridFocus"),
             listData = me.getSelection(),
             listId = [];
 
@@ -170,6 +171,7 @@ class BaseGrid extends Grid{
     delete(){
         this.editMode = Enum.EditMode.Delete;
         $("#myModal").modal("show");
+        $("#myModal").data("gridFocus",this);
     }
     
     // Hàm lấy config

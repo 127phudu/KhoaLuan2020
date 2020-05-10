@@ -162,7 +162,8 @@ Enum.StatusResponse = {
 
 // Enum giới tính
 Enum.Gender = ["Giới tính","Nam","Nữ","Khác"];
-Enum.Status = ["Trạng thái","Sử dụng", "Không sử dụng"];
+Enum.Status = ["Trạng thái phòng thi","Sử dụng", "Không sử dụng"];
+Enum.StatusStudent = ["Trạng thái sinh viên","Đủ điều kiện", "Cấm thi"];
 Enum.StatusPeriod = ["Trạng thái kì thi", "Chưa đăng ký", "Đang đăng ký", "Đã đăng ký"];
 
 // Text thông báo lỗi

@@ -37,5 +37,12 @@ var mappingApi = {
         urlCreate: null,
         urlDelete: null,
         urlGetDataDetail: null
+    },
+    StudentSubjectDetail: {
+        urlGetData: null,
+        urlCreate: null,
+        urlUpdate: null,
+        urlDelete: null,
+        urlCheckDuplicate: null
     }
 }

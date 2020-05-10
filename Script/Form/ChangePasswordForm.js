@@ -78,8 +78,7 @@ class ChangePasswordForm extends BaseForm {
 
     // Hàm hiển thị form
     show(){
-        $(".formChanePassword").show();
-
+        this.form.parent().show();
         this.resetFormData();
     }
 }

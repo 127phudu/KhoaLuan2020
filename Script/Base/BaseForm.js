@@ -13,8 +13,12 @@ class BaseForm{
     // Khởi tạo các sự kiện
     initEvent(){
         this.form.draggable();
-        this.form.find(".btn-save").click(this.save.bind(this));
-        this.form.find(".btn-cancel").click(this.close.bind(this));
+
+        this.form.find(".btn-save").off("click");
+        this.form.find(".btn-cancel").off("click");
+        
+        this.form.find(".btn-save").on("click",this.save.bind(this));
+        this.form.find(".btn-cancel").on("click",this.close.bind(this));
         this.form.find("input").blur(this.checkStatusInput); 
         this.form.find("input").keyup(this.checkStatusInput); 
     }
@@ -293,7 +297,7 @@ class BaseForm{
     // Hàm hiển thị form
     show(data){
         let title = '';
-        $(".wrapp-formEntity").show();
+        this.form.parent().show();
 
         if(this.jsCaller.editMode == Enum.EditMode.Add){
             title = 'Thêm ' + this.title;

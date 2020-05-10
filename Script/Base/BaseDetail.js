@@ -18,8 +18,12 @@ class BaseDetail extends Grid{
         let me = this;
 
         me.form.draggable();
-        me.form.find(".btn-save").click(me.save.bind(this));
-        me.form.find(".btn-cancel").click(me.close.bind(this));
+
+        me.form.find(".btn-save").off("click");
+        me.form.find(".btn-cancel").off("click");
+        
+        me.form.find(".btn-save").on("click",me.save.bind(this));
+        me.form.find(".btn-cancel").on("click",me.close.bind(this));
     }
 
     // Cất dữ liệu
@@ -67,7 +71,7 @@ class BaseDetail extends Grid{
     show(){
         let me = this;
 
-        $(".wrapp-formEntity").show();
+        me.form.parent().show();
         me.loadAjaxDataFake(); 
         //me.loadAjaxData(); 
     }

@@ -13,6 +13,12 @@ class ListSubject extends BaseGrid {
         this.formDetail = new ChooseSubjectForm(formId, gridId, toolbarId, this, width, height);
     }
 
+    // Tạo page detail
+    createPageDetail(gridId, toolbarId){
+        this.pageDetail = new StudentSubjectDetail(gridId, toolbarId);
+        this.pageDetail.pageMaster = this;
+    }
+
     //Hàm load dữ liệu
     loadAjaxData(){
         let me = this,
@@ -62,20 +68,17 @@ class ListSubject extends BaseGrid {
         return object;
     }
 
-    // Xử lý load view khi từ trang con sang trang cha
-    loadView(){
-
-    }
-
     // Hàm dùng đối với từng loại toolbar đặc thù
     customToolbarItem(commandName){
         let me = this;
 
-         switch(commandName){
-             case "Choose":
-                 me.choose();
-                 break;
-         }
+        switch(commandName){
+            case "Choose":
+                me.choose();
+                break;
+            case "ViewDetail":
+                me.viewDetail();
+        }
     }
 
     // Chọn danh sách học phần
@@ -84,12 +87,25 @@ class ListSubject extends BaseGrid {
 
         me.formDetail.show();
     }
+
+    // Khi bấm vào xem chi tiết
+    viewDetail(){
+        let me = this,
+            masterData = me.getSelection()[0];
+
+        $("[Layout='Master']").hide();
+        $("[Layout='Detail']").show();
+        
+        me.pageDetail.show(masterData);
+    }
 }
 
     // Khởi tạo trang quản lý Học phần
 var listSubject = new ListSubject("#GridListSubject", "#ToolbarGridListSubject");
     // Tạo một form detail
     listSubject.createFormDetail("#formSubject","#GridSubject", "#ToolbarChooseSubject", 800, 600);
+    // Tạo trang chi tiết bên trong
+    listSubject.createPageDetail("#StudentSubjectDetail", "#ToolbarStudentSubjectDetail");
     // Khởi tạo form thay đổi mật khẩu
 var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
     // Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
