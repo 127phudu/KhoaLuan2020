@@ -125,6 +125,7 @@ var Constant = Constant || {};
 // Các url để chuyển hướng
 Constant.url = {
     Login: "file:///D:/KhoaLuan2020/Index.html",
+
     StudentManager: "file:///D:/KhoaLuan2020/View/StudentManager.html",
     SubjectManager: "file:///D:/KhoaLuan2020/View/SubjectManager.html",
     RoomManager:"file:///D:/KhoaLuan2020/View/RoomManager.html",
@@ -132,7 +133,8 @@ Constant.url = {
 
     ListSubject: "file:///D:/KhoaLuan2020/View/ListSubject.html",
     SettingRoom: "file:///D:/KhoaLuan2020/View/RoomSetting.html",
-    CreateExam: "file:///D:/KhoaLuan2020/View/CreateExam.html"
+    CreateExam: "file:///D:/KhoaLuan2020/View/CreateExam.html",
+    ExamRegisterResult: "file:///D:/KhoaLuan2020/View/ExamRegisterResult.html"
 }
 
 ///////////////////////// Các Enum //////////////////////////////////

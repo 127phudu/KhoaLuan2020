@@ -83,55 +83,6 @@ var subjects = [
         SubjectCode: "INT1303",
         NumberCredit: 2,
         Description: ""
-    },
-    {
-        Id:"104161c8-8017-4eef-a70f-68a73458739d",
-        SubjectName: "Phát triển ứng dụng web",
-        SubjectCode: "INT3305 4",
-        NumberCredit: 3,
-        Description: "Môn học bắt buộc"
-    },
-    {
-        Id:"a0c6575c-332c-4637-be39-088734e92265",
-        SubjectName: "Giải tích 1",
-        SubjectCode: "INT3305",
-        NumberCredit: 3,
-        Description: "Học phần mới"
-    },
-    {
-        Id:"e5c3a07d-22df-4d74-a08b-36d057a6212d",
-        SubjectName: "Đại số",
-        SubjectCode: "INT1303",
-        NumberCredit: 2,
-        Description: ""
-    },
-    {
-        Id:"104161c8-8017-4eef-a70f-68a73458739d",
-        SubjectName: "Phát triển ứng dụng web",
-        SubjectCode: "INT3305 4",
-        NumberCredit: 3,
-        Description: "Môn học bắt buộc"
-    },
-    {
-        Id:"a0c6575c-332c-4637-be39-088734e92265",
-        SubjectName: "Giải tích 1",
-        SubjectCode: "INT3305",
-        NumberCredit: 3,
-        Description: "Học phần mới"
-    },
-    {
-        Id:"e5c3a07d-22df-4d74-a08b-36d057a6212d",
-        SubjectName: "Đại số",
-        SubjectCode: "INT1303",
-        NumberCredit: 2,
-        Description: ""
-    },
-    {
-        Id:"104161c8-8017-4eef-a70f-68a73458739d",
-        SubjectName: "Phát triển ứng dụng web",
-        SubjectCode: "INT3305 4",
-        NumberCredit: 3,
-        Description: "Môn học bắt buộc"
     }
 ];
 
@@ -261,213 +212,6 @@ var periodExams = [
         StartDate: "12/03/2020 02:03:05",
         EndDate: "14/04/2020 02:03:05",
         Status: 2
-    },
-    {
-        Id: 3,
-        PeriodName: "Kì thi học kì phụ",
-        PeriodCode: "PT0003",
-        Year: 2020,
-        StartDate: "05/03/2020 02:03:05",
-        EndDate: "03/04/2020 02:03:05",
-        Status: 3
-    },
-    {
-        Id: 1,
-        PeriodName: "Kì thi học kì I",
-        PeriodCode: "PT0001",
-        Year: 2019,
-        StartDate: "19/03/2020 02:03:05",
-        EndDate: "19/04/2020 02:03:05",
-        Status: 1
-    },
-    {
-        Id: 2,
-        PeriodName: "Kì thi học kì II",
-        PeriodCode: "PT0002",
-        Year: 2018,
-        StartDate: "12/03/2020 02:03:05",
-        EndDate: "14/04/2020 02:03:05",
-        Status: 2
-    },
-    {
-        Id: 3,
-        PeriodName: "Kì thi học kì phụ",
-        PeriodCode: "PT0003",
-        Year: 2020,
-        StartDate: "05/03/2020 02:03:05",
-        EndDate: "03/04/2020 02:03:05",
-        Status: 3
-    },
-    {
-        Id: 1,
-        PeriodName: "Kì thi học kì I",
-        PeriodCode: "PT0001",
-        Year: 2019,
-        StartDate: "19/03/2020 02:03:05",
-        EndDate: "19/04/2020 02:03:05",
-        Status: 1
-    },
-    {
-        Id: 2,
-        PeriodName: "Kì thi học kì II",
-        PeriodCode: "PT0002",
-        Year: 2018,
-        StartDate: "12/03/2020 02:03:05",
-        EndDate: "14/04/2020 02:03:05",
-        Status: 2
-    },
-    {
-        Id: 3,
-        PeriodName: "Kì thi học kì phụ",
-        PeriodCode: "PT0003",
-        Year: 2020,
-        StartDate: "05/03/2020 02:03:05",
-        EndDate: "03/04/2020 02:03:05",
-        Status: 3
-    },
-    {
-        Id: 1,
-        PeriodName: "Kì thi học kì I",
-        PeriodCode: "PT0001",
-        Year: 2019,
-        StartDate: "19/03/2020 02:03:05",
-        EndDate: "19/04/2020 02:03:05",
-        Status: 1
-    },
-    {
-        Id: 2,
-        PeriodName: "Kì thi học kì II",
-        PeriodCode: "PT0002",
-        Year: 2018,
-        StartDate: "12/03/2020 02:03:05",
-        EndDate: "14/04/2020 02:03:05",
-        Status: 2
-    },
-    {
-        Id: 3,
-        PeriodName: "Kì thi học kì phụ",
-        PeriodCode: "PT0003",
-        Year: 2020,
-        StartDate: "05/03/2020 02:03:05",
-        EndDate: "03/04/2020 02:03:05",
-        Status: 3
-    },
-    {
-        Id: 1,
-        PeriodName: "Kì thi học kì I",
-        PeriodCode: "PT0001",
-        Year: 2019,
-        StartDate: "19/03/2020 02:03:05",
-        EndDate: "19/04/2020 02:03:05",
-        Status: 1
-    },
-    {
-        Id: 2,
-        PeriodName: "Kì thi học kì II",
-        PeriodCode: "PT0002",
-        Year: 2018,
-        StartDate: "12/03/2020 02:03:05",
-        EndDate: "14/04/2020 02:03:05",
-        Status: 2
-    },
-    {
-        Id: 3,
-        PeriodName: "Kì thi học kì phụ",
-        PeriodCode: "PT0003",
-        Year: 2020,
-        StartDate: "05/03/2020 02:03:05",
-        EndDate: "03/04/2020 02:03:05",
-        Status: 3
-    },
-    {
-        Id: 2,
-        PeriodName: "Kì thi học kì II",
-        PeriodCode: "PT0002",
-        Year: 2018,
-        StartDate: "12/03/2020 02:03:05",
-        EndDate: "14/04/2020 02:03:05",
-        Status: 2
-    },
-    {
-        Id: 3,
-        PeriodName: "Kì thi học kì phụ",
-        PeriodCode: "PT0003",
-        Year: 2020,
-        StartDate: "05/03/2020 02:03:05",
-        EndDate: "03/04/2020 02:03:05",
-        Status: 3
-    },
-    {
-        Id: 1,
-        PeriodName: "Kì thi học kì I",
-        PeriodCode: "PT0001",
-        Year: 2019,
-        StartDate: "19/03/2020 02:03:05",
-        EndDate: "19/04/2020 02:03:05",
-        Status: 1
-    },
-    {
-        Id: 2,
-        PeriodName: "Kì thi học kì II",
-        PeriodCode: "PT0002",
-        Year: 2018,
-        StartDate: "12/03/2020 02:03:05",
-        EndDate: "14/04/2020 02:03:05",
-        Status: 2
-    },
-    {
-        Id: 3,
-        PeriodName: "Kì thi học kì phụ",
-        PeriodCode: "PT0003",
-        Year: 2020,
-        StartDate: "05/03/2020 02:03:05",
-        EndDate: "03/04/2020 02:03:05",
-        Status: 3
-    },
-    {
-        Id: 2,
-        PeriodName: "Kì thi học kì II",
-        PeriodCode: "PT0002",
-        Year: 2018,
-        StartDate: "12/03/2020 02:03:05",
-        EndDate: "14/04/2020 02:03:05",
-        Status: 2
-    },
-    {
-        Id: 3,
-        PeriodName: "Kì thi học kì phụ",
-        PeriodCode: "PT0003",
-        Year: 2020,
-        StartDate: "05/03/2020 02:03:05",
-        EndDate: "03/04/2020 02:03:05",
-        Status: 3
-    },
-    {
-        Id: 1,
-        PeriodName: "Kì thi học kì I",
-        PeriodCode: "PT0001",
-        Year: 2019,
-        StartDate: "19/03/2020 02:03:05",
-        EndDate: "19/04/2020 02:03:05",
-        Status: 1
-    },
-    {
-        Id: 2,
-        PeriodName: "Kì thi học kì II",
-        PeriodCode: "PT0002",
-        Year: 2018,
-        StartDate: "12/03/2020 02:03:05",
-        EndDate: "14/04/2020 02:03:05",
-        Status: 2
-    },
-    {
-        Id: 3,
-        PeriodName: "Kì thi học kì phụ",
-        PeriodCode: "PT0003",
-        Year: 2020,
-        StartDate: "05/03/2020 02:03:05",
-        EndDate: "03/04/2020 02:03:05",
-        Status: 3
     }
 ];
 
@@ -561,5 +305,53 @@ var roomSettings = [
         Description: "Gần kí túc",
         CountRoom: 25,
         CountRoomBackup: 2
+    }
+];
+
+// Các lịch thi
+var createExams = [
+    {
+        Id: 1,
+        SubjectName: "Giải tích 1",
+        SubjectCode: "INT3304",
+        NumberCredit: 3,
+        RoomName: "302 G2",
+        Place: "Đại học ngoại ngữ",
+        NumberStudent: 23,
+        DateExam: "22/02/2020 01:40",
+        TimeExam: "3:30-5:00"
+    },
+    {
+        Id: 2,
+        SubjectName: "Đại số",
+        SubjectCode: "INT33045",
+        NumberCredit: 3,
+        RoomName: "301 G2",
+        Place: "",
+        NumberStudent: 21,
+        DateExam: "10/02/2020 01:40",
+        TimeExam: "13:30-14:00"
+    },
+    {
+        Id: 3,
+        SubjectName: "Đường lối cách mạng của ĐCS",
+        SubjectCode: "INT3305",
+        NumberCredit: 3,
+        RoomName: "302 G2",
+        Place: "",
+        NumberStudent: 25,
+        DateExam: "04/02/2020 01:40",
+        TimeExam: "14:00-15:00"
+    },
+    {
+        Id: 4,
+        SubjectName: "Cơ sở dữ liệu",
+        SubjectCode: "INT3302",
+        NumberCredit: 3,
+        RoomName: "311 G2",
+        Place: "Kí túc xá",
+        NumberStudent: 22,
+        DateExam: "24/06/2020 01:40",
+        TimeExam: "13:30-15:00"
     }
 ];

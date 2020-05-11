@@ -51,5 +51,12 @@ var mappingApi = {
         urlUpdate: null,
         urlDelete: null,
         urlCheckDuplicate: null
+    },
+    CreateExam:{
+        urlGetData: null,
+        urlCreate: null,
+        urlUpdate: null,
+        urlDelete: null,
+        urlCheckDuplicate: null
     }
 }

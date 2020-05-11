@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quản lý kì thi</title>
+    <title>Tạo lịch thi</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../Content/CSS/Common/jquery.timepicker.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
 </head>
+
 <body>
     <div class="container-wrapp">
         <!-- Header page -->
@@ -38,7 +41,7 @@
                             <span>Quản lý kì thi</span>
                         </a>
                     </li>
-                    <li class="flex item-3 submenu-item hover-color" key="PeriodExamManager">
+                    <li class="flex item-3 submenu-item" key="PeriodExamManager">
                         <a href="#" class="tabLeft">
                             <span>Kì thi</span>
                         </a>
@@ -53,7 +56,7 @@
                             <span>Thiết lập phòng thi</span>
                         </a>
                     </li>
-                    <li class="flex item-3 submenu-item" key="CreateExam">
+                    <li class="flex item-3 submenu-item  hover-color" key="CreateExam">
                         <a href="#" class="tabLeft">
                             <span>Tạo lịch thi</span>
                         </a>
@@ -98,25 +101,33 @@
                 </ul>
             </div>
             <div class="body-right flex1 main-content">
-                
+
                 <!-- Nội dung thay thế từng trang -->
-                <div class="container-fluid" id="PeriodExamContainer">
+                <div class="container-fluid" id="GridRoomSettingContainer">
+
                     <div class="row breadrum">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="#">Quản lý danh mục</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Kì thi</li>
+                                <li class="breadcrumb-item"><a href="#">Quản lý kì thi</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Tạo lịch thi
+                                </li>
                             </ol>
-                          </nav>
+                        </nav>
                     </div>
-                    <div class="row header-title">
-                        <span>DANH SÁCH KÌ THI</span>
+
+                    <div class="row header-title header-title-combo">
+                        <select class="speed combox-select" aria-placeholder="Chọn kì thi..." DataType="EnumCombobox"
+                            id="chooseExam">
+                            <option value="1" selected="selected">Kì thi học kì I</option>
+                            <option value="2">Kì thi học kì phụ</option>
+                            <option value="3">Kì thi đánh giá năng lực</option>
+                        </select>
                     </div>
 
                     <!-- Toolbar -->
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="toolbar" id="ToolbarGridPeriodExam">
+                            <div class="toolbar" id="ToolbarGridCreateExam">
                                 <div class="toolbar-item" CommanName='Add'>
                                     <span class="icon-toolbar glyphicon glyphicon-plus"></span>
                                     <span class="text-toolbar">Thêm</span>
@@ -129,13 +140,9 @@
                                     <span class="icon-toolbar glyphicon glyphicon-trash"></span>
                                     <span class="text-toolbar">Xóa</span>
                                 </div>
-                                <div class="toolbar-item" CommanName='StartRegister'>
-                                    <span class="icon-toolbar glyphicon glyphicon-ok"></span>
-                                    <span class="text-toolbar">Bắt đầu đăng ký</span>
-                                </div>
-                                <div class="toolbar-item" CommanName='DoneRegister'>
-                                    <span class="icon-toolbar glyphicon glyphicon-remove"></span>
-                                    <span class="text-toolbar">Kết thúc đăng ký</span>
+                                <div class="toolbar-item" CommanName='Export'>
+                                    <span class="icon-toolbar glyphicon glyphicon-cloud-download"></span>
+                                    <span class="text-toolbar">Xuất khẩu</span>
                                 </div>
                             </div>
                         </div>
@@ -145,13 +152,15 @@
                     <div class="grid-wrapper">
                         <div class="row">
                             <div class="col-xl-12">
-                                <div class="Grid" id="GridPeriodExam" useCheckBox='true' useIndex="true">
-                                    <div class="column" setField="PeriodName">Tên kì thi</div>
-                                    <div class="column" setField="PeriodCode">Mã kì thi</div>
-                                    <div class="column" setField="Year" dataType="Number">Năm</div>
-                                    <div class="column" setField="StartDate" dataType="DateTime">Ngày bắt đầu đăng ký</div>
-                                    <div class="column" setField="EndDate" dataType="DateTime">Ngày kết thúc đăng ký</div>
-                                    <div class="column" setField="Status" dataType="Enum" enumName="StatusPeriod">Trạng thái</div>
+                                <div class="Grid" id="GridCreateExam" useCheckBox='true' useIndex="true">
+                                    <div class="column" setField="SubjectName">Tên học phần</div>
+                                    <div class="column" setField="SubjectCode">Mã học phần</div>
+                                    <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
+                                    <div class="column" setField="RoomName">Phòng thi</div>
+                                    <div class="column" setField="Place">Khu vực</div>
+                                    <div class="column" setField="NumberStudent" dataType="Number">Số sinh viên</div>
+                                    <div class="column" setField="DateExam" dataType="DateTime">Ngày thi</div>
+                                    <div class="column" setField="TimeExam">Giờ thi</div>
                                 </div>
                             </div>
                         </div>
@@ -162,13 +171,13 @@
         </div>
     </div>
 
-    <!-- Form thêm mới kì thi -->
+    <!-- Form thêm mới lịch thi -->
     <div class="wrapper-form">
-        <div class="formDialog" id="formPeriodExam">
+        <div class="formDialog" id="formCreateExam">
 
             <!-- Header form -->
             <div class="header-form">
-                Thêm kì thi
+                Thêm lịch thi
             </div>
 
             <!-- Body form -->
@@ -177,33 +186,44 @@
                     <div class="col-md-12 row-custom">
                         <div class="row-grid">
                             <div class="text-field flex1">
-                                <b>Tên kì thi <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="PeriodName" MaxLength="100" title="Không được để trống"
-                                    placeholder="Nhập tên kì thi...">
+                                <b>Học phần <span class="require">(*)</span></b>
+                                <select class="speed combox-select" SetField="SubjectId" Enum="Gender" title="Không được để trống"
+                                    aria-placeholder="Chọn học phần..." DataType="Enum" id="speed">
+                                    <option value="1" selected="selected">Các vấn đề hiện đại trong công nghệ thông tin</option>
+                                    <option value="2">Giải tích 1</option>
+                                    <option value="3">Nhập môn an toàn thông tin</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row-grid">
                             <div class="text-field flex1 border-topright-none">
-                                <b>Mã kì thi <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="PeriodCode" CheckDuplicate="true" MaxLength="10" title="Không được để trống"
-                                    placeholder="Nhập mã kì thi...">
+                                <b>Phòng thi <span class="require">(*)</span></b>
+                                <select class="speed combox-select" title="Không được để trống" SetField="RoomId" Enum="Gender"
+                                    aria-placeholder="Chọn phòng thi..." DataType="Enum" id="speed">
+                                    <option value="1" selected="selected">304 GD3</option>
+                                    <option value="2">301 G2</option>
+                                    <option value="3">313 G3</option>
+                                </select>
                             </div>
                             <div class="text-field flex1 border-top-none">
-                                <b>Năm <span class="require">(*)</span></b>
-                                <input type="number" Require="true" min="2020" max="9999" SetField="Year" DataType="Number"  MaxLength="5"  title="Không được để trống"
-                                placeholder="Nhập năm...">
+                                <b>Số sinh viên <span class="require">(*)</span></b>
+                                <input type="number" Require="true" SetField="NumberStudent" MaxLength="10"
+                                title="Không được để trống" placeholder="Nhập số sinh viên...">
                             </div>
                         </div>
                         <div class="row-grid">
-                            <div class="text-field flex1 border-topright-none">
-                                <b>Ngày bắt đầu đăng ký</b>
-                                <input type="text" SetField="StartDate" DataType="Date"  MaxLength="10" class="datepicker"
-                                    placeholder="Nhập ngày bắt đầu đăng ký...">
+                            <div class="text-field flex1 border-right-none border-top-none">
+                                <b>Ngày thi <span class="require">(*)</span></b>
+                                <input type="text" Require="true" SetField="DateExam" DataType="Date" MaxLength="10"
+                                class="datepicker" placeholder="Nhập ngày thi...">
+                            </div>
+                            <div class="text-field flex1 border-top-none border-right-none">
+                                <b>Giờ bắt đầu <span class="require">(*)</span></b>
+                                <input id="timepicker" placeholder="Nhập giờ bắt đầu..." Require="true" class="timepicker"/>
                             </div>
                             <div class="text-field flex1 border-top-none">
-                                <b>Ngày kết thúc đăng ký</b>
-                                <input type="text" SetField="EndDate" DataType="Date"  MaxLength="10" class="datepicker"
-                                    placeholder="Nhập ngày kết thúc đăng ký...">
+                                <b>Giờ kết thúc <span class="require">(*)</span></b>
+                                <input id="timepicker" Require="true" placeholder="Nhập giờ kết thúc..." class="timepicker"/>
                             </div>
                         </div>
                     </div>
@@ -223,9 +243,9 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Form đổi mật khẩu -->
-    <div class="wrapper-form formChanePassword">
+    <div class="wrapper-form">
         <div class="formDialog" id="formChangePassword">
             <!-- Header form -->
             <div class="header-form">
@@ -297,6 +317,7 @@
     <script src="../Script/Library/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="../Script/Library/jquery-ui.min.js"></script>
+    <script src="../Script/Library/jquery.timepicker.min.js"></script>
 
     <!-- Script common -->
     <script src="../Script/Common/MappingApi.js"></script>
@@ -305,11 +326,13 @@
     <script src="../Script/Common/Data.js"></script>
     <script src="../Script/Base/Grid.js"></script>
     <script src="../Script/Base/BaseGrid.js"></script>
+    <script src="../Script/Base/BaseDetail.js"></script>
     <script src="../Script/Base/BaseForm.js"></script>
 
     <!-- Script từng page -->
-    <script src="../Script/Form/PeriodExamForm.js"></script>
+    <script src="../Script/Form/CreateExamForm.js"></script>
     <script src="../Script/Form/ChangePasswordForm.js"></script>
-    <script src="../Script/View/PeriodExamManager.js"></script>
+    <script src="../Script/View/CreateExam.js"></script>
 </body>
+
 </html>
