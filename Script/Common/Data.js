@@ -67,21 +67,21 @@ var subjects = [
         Id:"104161c8-8017-4eef-a70f-68a73458739d",
         SubjectName: "Phát triển ứng dụng web",
         SubjectCode: "INT3305 4",
-        NumberCredit: 3,
+        NumberCredit: 4,
         Description: "Môn học bắt buộc"
     },
     {
         Id:"a0c6575c-332c-4637-be39-088734e92265",
         SubjectName: "Giải tích 1",
         SubjectCode: "INT3305",
-        NumberCredit: 3,
+        NumberCredit: 5,
         Description: "Học phần mới"
     },
     {
         Id:"e5c3a07d-22df-4d74-a08b-36d057a6212d",
         SubjectName: "Đại số",
         SubjectCode: "INT1303",
-        NumberCredit: 2,
+        NumberCredit: 6,
         Description: ""
     }
 ];
@@ -110,28 +110,28 @@ var rooms = [
         Description: "Gần kí túc"
     },
     {
-        Id: 3,
+        Id: 4,
         RoomName: "304G3",
         RoomCode: "PT0003",
         Place: "Khu vực ký túc xá",
         Description: "Gần kí túc"
     },
     {
-        Id: 1,
+        Id: 5,
         RoomName: "309G2",
         RoomCode: "PT0001",
         Place: "Đại học ngoại ngữ",
         Description: "Khu vực đại học quốc gia"
     },
     {
-        Id: 2,
+        Id: 6,
         RoomName: "303G2",
         RoomCode: "PT0002",
         Place: "Đại học gtvt",
         Description: ""
     },
     {
-        Id: 3,
+        Id: 7,
         RoomName: "304G3",
         RoomCode: "PT0003",
         Place: "Khu vực ký túc xá",
@@ -169,8 +169,8 @@ var periodExams = [
         Status: 3
     },
     {
-        Id: 1,
-        PeriodName: "Kì thi học kì I",
+        Id: 4,
+        PeriodName: "Kì thi hè 2019",
         PeriodCode: "PT0001",
         Year: 2019,
         StartDate: "19/03/2020 02:03:05",
@@ -178,35 +178,8 @@ var periodExams = [
         Status: 1
     },
     {
-        Id: 2,
-        PeriodName: "Kì thi học kì II",
-        PeriodCode: "PT0002",
-        Year: 2018,
-        StartDate: "12/03/2020 02:03:05",
-        EndDate: "14/04/2020 02:03:05",
-        Status: 2
-    },
-    {
-        Id: 3,
-        PeriodName: "Kì thi học kì phụ",
-        PeriodCode: "PT0003",
-        Year: 2020,
-        StartDate: "05/03/2020 02:03:05",
-        EndDate: "03/04/2020 02:03:05",
-        Status: 3
-    },
-    {
-        Id: 1,
-        PeriodName: "Kì thi học kì I",
-        PeriodCode: "PT0001",
-        Year: 2019,
-        StartDate: "19/03/2020 02:03:05",
-        EndDate: "19/04/2020 02:03:05",
-        Status: 1
-    },
-    {
-        Id: 2,
-        PeriodName: "Kì thi học kì II",
+        Id: 5,
+        PeriodName: "Kì thi bổ trợ",
         PeriodCode: "PT0002",
         Year: 2018,
         StartDate: "12/03/2020 02:03:05",

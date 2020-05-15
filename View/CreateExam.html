@@ -215,8 +215,8 @@
                         <div class="row-grid">
                             <div class="text-field flex1">
                                 <b>Học phần <span class="require">(*)</span></b>
-                                <select class="speed combox-select" SetField="SubjectId" Enum="Gender" title="Không được để trống"
-                                    aria-placeholder="Chọn học phần..." DataType="Enum" id="speed">
+                                <select class="speed combox-select" Require="true" SetField="SubjectId" title="Không được để trống"
+                                    aria-placeholder="Chọn học phần..." DataType="Enum" id="speed" ComboboxName="ChooseSubject">
                                     <option value="1" selected="selected">Các vấn đề hiện đại trong công nghệ thông tin</option>
                                     <option value="2">Giải tích 1</option>
                                     <option value="3">Nhập môn an toàn thông tin</option>
@@ -226,7 +226,7 @@
                         <div class="row-grid">
                             <div class="text-field flex1 border-topright-none">
                                 <b>Phòng thi <span class="require">(*)</span></b>
-                                <select class="speed combox-select" title="Không được để trống" SetField="RoomId" Enum="Gender"
+                                <select class="speed combox-select" Require="true" title="Không được để trống" SetField="RoomId" ComboboxName="ChooseRoom"
                                     aria-placeholder="Chọn phòng thi..." DataType="Enum" id="speed">
                                     <option value="1" selected="selected">304 GD3</option>
                                     <option value="2">301 G2</option>
@@ -235,7 +235,7 @@
                             </div>
                             <div class="text-field flex1 border-top-none">
                                 <b>Số sinh viên <span class="require">(*)</span></b>
-                                <input type="number" Require="true" SetField="NumberStudent" MaxLength="10"
+                                <input type="number" Require="true" SetField="NumberStudent" MaxLength="10" min="0" DataType='Number'
                                 title="Không được để trống" placeholder="Nhập số sinh viên...">
                             </div>
                         </div>
@@ -247,11 +247,11 @@
                             </div>
                             <div class="text-field flex1 border-top-none border-right-none">
                                 <b>Giờ bắt đầu <span class="require">(*)</span></b>
-                                <input id="timepicker" placeholder="Nhập giờ bắt đầu..." Require="true" class="timepicker"/>
+                                <input id="timepicker" SetField="StartTime" placeholder="Nhập giờ bắt đầu..." Require="true" class="timepicker"/>
                             </div>
                             <div class="text-field flex1 border-top-none">
                                 <b>Giờ kết thúc <span class="require">(*)</span></b>
-                                <input id="timepicker" Require="true" placeholder="Nhập giờ kết thúc..." class="timepicker"/>
+                                <input id="timepicker" SetField="EndTime" Require="true" placeholder="Nhập giờ kết thúc..." class="timepicker"/>
                             </div>
                         </div>
                     </div>
@@ -348,10 +348,10 @@
     <script src="../Script/Library/jquery.timepicker.min.js"></script>
 
     <!-- Script common -->
+    <script src="../Script/Common/Data.js"></script>
     <script src="../Script/Common/MappingApi.js"></script>
     <script src="../Script/Common/Common.js"></script>
     <script src="../Script/Common/Master.js"></script>
-    <script src="../Script/Common/Data.js"></script>
     <script src="../Script/Base/Grid.js"></script>
     <script src="../Script/Base/BaseGrid.js"></script>
     <script src="../Script/Base/BaseDetail.js"></script>

@@ -21,6 +21,14 @@ class BaseForm{
         this.form.find(".btn-cancel").on("click",this.close.bind(this));
         this.form.find("input").blur(this.checkStatusInput); 
         this.form.find("input").keyup(this.checkStatusInput); 
+
+        // Thêm datepicker cho ô input chọn ngày tháng
+        $(".datepicker").datepicker({ 
+                dateFormat: 'dd/mm/yy',
+                onSelect: function(date) {
+                    $(this).parent().removeClass("error-validate");
+                }
+        });
     }
 
     // Kiểm tra xem đã đúng validate chưa
@@ -85,8 +93,13 @@ class BaseForm{
     validateFormRequire(){
         let isValid = true;
 
-        this.form.find("input[Require]").each(function(){
-            let value = $(this).val();
+        this.form.find("input[Require], select[Require]").each(function(){
+            let value = $(this).val(),
+                comboName = $(this).attr("ComboboxName");
+
+            if(comboName){
+                value = $(this).parent().find(".ui-selectmenu-text").text();
+            }
 
             if(value.trim() == ""){
                 $(this).parent().addClass("error-validate");
@@ -284,6 +297,8 @@ class BaseForm{
     show(data){
         let title = '';
         this.form.parent().show();
+
+        this.buildEnumDynamic();
 
         if(this.jsCaller.editMode == Enum.EditMode.Add){
             title = 'Thêm ' + this.title;

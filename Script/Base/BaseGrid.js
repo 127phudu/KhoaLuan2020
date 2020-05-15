@@ -10,6 +10,7 @@ class BaseGrid extends Grid{
         this.listFakeData = null; // Sau này xóa bỏ
         //this.checkRoleUser(); Tạm thời comment
         this.initEvent();
+        this.getAllDataComboboxExam();
     }
 
     // Kiểm tra quyền truy cập
@@ -71,14 +72,11 @@ class BaseGrid extends Grid{
             $(this).select();
         });
 
-        // Thêm datepicker cho ô input chọn ngày tháng
-        $(".datepicker").datepicker({ dateFormat: 'dd/mm/yy' });
-
         // Hiển thị các tooltip
         $(document).tooltip({track: true});
 
         // Khởi tạo combobox
-        $(".combox-select").selectmenu();
+        $(".combox-select").selectmenu({ placeholder: 'Vui lòng chọn ...' });
 
         // Khi xóa
         $("#btn-Delete").off('click');
@@ -86,6 +84,47 @@ class BaseGrid extends Grid{
             //me.executeDelete();
             me.executeDeleteFake(); // sau này xóa bỏ
         });
+    }
+    
+    // Lấy dữ liệu combo kì thi
+    getAllDataComboboxExam(){
+        let me = this;
+
+        // Ajax load data
+        // CommonFn.GetAjax(mappingApi.PeriodExam.urlGetData, function (response) {
+        //     me.loadData(response);
+        // });
+
+        me.renderComboboxExam(periodExams);
+    }
+
+    // Render dữ liệu combo
+    renderComboboxExam(listData){
+        let me = this;
+
+        if(listData && listData.length > 0){
+
+            $("#chooseExam").html("");
+
+            listData.filter(function(item){
+                let option = $("<option value='2'></option>");
+
+                option.text(item.PeriodName);
+                option.attr("value", item.Id);
+                $("#chooseExam").append(option);
+            });
+
+            let  periodExamId = localStorage.getItem("PeriodExamId");
+
+            if(!periodExamId){
+                periodExamId = listData[0].Id;
+                localStorage.setItem("PeriodExamId", periodExamId);
+               // me.loadAjaxData();
+            }
+
+            // Auto select bản ghi gần đó nhất
+            $("#chooseExam").val(periodExamId).selectmenu("refresh");
+        }
     }
 
     // Sau này xóa bỏ

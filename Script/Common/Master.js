@@ -28,8 +28,6 @@ class Layout{
 
         // Khi bấm vào đổi mật khẩu
         $("#menuChangePassword").click(this.changePassword);
-
-       
     }
 
     // Hàm xử lý khi đăng xuất

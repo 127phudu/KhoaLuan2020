@@ -52,7 +52,7 @@ class RoomSetting extends BaseGrid {
             periodExamId = parseInt($(this).val());
 
         localStorage.setItem("PeriodExamId", periodExamId);
-        me.loadAjaxData();
+        //me.loadAjaxData();
     }
 
     //override: Thiết lập các config

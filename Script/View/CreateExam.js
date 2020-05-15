@@ -28,6 +28,23 @@ class CreateExamPage extends BaseGrid {
 
         return object;
     }
+
+    // Khởi tạo một số sự kiện
+    initEventElement(){
+        super.initEventElement();
+        let me = this;
+
+        $("#chooseExam").on('selectmenuchange', me.chooseExamChange);
+    }
+
+    // Xử lý khi thay đổi kì thi trên combo
+    chooseExamChange(){
+        let me = this,
+            periodExamId = parseInt($(this).val());
+
+        localStorage.setItem("PeriodExamId", periodExamId);
+        //me.loadAjaxData();
+    }
 }
 
     // Khởi tạo trang quản lý Phòng thi
