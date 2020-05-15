@@ -58,5 +58,19 @@ var mappingApi = {
         urlUpdate: null,
         urlDelete: null,
         urlCheckDuplicate: null
+    },
+    ExamRegisterResult:{
+        urlGetData: null,
+        urlCreate: null,
+        urlUpdate: null,
+        urlDelete: null,
+        urlCheckDuplicate: null
+    },
+    ExamRegisterResultDetail: {
+        urlGetData: null,
+        urlCreate: null,
+        urlUpdate: null,
+        urlDelete: null,
+        urlCheckDuplicate: null
     }
 }

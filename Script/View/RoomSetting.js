@@ -115,6 +115,7 @@ class RoomSetting extends BaseGrid {
             //     });
             // }
 
+            me.showMessageSuccess();
             me.editMode = Enum.EditMode.View;
             me.grid.find("input").addClass("notEdit");
             me.setStatusToolbar();

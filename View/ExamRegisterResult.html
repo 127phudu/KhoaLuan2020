@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quản lý kì thi</title>
+    <title>Kết quả đăng ký thi</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
 </head>
+
 <body>
     <div class="container-wrapp">
         <!-- Header page -->
@@ -38,7 +40,7 @@
                             <span>Quản lý kì thi</span>
                         </a>
                     </li>
-                    <li class="flex item-3 submenu-item hover-color" key="PeriodExamManager">
+                    <li class="flex item-3 submenu-item" key="PeriodExamManager">
                         <a href="#" class="tabLeft">
                             <span>Kì thi</span>
                         </a>
@@ -58,7 +60,7 @@
                             <span>Tạo lịch thi</span>
                         </a>
                     </li>
-                    <li class="flex item-3 submenu-item" key="ExamRegisterResult">
+                    <li class="flex item-3 submenu-item hover-color" key="ExamRegisterResult">
                         <a href="#" class="tabLeft">
                             <span>Kết quả đăng ký thi</span>
                         </a>
@@ -97,135 +99,112 @@
                     </li>
                 </ul>
             </div>
+
             <div class="body-right flex1 main-content">
-                
+
                 <!-- Nội dung thay thế từng trang -->
-                <div class="container-fluid" id="PeriodExamContainer">
+                <div class="container-fluid" id="GridRoomSettingContainer">
+
                     <div class="row breadrum">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="#">Quản lý kì thi</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Kì thi</li>
+                                <li class="breadcrumb-item"><a href="#">Quản lý kì thi</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Kết quả đăng ký thi
+                                </li>
                             </ol>
-                          </nav>
+                        </nav>
                     </div>
-                    <div class="row header-title">
-                        <span>DANH SÁCH KÌ THI</span>
+
+                    <div class="row header-title header-title-combo" Layout="Master">
+                        <select class="speed combox-select" aria-placeholder="Chọn kì thi..." DataType="EnumCombobox"
+                            id="chooseExam">
+                            <option value="1" selected="selected">Kì thi học kì I</option>
+                            <option value="2">Kì thi học kì phụ</option>
+                            <option value="3">Kì thi đánh giá năng lực</option>
+                        </select>
                     </div>
 
                     <!-- Toolbar -->
-                    <div class="row">
+                    <div class="row" Layout="Master">
                         <div class="col-xl-12">
-                            <div class="toolbar" id="ToolbarGridPeriodExam">
-                                <div class="toolbar-item" CommanName='Add'>
-                                    <span class="icon-toolbar glyphicon glyphicon-plus"></span>
-                                    <span class="text-toolbar">Thêm</span>
+                            <div class="toolbar" id="ToolbarGridExamRegisterResult">
+                                <div class="toolbar-item" CommanName='ViewDetail'>
+                                    <span class="icon-toolbar glyphicon glyphicon-random"></span>
+                                    <span class="text-toolbar">Xem chi tiết</span>
                                 </div>
-                                <div class="toolbar-item" CommanName='Edit'>
-                                    <span class="icon-toolbar glyphicon glyphicon-pencil"></span>
-                                    <span class="text-toolbar">Sửa</span>
-                                </div>
-                                <div class="toolbar-item" CommanName='Delete'>
-                                    <span class="icon-toolbar glyphicon glyphicon-trash"></span>
-                                    <span class="text-toolbar">Xóa</span>
-                                </div>
-                                <div class="toolbar-item" CommanName='StartRegister'>
-                                    <span class="icon-toolbar glyphicon glyphicon-ok"></span>
-                                    <span class="text-toolbar">Bắt đầu đăng ký</span>
-                                </div>
-                                <div class="toolbar-item" CommanName='DoneRegister'>
-                                    <span class="icon-toolbar glyphicon glyphicon-remove"></span>
-                                    <span class="text-toolbar">Kết thúc đăng ký</span>
+                                <div class="toolbar-item" CommanName='Export'>
+                                    <span class="icon-toolbar glyphicon glyphicon-cloud-download"></span>
+                                    <span class="text-toolbar">Xuất khẩu</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Grid  -->
-                    <div class="grid-wrapper">
+                    <div class="grid-wrapper" Layout="Master">
                         <div class="row">
                             <div class="col-xl-12">
-                                <div class="Grid" id="GridPeriodExam" useCheckBox='true' useIndex="true">
-                                    <div class="column" setField="PeriodName">Tên kì thi</div>
-                                    <div class="column" setField="PeriodCode">Mã kì thi</div>
-                                    <div class="column" setField="Year" dataType="Number">Năm</div>
-                                    <div class="column" setField="StartDate" dataType="DateTime">Ngày bắt đầu đăng ký</div>
-                                    <div class="column" setField="EndDate" dataType="DateTime">Ngày kết thúc đăng ký</div>
-                                    <div class="column" setField="Status" dataType="Enum" enumName="StatusPeriod">Trạng thái</div>
+                                <div class="Grid" id="GridExamRegisterResult" useCheckBox='true' useIndex="true">
+                                    <div class="column" setField="SubjectName">Tên học phần</div>
+                                    <div class="column" setField="SubjectCode">Mã học phần</div>
+                                    <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
+                                    <div class="column" setField="RoomName">Phòng thi</div>
+                                    <div class="column" setField="Place">Khu vực</div>
+                                    <div class="column" setField="NumberStudent" dataType="Number">Số sinh viên</div>
+                                    <div class="column" setField="DateExam" dataType="DateTime">Ngày thi</div>
+                                    <div class="column" setField="TimeExam">Giờ thi</div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="row header-title" Layout="Detail" style="display: none;">
+                        <span>DANH SÁCH SINH VIÊN - PHÁT TRIỂN ỨNG DỤNG WEB (INT3306)</span>
+                    </div>
+
+                    <!-- Toolbar -->
+                    <div class="row" Layout="Detail" style="display: none;">
+                        <div class="col-xl-12">
+                            <div class="toolbar" id="ToolbarStudentSubjectDetail">
+                                <div class="toolbar-item" CommanName='Back'>
+                                    <span class="icon-toolbar glyphicon glyphicon-share-alt"></span>
+                                    <span class="text-toolbar">Quay lại</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Export'>
+                                    <span class="icon-toolbar glyphicon glyphicon-cloud-download"></span>
+                                    <span class="text-toolbar">Xuất khẩu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid  -->
+                    <div class="grid-wrapper" Layout="Detail" style="display: none;">
+                        <div class="row" Layout="Detail" style="display: none;">
+                            <div class="col-xl-12">
+                                <div class="Grid" id="StudentSubjectDetail" useCheckBox='true' useIndex="true">
+                                    <div class="column" setField="FullName">Họ và tên</div>
+                                    <div class="column" setField="StudentCode">Mã sinh viên</div>
+                                    <div class="column" setField="Email">Địa chỉ email</div>
+                                    <div class="column" setField="Gender" dataType="Enum" enumName="Gender">Giới tính
+                                    </div>
+                                    <div class="column" setField="DateOfBirth" dataType="DateTime">Ngày sinh</div>
+                                    <div class="column" setField="Course">Khóa học</div>
+                                    <div class="column" setField="Status" dataType="Enum" enumName="StatusStudent">Trạng
+                                        thái</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <!-- end content -->
             </div>
         </div>
     </div>
 
-    <!-- Form thêm mới kì thi -->
-    <div class="wrapper-form">
-        <div class="formDialog" id="formPeriodExam">
-
-            <!-- Header form -->
-            <div class="header-form">
-                Thêm kì thi
-            </div>
-
-            <!-- Body form -->
-            <div class="body-form">
-                <div class="row">
-                    <div class="col-md-12 row-custom">
-                        <div class="row-grid">
-                            <div class="text-field flex1">
-                                <b>Tên kì thi <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="PeriodName" MaxLength="100" title="Không được để trống"
-                                    placeholder="Nhập tên kì thi...">
-                            </div>
-                        </div>
-                        <div class="row-grid">
-                            <div class="text-field flex1 border-topright-none">
-                                <b>Mã kì thi <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="PeriodCode" CheckDuplicate="true" MaxLength="10" title="Không được để trống"
-                                    placeholder="Nhập mã kì thi...">
-                            </div>
-                            <div class="text-field flex1 border-top-none">
-                                <b>Năm <span class="require">(*)</span></b>
-                                <input type="number" Require="true" min="2020" max="9999" SetField="Year" DataType="Number"  MaxLength="5"  title="Không được để trống"
-                                placeholder="Nhập năm...">
-                            </div>
-                        </div>
-                        <div class="row-grid">
-                            <div class="text-field flex1 border-topright-none">
-                                <b>Ngày bắt đầu đăng ký</b>
-                                <input type="text" SetField="StartDate" DataType="Date"  MaxLength="10" class="datepicker"
-                                    placeholder="Nhập ngày bắt đầu đăng ký...">
-                            </div>
-                            <div class="text-field flex1 border-top-none">
-                                <b>Ngày kết thúc đăng ký</b>
-                                <input type="text" SetField="EndDate" DataType="Date"  MaxLength="10" class="datepicker"
-                                    placeholder="Nhập ngày kết thúc đăng ký...">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer form -->
-            <div class="footer-form">
-                <div class="btn-cancel">
-                    <span class="glyphicon glyphicon-remove"></span>
-                    <span>HỦY BỎ</span>
-                </div>
-                <div class="btn-save">
-                    <span class="glyphicon glyphicon-save"></span>
-                    <span>CẤT</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <!-- Form đổi mật khẩu -->
-    <div class="wrapper-form formChanePassword">
+    <div class="wrapper-form">
         <div class="formDialog" id="formChangePassword">
             <!-- Header form -->
             <div class="header-form">
@@ -308,8 +287,9 @@
     <script src="../Script/Base/BaseForm.js"></script>
 
     <!-- Script từng page -->
-    <script src="../Script/Form/PeriodExamForm.js"></script>
     <script src="../Script/Form/ChangePasswordForm.js"></script>
-    <script src="../Script/View/PeriodExamManager.js"></script>
+    <script src="../Script/View/ExamRegisterResultDetail.js"></script>
+    <script src="../Script/View/ExamRegisterResult.js"></script>
 </body>
+
 </html>
