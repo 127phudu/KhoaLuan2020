@@ -1,79 +1,78 @@
 // Các api map với chương trình
-var host = "http://admin.dkt.vnu.edu.vn:8881";
 
 var mappingApi = {
     Master:{
-        urlLogin: "/admin/auth/login", // Done
-        urlChangePassword: null,
+        urlLogin: "http://admin.dkt.vnu.edu.vn:8881/admin/auth/login",    // Done
+        urlChangePassword: "",
     },
     Students:{ // Sinh viên
-        urlGetData: "/admin/student/all", // Done
-        urlCreate: null,
-        urlUpdate: null,
-        urlDelete: "/admin/student/list", // Done
-        urlCheckDuplicate: null
+        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/student/all", // Done
+        urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/student",      // Done
+        urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/student",      // Done
+        urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/student/list", // Done
+        urlCheckDuplicate: ""
     },
     Subjects:{ // Học phần
-        urlGetData: "/admin/subject/all", // Done
-        urlCreate: null,
-        urlUpdate: null,
-        urlDelete: null,
-        urlCheckDuplicate: null
+        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/subject/all", // Done
+        urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/subject",      // Done
+        urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/subject",      // Done
+        urlDelete: "",
+        urlCheckDuplicate: ""
     },
     Rooms:{ // Phòng thi
-        urlGetData: "/admin/room/all", // Done
-        urlCreate: null,
-        urlUpdate: null,
-        urlDelete: null,
-        urlCheckDuplicate: null
+        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/room/all",    // Done
+        urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/room",         // Done
+        urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/room",         // Done
+        urlDelete: "",
+        urlCheckDuplicate: ""
     },
     Semesters:{ // Kì thi
-        urlGetData: "/admin/semester/all",
-        urlCreate: null,
-        urlUpdate: null,
-        urlDelete: null,
-        urlCheckDuplicate: null
+        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/semester/all",
+        urlCreate: "",
+        urlUpdate: "",
+        urlDelete: "",
+        urlCheckDuplicate: ""
     },
 
     ListSubject:{
-        urlGetData: null,
-        urlCreate: null,
-        urlDelete: null,
-        urlGetDataDetail: null
+        urlGetData: "",
+        urlCreate: "",
+        urlDelete: "",
+        urlGetDataDetail: ""
     },
     StudentSubjectDetail: {
-        urlGetData: null,
-        urlCreate: null,
-        urlUpdate: null,
-        urlDelete: null,
-        urlCheckDuplicate: null
+        urlGetData: "",
+        urlCreate: "",
+        urlUpdate: "",
+        urlDelete: "",
+        urlCheckDuplicate: ""
     },
     RoomSetting:{
-        urlGetData: null,
-        urlCreate: null,
-        urlUpdate: null,
-        urlDelete: null,
-        urlCheckDuplicate: null
+        urlGetData: "",
+        urlCreate: "",
+        urlUpdate: "",
+        urlDelete: "",
+        urlCheckDuplicate: ""
     },
     CreateExam:{
-        urlGetData: null,
-        urlCreate: null,
-        urlUpdate: null,
-        urlDelete: null,
-        urlCheckDuplicate: null
+        urlGetData: "",
+        urlCreate: "",
+        urlUpdate: "",
+        urlDelete: "",
+        urlCheckDuplicate: ""
     },
     ExamRegisterResult:{
-        urlGetData: null,
-        urlCreate: null,
-        urlUpdate: null,
-        urlDelete: null,
-        urlCheckDuplicate: null
+        urlGetData: "",
+        urlCreate: "",
+        urlUpdate: "",
+        urlDelete: "",
+        urlCheckDuplicate: ""
     },
     ExamRegisterResultDetail: {
-        urlGetData: null,
-        urlCreate: null,
-        urlUpdate: null,
-        urlDelete: null,
-        urlCheckDuplicate: null
+        urlGetData: "",
+        urlCreate: "",
+        urlUpdate: "",
+        urlDelete: "",
+        urlCheckDuplicate: ""
     }
 }

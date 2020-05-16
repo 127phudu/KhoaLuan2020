@@ -146,8 +146,8 @@
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="Grid" id="GridPeriodExam" useCheckBox='true' useIndex="true">
-                                    <div class="column" setField="PeriodName">Tên kì thi</div>
-                                    <div class="column" setField="PeriodCode">Mã kì thi</div>
+                                    <div class="column" setField="SemesterName">Tên kì thi</div>
+                                    <div class="column" setField="SemesterCode">Mã kì thi</div>
                                     <div class="column" setField="Year" dataType="Number">Năm</div>
                                     <div class="column" setField="StartDate" dataType="DateTime">Ngày bắt đầu đăng ký</div>
                                     <div class="column" setField="EndDate" dataType="DateTime">Ngày kết thúc đăng ký</div>
@@ -206,14 +206,14 @@
                         <div class="row-grid">
                             <div class="text-field flex1">
                                 <b>Tên kì thi <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="PeriodName" MaxLength="100" title="Không được để trống"
+                                <input type="text" Require="true" SetField="SemesterName" MaxLength="100" title="Không được để trống"
                                     placeholder="Nhập tên kì thi...">
                             </div>
                         </div>
                         <div class="row-grid">
                             <div class="text-field flex1 border-topright-none">
                                 <b>Mã kì thi <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="PeriodCode" CheckDuplicate="true" MaxLength="10" title="Không được để trống"
+                                <input type="text" Require="true" SetField="SemesterCode" CheckDuplicate="true" MaxLength="10" title="Không được để trống"
                                     placeholder="Nhập mã kì thi...">
                             </div>
                             <div class="text-field flex1 border-top-none">

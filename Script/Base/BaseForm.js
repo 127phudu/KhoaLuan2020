@@ -58,9 +58,7 @@ class BaseForm{
             let data = me.submitData();
                 data = me.mappingData(data, me.jsCaller.recordCache);
 
-            //this.saveChangeData(data); Tạm thời comment
-            me.saveFakeData(data); // Sau này xóa
-
+            me.saveChangeData(data); 
             me.close();
         }
     }
@@ -231,40 +229,20 @@ class BaseForm{
         return isDuplicate;
     }
 
-    // Sau này xóa bỏ
-    saveFakeData(data){
-        if(this.jsCaller.listFakeData){
-            if(this.jsCaller.editMode == Enum.EditMode.Add){
-                data.Id = NewGuid();
-                this.jsCaller.listFakeData.push(data);
-            }else{
-                this.jsCaller.listFakeData.filter(function(item){
-                    if(item.Id == data.Id){
-                        for(var fieldName in item){
-                            item[fieldName] = data[fieldName];
-                        }
-                    }
-                });
-            }
-
-            this.jsCaller.loadData(this.jsCaller.listFakeData);
-            this.showMessageSuccess();
-        }
-    }
-
     // Lưu dữ liệu vào DB
     saveChangeData(data){
-        let me = this;
+        let me = this,
+            entityName = me.jsCaller.config.entityName;
 
         if(me.jsCaller.editMode == Enum.EditMode.Add){
-            CommonFn.PostPutAjax("POST", me.jsCaller.config.configUrl.urlCreate, data, function(response) {
+            CommonFn.PostPutAjax("POST", mappingApi[entityName].urlCreate, data, function(response) {
                 if(response.status == Enum.StatusResponse.Success){
                     me.showMessageSuccess();
                     me.jsCaller.loadAjaxData();
                 }
             });
         }else{
-            CommonFn.PostPutAjax("PUT", me.jsCaller.config.configUrl.urlUpdate, data, function(response) {
+            CommonFn.PostPutAjax("PUT", mappingApi[entityName].urlUpdate, data, function(response) {
                 if(response.status == Enum.StatusResponse.Success){
                     me.showMessageSuccess();
                     me.jsCaller.loadAjaxData();

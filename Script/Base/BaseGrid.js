@@ -107,7 +107,7 @@ class BaseGrid extends Grid{
 
         if(comboExam.length){
             let url = mappingApi.Semesters.urlGetData,
-                urlFull = host + url + Constant.urlPaging.format(1000, 1);
+                urlFull = url + Constant.urlPaging.format(1000, 1);
 
             CommonFn.GetAjax(urlFull, function (response) {
                 if(response.status == Enum.StatusResponse.Success){
@@ -150,7 +150,6 @@ class BaseGrid extends Grid{
     executeDelete(){
         let me = $("#myModal").data("gridFocus"),
             entityName = me.config.entityName,
-            url = host + mappingApi[entityName].urlDelete,
             records = me.getSelection(),
             data = [];
 
@@ -158,12 +157,24 @@ class BaseGrid extends Grid{
             data.push(item.Id);
         });
 
-        CommonFn.PostPutAjax("DELETE", url, data, function(response) {
+        CommonFn.PostPutAjax("DELETE", mappingApi[entityName].urlDelete, data, function(response) {
             if(response.status == Enum.StatusResponse.Success){
                 $("#myModal").modal("hide");
                 me.editMode = Enum.EditMode.View;
+                me.showMessageSuccess("Xóa dữ liệu thành công");
                 me.loadAjaxData();
             }
+        });
+    }
+
+    // Hiển thị thông báo cất thành công
+    showMessageSuccess(customMessage){
+        let message = customMessage || "Cất dữ liệu thành công!";
+
+        $("#success-alert strong").text(message);
+
+        $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){
+            $("#success-alert").slideUp(500);
         });
     }
 
@@ -198,7 +209,7 @@ class BaseGrid extends Grid{
             entityName = me.config.entityName,
             url = mappingApi[entityName].urlGetData,
             paramPaging = me.getParamPaging(),
-            urlFull = host + url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page);
+            urlFull = url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page);
 
         if(url && entityName){
             CommonFn.GetAjax(urlFull, function (response) {

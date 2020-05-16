@@ -15,7 +15,7 @@ class PeriodExamManagerPage extends BaseGrid {
     getConfig() {
         let object = {
             role: "Admin",
-            entityName: "PeriodExams",
+            entityName: "Semesters",
             formTitle:"Kì thi"
         };
 
