@@ -2,15 +2,15 @@
 class ExamRegisterResult extends BaseGrid {
 
     // Hàm khởi tạo grid
-    constructor(gridId, toolbarId) {
-        super(gridId, toolbarId);
+    constructor(gridId, toolbarId, pagingId) {
+        super(gridId, toolbarId, pagingId);
 
         this.pageDetail = null;
     }
     
     // Tạo page detail
-    createPageDetail(gridId, toolbarId){
-        this.pageDetail = new ExamRegisterResultDetail(gridId, toolbarId);
+    createPageDetail(gridId, toolbarId, pagingId){
+        this.pageDetail = new ExamRegisterResultDetail(gridId, toolbarId, pagingId);
         this.pageDetail.pageMaster = this;
     }
 
@@ -42,18 +42,12 @@ class ExamRegisterResult extends BaseGrid {
             periodExamId = parseInt($(this).val());
 
         localStorage.setItem("PeriodExamId", periodExamId);
-        //me.loadAjaxData();
+        me.loadAjaxData();
     }
 
     //override: Thiết lập các config
     getConfig() {
         let object = {
-            configUrl: {
-                urlGetData: mappingApi.ExamRegisterResult.urlGetData,
-                urlCreate: mappingApi.ExamRegisterResult.urlCreate,
-                urlDelete: mappingApi.ExamRegisterResult.urlDelete,
-                urlGetDataDetail: mappingApi.ExamRegisterResult.urlGetDataDetail
-            },
             role: "Admin",
             entityName: "ExamRegisterResults",
             formTitle:"Kết quả đăng ký thi"
@@ -85,15 +79,16 @@ class ExamRegisterResult extends BaseGrid {
 }
 
     // Khởi tạo trang
-var examRegisterResult = new ExamRegisterResult("#GridExamRegisterResult", "#ToolbarGridExamRegisterResult");
+var examRegisterResult = new ExamRegisterResult("#GridExamRegisterResult", "#ToolbarGridExamRegisterResult", "#paging-GridExamRegisterResult");
     // Tạo trang chi tiết bên trong
-    examRegisterResult.createPageDetail("#StudentSubjectDetail", "#ToolbarStudentSubjectDetail");
+    examRegisterResult.createPageDetail("#StudentSubjectDetail", "#ToolbarStudentSubjectDetail", "#paging-StudentSubjectDetail");
+    // Load dữ liệu cho grid 
+    examRegisterResult.loadAjaxData();
+
 
     // Khởi tạo form thay đổi mật khẩu
 var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
-    // Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
-    examRegisterResult.loadData(createExams);
-    examRegisterResult.listFakeData = createExams;
+
 
 
 

@@ -58,13 +58,6 @@ class RoomSetting extends BaseGrid {
     //override: Thiết lập các config
     getConfig() {
         let object = {
-            configUrl: {
-                urlGetData: mappingApi.RoomSetting.urlGetData,
-                urlCreate: mappingApi.RoomSetting.urlCreate,
-                urlDelete: mappingApi.RoomSetting.urlDelete,
-                urlGetDataDetail: mappingApi.RoomSetting.urlGetDataDetail,
-                urlUpdateFullRecord: null
-            },
             role: "Admin",
             entityName: "RoomSetting",
             formTitle:"Danh sách phòng thi"

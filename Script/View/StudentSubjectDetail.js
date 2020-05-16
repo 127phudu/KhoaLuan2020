@@ -2,8 +2,8 @@
 class StudentSubjectDetail extends BaseGrid {
 
     // Hàm khởi tạo grid
-    constructor(gridId, toolbarId) {
-        super(gridId, toolbarId);
+    constructor(gridId, toolbarId, pagingId) {
+        super(gridId, toolbarId, pagingId);
 
         this.pageMaster = null;
         this.masterId = null;
@@ -17,15 +17,6 @@ class StudentSubjectDetail extends BaseGrid {
     //override: Thiết lập các config
     getConfig() {
         let object = {
-            configUrl: {
-                urlGetData: mappingApi.StudentSubjectDetail.urlGetData,
-                urlCreate: mappingApi.StudentSubjectDetail.urlCreate,
-                urlUpdate: mappingApi.StudentSubjectDetail.urlUpdate,
-                urlDelete: mappingApi.StudentSubjectDetail.urlDelete,
-                urlCheckDuplicate: mappingApi.StudentSubjectDetail.urlCheckDuplicate,
-                urlChangeStatus: null,
-                urlCheckExistItem: null
-            },
             role: "Admin",
             entityName: "Rooms",
             formTitle:"Sinh viên"
@@ -37,6 +28,10 @@ class StudentSubjectDetail extends BaseGrid {
     //Hàm load dữ liệu
     loadAjaxData(masterData){
         let me = this,
+            entityName = me.config.entityName,
+            url = mappingApi[entityName].urlGetData,
+            paramPaging = me.getParamPaging(),
+            urlFull = host + url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page),
             periodExamId = localStorage.getItem("PeriodExamId"),
             listSubjectId = masterData ? masterData.Id : me.masterId,
             data = {
@@ -47,10 +42,12 @@ class StudentSubjectDetail extends BaseGrid {
         // Gán masterId lưu lại dùng 
         me.masterId = masterData ? masterData.Id : me.masterId;
 
-        if(me.config.configUrl.urlGetData && periodExamId){
-            CommonFn.PostPutAjax("POST", me.config.configUrl.urlGetData, data, function(response) {
+        if(url && periodExamId){
+            CommonFn.PostPutAjax("POST", urlFull, data, function(response) {
                 if(response.status == Enum.StatusResponse.Success){
                     me.loadData(response.Data);
+                    me.resetDisplayPaging(response.data.Page);
+                    me.editMode = Enum.EditMode.View;
                 }
             });
         }
@@ -62,8 +59,7 @@ class StudentSubjectDetail extends BaseGrid {
 
         me.configTitlePage(masterData);
 
-        //me.loadAjaxData(masterData);
-        me.loadAjaxDataFake();
+        me.loadAjaxData(masterData);
     }
 
     // Thiết lập tiêu đề cho trang
@@ -74,14 +70,6 @@ class StudentSubjectDetail extends BaseGrid {
             titlePage = 'Danh sách sinh viên - ' + subjectName + ' (' + subjectCode + ')';
 
         $(".header-title[Layout='Detail']").text(titlePage.toLocaleUpperCase());
-    }
-
-    // Sau này xóa
-    loadAjaxDataFake(){
-        let me = this;
-
-        me.loadData(studentSubjects);
-        me.listFakeData = studentSubjects;
     }
 
     // Hàm dùng đối với từng loại toolbar đặc thù
@@ -108,8 +96,7 @@ class StudentSubjectDetail extends BaseGrid {
         $("[Layout='Master']").show();
         $("[Layout='Detail']").hide();
         
-        //me.pageMaster.loadAjaxData();
-        me.pageMaster.loadData(listSubjects); // sau này xóa
+        me.pageMaster.loadAjaxData();
     }
 
     // Hàm dùng để cho phép thi

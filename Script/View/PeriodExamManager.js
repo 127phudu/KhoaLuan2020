@@ -2,8 +2,8 @@
 class PeriodExamManagerPage extends BaseGrid {
 
     // Hàm khởi tạo grid
-    constructor(gridId, toolbarId) {
-        super(gridId, toolbarId);
+    constructor(gridId, toolbarId, pagingId) {
+        super(gridId, toolbarId, pagingId);
     }
     
     // Tạo form detail
@@ -14,13 +14,6 @@ class PeriodExamManagerPage extends BaseGrid {
     //override: Thiết lập các config
     getConfig() {
         let object = {
-            configUrl: {
-                urlGetData: mappingApi.PeriodExam.urlGetData,
-                urlCreate: mappingApi.PeriodExam.urlCreate,
-                urlUpdate: mappingApi.PeriodExam.urlUpdate,
-                urlDelete: mappingApi.PeriodExam.urlDelete,
-                urlCheckDuplicate: mappingApi.PeriodExam.urlCheckDuplicate
-            },
             role: "Admin",
             entityName: "PeriodExams",
             formTitle:"Kì thi"
@@ -55,14 +48,16 @@ class PeriodExamManagerPage extends BaseGrid {
 }
 
     // Khởi tạo trang quản lý Kì thi
-var periodExamManagerPage = new PeriodExamManagerPage("#GridPeriodExam", "#ToolbarGridPeriodExam");
+var periodExamManagerPage = new PeriodExamManagerPage("#GridPeriodExam", "#ToolbarGridPeriodExam", "#paging-GridPeriodExam");
     // Tạo một form detail
     periodExamManagerPage.createFormDetail("#formPeriodExam", 500, 235);
+    // Load dữ liệu cho grid 
+    periodExamManagerPage.loadAjaxData();
+
+
     // Khởi tạo form thay đổi mật khẩu
 var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
-    // Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
-    periodExamManagerPage.loadData(periodExams);
-    periodExamManagerPage.listFakeData = periodExams;
+
 
 
 

@@ -2,8 +2,8 @@
 class ListSubject extends BaseGrid {
 
     // Hàm khởi tạo grid
-    constructor(gridId, toolbarId) {
-        super(gridId, toolbarId);
+    constructor(gridId, toolbarId, pagingId) {
+        super(gridId, toolbarId, pagingId);
 
         this.pageDetail = null;
     }
@@ -14,8 +14,8 @@ class ListSubject extends BaseGrid {
     }
 
     // Tạo page detail
-    createPageDetail(gridId, toolbarId){
-        this.pageDetail = new StudentSubjectDetail(gridId, toolbarId);
+    createPageDetail(gridId, toolbarId, pagingId){
+        this.pageDetail = new StudentSubjectDetail(gridId, toolbarId, pagingId);
         this.pageDetail.createFormDetail("#formStudentSubjectDetail", 400, 133);
         this.pageDetail.pageMaster = this;
     }
@@ -48,18 +48,12 @@ class ListSubject extends BaseGrid {
             periodExamId = parseInt($(this).val());
 
         localStorage.setItem("PeriodExamId", periodExamId);
-        //me.loadAjaxData();
+        me.loadAjaxData();
     }
 
     //override: Thiết lập các config
     getConfig() {
         let object = {
-            configUrl: {
-                urlGetData: mappingApi.ListSubject.urlGetData,
-                urlCreate: mappingApi.ListSubject.urlCreate,
-                urlDelete: mappingApi.ListSubject.urlDelete,
-                urlGetDataDetail: mappingApi.ListSubject.urlGetDataDetail
-            },
             role: "Admin",
             entityName: "ListSubjects",
             formTitle:"Danh sách học phần"
@@ -101,16 +95,17 @@ class ListSubject extends BaseGrid {
 }
 
     // Khởi tạo trang quản lý Học phần
-var listSubject = new ListSubject("#GridListSubject", "#ToolbarGridListSubject");
+var listSubject = new ListSubject("#GridListSubject", "#ToolbarGridListSubject", "#paging-GridListSubject");
     // Tạo một form detail
     listSubject.createFormDetail("#formSubject","#GridSubject", "#ToolbarChooseSubject", 800, 500);
     // Tạo trang chi tiết bên trong
-    listSubject.createPageDetail("#StudentSubjectDetail", "#ToolbarStudentSubjectDetail");
+    listSubject.createPageDetail("#StudentSubjectDetail", "#ToolbarStudentSubjectDetail", "#paging-StudentSubjectDetail");
+    listSubject.loadAjaxData();
+
+
     // Khởi tạo form thay đổi mật khẩu
 var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
-    // Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
-    listSubject.loadData(listSubjects);
-    listSubject.listFakeData = listSubjects;
+
 
 
 

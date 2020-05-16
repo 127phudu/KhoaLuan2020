@@ -2,8 +2,8 @@
 class ExamRegisterResultDetail extends BaseGrid {
 
     // Hàm khởi tạo grid
-    constructor(gridId, toolbarId) {
-        super(gridId, toolbarId);
+    constructor(gridId, toolbarId, pagingId) {
+        super(gridId, toolbarId, pagingId);
 
         this.pageMaster = null;
         this.masterId = null;
@@ -12,15 +12,6 @@ class ExamRegisterResultDetail extends BaseGrid {
     //override: Thiết lập các config
     getConfig() {
         let object = {
-            configUrl: {
-                urlGetData: mappingApi.ExamRegisterResultDetail.urlGetData,
-                urlCreate: mappingApi.ExamRegisterResultDetail.urlCreate,
-                urlUpdate: mappingApi.ExamRegisterResultDetail.urlUpdate,
-                urlDelete: mappingApi.ExamRegisterResultDetail.urlDelete,
-                urlCheckDuplicate: mappingApi.ExamRegisterResultDetail.urlCheckDuplicate,
-                urlChangeStatus: null,
-                urlCheckExistItem: null
-            },
             role: "Admin",
             entityName: "Rooms",
             formTitle:"Sinh viên"
@@ -57,8 +48,7 @@ class ExamRegisterResultDetail extends BaseGrid {
 
         me.configTitlePage(masterData);
 
-        //me.loadAjaxData(masterData);
-        me.loadAjaxDataFake();
+        me.loadAjaxData(masterData);
     }
 
     // Thiết lập tiêu đề cho trang
@@ -98,8 +88,7 @@ class ExamRegisterResultDetail extends BaseGrid {
         $("[Layout='Master']").show();
         $("[Layout='Detail']").hide();
         
-        //me.pageMaster.loadAjaxData();
-        me.pageMaster.loadData(createExams); // sau này xóa
+        me.pageMaster.loadAjaxData();
     }
 }
 
