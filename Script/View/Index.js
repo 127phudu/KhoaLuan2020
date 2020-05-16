@@ -78,10 +78,14 @@ class Login {
         let me = this;
 
         CommonFn.LoginAjax(param,function(response) {
-            if(response.status){
+            if(response.status == Enum.StatusResponse.Success){
+                localStorage.setItem("Authorization", response.data.Token);
                 localStorage.setItem("UserName", param.Username);
                 localStorage.setItem("Password", param.Password);
-                window.location.replace(Constant.url["PeriodExamManager"]);
+                localStorage.setItem("FullName", parseJwt(response.data.Token).fullName);
+                localStorage.setItem("Role", parseJwt(response.data.Token).role);
+                
+                window.location.replace(Constant.url["StudentManager"]);
             }else{
                 me.setMessageError(Enum.TypeError.LoginInvalid);
             }

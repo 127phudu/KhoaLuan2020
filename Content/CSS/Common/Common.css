@@ -204,6 +204,7 @@ body{
 
 select.page-Size {
     height: 21px;
+    width: 45px;
     margin: 3px;
 }
 
@@ -688,4 +689,8 @@ td.text-align-right input.notEdit {
 
 .float-right{
     float: right;
+}
+
+.iconPaging-disable{
+    pointer-events: none;
 }

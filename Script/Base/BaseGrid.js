@@ -1,31 +1,38 @@
 class BaseGrid extends Grid{
     // Hàm khởi tạo grid
-    constructor(gridId, toolbarId){
+    constructor(gridId, toolbarId, pagingId){
         super(gridId, toolbarId);
 
         this.editMode = null;
         this.formDetail = null;
         this.recordCache = {};
+        this.paging = pagingId ? $(pagingId) : pagingId;
         this.config = this.getConfig();
-        this.listFakeData = null; // Sau này xóa bỏ
-        //this.checkRoleUser(); Tạm thời comment
-        this.initEvent();
-        this.getAllDataComboboxExam();
+
+        this.exeInitFunction();
+    }
+
+    // Một số hàm được chạy lần đầu khi khởi tạo
+    exeInitFunction(){
+        let me = this;
+        
+        me.checkRoleUser(); 
+        me.initEvent();
+        me.getDataComboExam();
     }
 
     // Kiểm tra quyền truy cập
     checkRoleUser(){
         let role = localStorage.getItem("Role");
-        
+
         if(!this.config.role || this.config.role != role){
             window.location.replace(Constant.url["Login"]);
         }
     }
 
-     // Khởi tạo các sự kiện
-     initEvent(){
+    // Khởi tạo các sự kiện
+    initEvent(){
         super.initEvent();
-
         let me = this;
         
         // Khởi tạo sự kiện cho toolbar
@@ -76,110 +83,220 @@ class BaseGrid extends Grid{
         $(document).tooltip({track: true});
 
         // Khởi tạo combobox
-        $(".combox-select").selectmenu({ placeholder: 'Vui lòng chọn ...' });
+        $(".combox-select").selectmenu();
 
         // Khi xóa
         $("#btn-Delete").off('click');
         $("#btn-Delete").on("click",function(){
-            //me.executeDelete();
-            me.executeDeleteFake(); // sau này xóa bỏ
+            me.executeDelete();
         });
+
+        if(me.paging){
+            me.paging.find(".page-number").change(me.changePageNumber.bind(me));
+            me.paging.find(".page-Size").change(me.changePageSize.bind(me));
+            me.paging.find(".icon-paging").click(function(){
+                me.buttonPagingClick($(this));
+            });
+        }
     }
     
     // Lấy dữ liệu combo kì thi
-    getAllDataComboboxExam(){
-        let me = this;
+    getDataComboExam(){
+        let me = this,
+            comboExam = $("#chooseExam");
 
-        // Ajax load data
-        // CommonFn.GetAjax(mappingApi.PeriodExam.urlGetData, function (response) {
-        //     me.loadData(response);
-        // });
+        if(comboExam.length){
+            let url = mappingApi.Semesters.urlGetData,
+                urlFull = host + url + Constant.urlPaging.format(1000, 1);
 
-        me.renderComboboxExam(periodExams);
+            CommonFn.GetAjax(urlFull, function (response) {
+                if(response.status == Enum.StatusResponse.Success){
+                    me.renderComboExam(response.data.Semesters);
+                }
+            });
+        }
     }
 
     // Render dữ liệu combo
-    renderComboboxExam(listData){
-        let me = this;
+    renderComboExam(listData){
+        let me = this,
+            comboExam = $("#chooseExam"),
+            periodExamId = localStorage.getItem("PeriodExamId");
 
         if(listData && listData.length > 0){
 
-            $("#chooseExam").html("");
+            comboExam.html("");
 
             listData.filter(function(item){
-                let option = $("<option value='2'></option>");
+                let option = $("<option value='1'></option>");
 
-                option.text(item.PeriodName);
+                option.text(item.SemesterName);
                 option.attr("value", item.Id);
-                $("#chooseExam").append(option);
+                comboExam.append(option);
             });
-
-            let  periodExamId = localStorage.getItem("PeriodExamId");
 
             if(!periodExamId){
                 periodExamId = listData[0].Id;
                 localStorage.setItem("PeriodExamId", periodExamId);
-               // me.loadAjaxData();
             }
 
-            // Auto select bản ghi gần đó nhất
-            $("#chooseExam").val(periodExamId).selectmenu("refresh");
+            me.loadAjaxData();
+
+            comboExam.val(periodExamId).selectmenu("refresh");
         }
-    }
-
-    // Sau này xóa bỏ
-    executeDeleteFake(){
-        let me = $("#myModal").data("gridFocus"),
-            listData = me.getSelection(),
-            listId = [];
-
-        listData.filter(function(item){
-            listId.push(item.Id);
-        });
-
-        me.listFakeData = me.listFakeData.filter(function(item){
-            return !listId.includes(item.Id);
-        });
-
-        $("#myModal").modal("hide");
-        me.editMode = Enum.EditMode.View;
-        me.loadData(me.listFakeData);
     }
 
     // Hàm thực hiện xóa bản ghi
     executeDelete(){
-        let me = this,
-            listData = me.getSelection(),
-            listId = [];
+        let me = $("#myModal").data("gridFocus"),
+            entityName = me.config.entityName,
+            url = host + mappingApi[entityName].urlDelete,
+            records = me.getSelection(),
+            data = [];
 
-        listData.filter(function(item){
-            listId.push(item.Id);
+        records.filter(function(item){
+            data.push(item.Id);
         });
 
-        CommonFn.PostPutAjax("POST", me.config.configUrl.urlDelete, listId, function(response) {
+        CommonFn.PostPutAjax("DELETE", url, data, function(response) {
             if(response.status == Enum.StatusResponse.Success){
                 $("#myModal").modal("hide");
+                me.editMode = Enum.EditMode.View;
                 me.loadAjaxData();
             }
         });
     }
 
+    // Thay đổi kích thước một trang
+    changePageSize(){
+        let me = this;
+        
+        me.paging.find(".page-number").val(1);
+        me.loadAjaxData();
+    }
+
+    // Thay đổi giá trị của số trang
+    changePageNumber(){
+        let me = this,
+            inputField = me.paging.find("input.page-number"),
+            value = inputField.val(),
+            total = parseInt(me.paging.find(".totalPage").text()),
+            patt = new RegExp("^[0-9]*$");
+
+            if(value && !patt.test(value)){
+                inputField.val(1);
+            }else if(total < parseInt(value)){
+                inputField.val(total);
+            }
+
+        me.loadAjaxData();
+    }
+
     //Hàm load dữ liệu
     loadAjaxData(){
-        let me = this;
+        let me = this,
+            entityName = me.config.entityName,
+            url = mappingApi[entityName].urlGetData,
+            paramPaging = me.getParamPaging(),
+            urlFull = host + url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page);
 
-        if(me.config.configUrl.urlGetData){
-            // Ajax load data
-            CommonFn.GetAjax(me.config.configUrl.urlGetData, function (response) {
-                me.loadData(response);
-                me.editMode = Enum.EditMode.View;
+        if(url && entityName){
+            CommonFn.GetAjax(urlFull, function (response) {
+                if(response.status == Enum.StatusResponse.Success){
+                    me.loadData(response.data[entityName]);
+                    me.resetDisplayPaging(response.data.Page);
+                    me.editMode = Enum.EditMode.View;
+                }
             });
         }
+    }
+    
+    // Lấy tham số paging
+    getParamPaging(){
+        let me = this,
+            pagingConfig = {Size: 1000, Page: 1},
+            paging = me.paging;
+        
+        if(paging){
+            let pageNumber = parseInt(paging.find("input").val()),
+                pageSize = parseInt(paging.find("select").val());
+
+            pagingConfig.Size = pageSize;
+            pagingConfig.Page = pageNumber;
+        }
+
+        return pagingConfig;
     }
 
     // Đổ dữ liệu vào grid
     loadData(data){
         super.loadData(data);
+    }
+
+    // Reset thông tin phân trang
+    resetDisplayPaging(data){
+        let me = this,
+            page = data.Page,
+            size = data.Size,
+            total = data.Total,
+            sumPage = Math.round(total/size),
+            start = 0,
+            end = 0;
+
+        if(me.paging){
+            start = (page - 1)*size + 1;
+            if(start > total){
+                start = total;
+            }
+    
+            end = start + size - 1;
+            if(end > total){
+                end = total;
+            }
+    
+            sumPage = (sumPage*size < total) ? sumPage + 1 : sumPage;
+
+            me.paging.find(".icon-paging").removeClass("iconPaging-disable");
+
+            if(page == 1){
+                me.paging.find(".icon-first, .icon-pre").addClass("iconPaging-disable");
+            }
+            
+            if(page == sumPage){
+                me.paging.find(".icon-next, .icon-last").addClass("iconPaging-disable");
+            }
+
+            me.paging.find(".startIndex").text(start);
+            me.paging.find(".end-Index").text(end);
+            me.paging.find(".total-record").text(total);
+            me.paging.find(".totalPage").text(sumPage);
+        }
+    }
+
+    // Xử lý khi click vào phân trang
+    buttonPagingClick(button){
+        let me = this,
+            className = button.attr("class").replace("icon-paging ",""),
+            pageNumer = parseInt(me.paging.find("input").val()),
+            totalPage = parseInt(me.paging.find(".totalPage").text());
+
+            switch(className){
+                case "icon-first":
+                    pageNumer = 1;
+                    break;
+                case "icon-pre":
+                    pageNumer -= 1;
+                    break;
+                case "icon-next":
+                    pageNumer += 1;
+                    break;
+                case "icon-last":
+                    pageNumer = totalPage;
+                    break;
+            }
+
+        me.paging.find("input").val(pageNumer);
+        me.loadAjaxData();
     }
 
     // Hàm tạo một số mặc định khi thêm mới

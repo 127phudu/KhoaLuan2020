@@ -20,12 +20,17 @@ function convertDate(dateStr){
     return new Date(newDateStr);
 }
 
-// Hàm tạo guid mới
-function NewGuid() {
-    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
-}
+// Hàm dùng format chuỗi
+String.prototype.format = function() {
+    var args = arguments;
+
+    return this.replace(/{(\d+)}/g, function(match, number) { 
+      return typeof args[number] != 'undefined'
+        ? args[number]
+        : match
+      ;
+    });
+};
 
 var CommonFn = CommonFn || {};
 
@@ -42,23 +47,20 @@ CommonFn.Clone = function(source){
 
 // Hàm dùng login
 CommonFn.LoginAjax = function(param, fnCallBack){
+    let url = host + mappingApi.Master.urlLogin;
+
     $.ajax({
-        url: mappingApi.Master.urlLogin,
+        url: url,
         data: JSON.stringify(param),
         type: "POST",
         crossDomain: true,
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (response) {
-            if(response.status == Enum.StatusResponse.Success){
-                localStorage.setItem("Authorization", response.Token);
-                localStorage.setItem("FullName", parseJwt(response.Token).fullName);
-            }
-
             fnCallBack(response);
         },
         error: function (errormessage) {
-            alert(errormessage.responseText);
+            console.log(errormessage.responseText);
         }
     });
 }
@@ -82,7 +84,7 @@ CommonFn.GetAjax = function(url, fnCallBack){
                 fnCallBack(response);
             },
             error: function (errormessage) {
-                alert(errormessage.responseText);
+                console.log(errormessage.responseText);
             }
         });
     }else{
@@ -111,7 +113,7 @@ CommonFn.PostPutAjax = function(type, url, param, fnCallBack, async = true){
                 fnCallBack(response);
             },
             error: function (errormessage) {
-                alert(errormessage.responseText);
+                console.log(errormessage.responseText);
             }
         });
     }else{
@@ -136,6 +138,9 @@ Constant.url = {
     CreateExam: "file:///D:/KhoaLuan2020/View/CreateExam.html",
     ExamRegisterResult: "file:///D:/KhoaLuan2020/View/ExamRegisterResult.html"
 }
+
+// pagin phân trang
+Constant.urlPaging = "?Size={0}&Page={1}";
 
 ///////////////////////// Các Enum //////////////////////////////////
 var Enum = Enum || {};

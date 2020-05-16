@@ -2,8 +2,8 @@
 class RoomManagerPage extends BaseGrid {
 
     // Hàm khởi tạo grid
-    constructor(gridId, toolbarId) {
-        super(gridId, toolbarId);
+    constructor(gridId, toolbarId, pagingId) {
+        super(gridId, toolbarId, pagingId);
     }
     
     // Tạo form detail
@@ -14,13 +14,6 @@ class RoomManagerPage extends BaseGrid {
     //override: Thiết lập các config
     getConfig() {
         let object = {
-            configUrl: {
-                urlGetData: mappingApi.Room.urlGetData,
-                urlCreate: mappingApi.Room.urlCreate,
-                urlUpdate: mappingApi.Room.urlUpdate,
-                urlDelete: mappingApi.Room.urlDelete,
-                urlCheckDuplicate: mappingApi.Room.urlCheckDuplicate
-            },
             role: "Admin",
             entityName: "Rooms",
             formTitle:"Phòng thi"
@@ -31,14 +24,16 @@ class RoomManagerPage extends BaseGrid {
 }
 
     // Khởi tạo trang quản lý Phòng thi
-var roomManagerPage = new RoomManagerPage("#GridRoom", "#ToolbarGridRoom");
+var roomManagerPage = new RoomManagerPage("#GridRoom", "#ToolbarGridRoom", "#paging-GridRoom");
     // Tạo một form detail
     roomManagerPage.createFormDetail("#formRoomDetail", 500, 185);
+    roomManagerPage.loadAjaxData();
+
+
     // Khởi tạo form thay đổi mật khẩu
 var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
     // Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
-    roomManagerPage.loadData(rooms);
-    roomManagerPage.listFakeData = rooms;
+
 
 
 

@@ -139,7 +139,7 @@ class BaseForm{
 
         this.form.find("input[DataType='Number']").each(function(){
             let value = $(this).val(),
-                patt = new RegExp("[0-9]*");
+                patt = new RegExp("^[0-9]*$");
 
             if(value && !patt.test(value)){
                 $(this).parent().addClass("error-validate");
