@@ -15,7 +15,8 @@ function convertDate(dateStr){
     let day = dateStr.substr(0,2),
         month = dateStr.substr(3,2),
         year = dateStr.substr(6,4),
-        newDateStr = year + '-' + month + '-' + day;
+        time = dateStr.substr(10,6),
+        newDateStr = year + '-' + month + '-' + day + time;
 
     return new Date(newDateStr);
 }

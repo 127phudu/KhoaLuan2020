@@ -25,7 +25,7 @@ class PeriodExamForm extends BaseForm {
 
         if(endDate && convertDate(value) > convertDate(endDate)){
             result.isValid = false;
-            result.tooltip = "Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc!";
+            result.tooltip = "Thời gian bắt đầu phải nhỏ hơn hoặc bằng thời gian kết thúc!";
         }else{
             result.isValid = true;
         }

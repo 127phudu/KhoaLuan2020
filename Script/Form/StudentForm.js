@@ -38,7 +38,7 @@ class StudentForm extends BaseForm {
     // Validate email
     validateEmail(value){
         let result = {},
-            patt = new RegExp("^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$");
+            patt = new RegExp("^[a-z0-9][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$");
 
         if(patt.test(value)){
             result.isValid = true;

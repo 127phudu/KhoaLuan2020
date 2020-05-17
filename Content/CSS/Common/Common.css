@@ -216,6 +216,12 @@ select.page-Size {
     overflow-y: auto;
 }
 
+.loading{
+    background: url(../../Images/loading.gif) 0 0 no-repeat;
+    background-size: 14%;
+    background-position: center;
+}
+
 .col-md-12.row-custom {
     margin: 10px;
     width: calc(100% - 20px);

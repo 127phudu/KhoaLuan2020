@@ -16,21 +16,21 @@ var mappingApi = {
         urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/subject/all", // Done
         urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/subject",      // Done
         urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/subject",      // Done
-        urlDelete: "",
+        urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/subject/list", // Done
         urlCheckDuplicate: ""
     },
     Rooms:{ // Phòng thi
         urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/room/all",    // Done
         urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/room",         // Done
         urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/room",         // Done
-        urlDelete: "",
+        urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/room/list",    // Done
         urlCheckDuplicate: ""
     },
     Semesters:{ // Kì thi
-        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/semester/all",
-        urlCreate: "",
-        urlUpdate: "",
-        urlDelete: "",
+        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/semester/all",// Done
+        urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/semester",     // Done
+        urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/semester",     // Done
+        urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/semester/list",// Done
         urlCheckDuplicate: ""
     },
 

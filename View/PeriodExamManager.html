@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../Content/CSS/Common/jquery.datetimepicker.css">
     <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
 </head>
 <body>
@@ -149,8 +150,8 @@
                                     <div class="column" setField="SemesterName">Tên kì thi</div>
                                     <div class="column" setField="SemesterCode">Mã kì thi</div>
                                     <div class="column" setField="Year" dataType="Number">Năm</div>
-                                    <div class="column" setField="StartDate" dataType="DateTime">Ngày bắt đầu đăng ký</div>
-                                    <div class="column" setField="EndDate" dataType="DateTime">Ngày kết thúc đăng ký</div>
+                                    <div class="column" setField="StartDate" dataType="DateTime">Thời gian bắt đầu</div>
+                                    <div class="column" setField="EndDate" dataType="DateTime">Thời gian kết thúc</div>
                                     <div class="column" setField="Status" dataType="Enum" enumName="StatusPeriod">Trạng thái</div>
                                 </div>
                             </div>
@@ -224,14 +225,14 @@
                         </div>
                         <div class="row-grid">
                             <div class="text-field flex1 border-topright-none">
-                                <b>Ngày bắt đầu đăng ký</b>
-                                <input type="text" SetField="StartDate" DataType="Date"  MaxLength="10" class="datepicker"
-                                    placeholder="Nhập ngày bắt đầu đăng ký...">
+                                <b>Thời gian bắt đầu</b>
+                                <input type="text" SetField="StartDate" DataType="DateTime"  MaxLength="10" class="datetimepicker"
+                                    placeholder="Nhập thời gian bắt đầu...">
                             </div>
                             <div class="text-field flex1 border-top-none">
-                                <b>Ngày kết thúc đăng ký</b>
-                                <input type="text" SetField="EndDate" DataType="Date"  MaxLength="10" class="datepicker"
-                                    placeholder="Nhập ngày kết thúc đăng ký...">
+                                <b>Thời gian kết thúc</b>
+                                <input type="text" SetField="EndDate" DataType="DateTime"  MaxLength="10" class="datetimepicker"
+                                    placeholder="Nhập thời gian kết thúc...">
                             </div>
                         </div>
                     </div>
@@ -326,6 +327,7 @@
     <script src="../Script/Library/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="../Script/Library/jquery-ui.min.js"></script>
+    <script src="../Script/Library/jquery.datetimepicker.js"></script>
 
     <!-- Script common -->
     <script src="../Script/Common/Data.js"></script>

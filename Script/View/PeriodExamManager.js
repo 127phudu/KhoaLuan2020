@@ -4,6 +4,20 @@ class PeriodExamManagerPage extends BaseGrid {
     // Hàm khởi tạo grid
     constructor(gridId, toolbarId, pagingId) {
         super(gridId, toolbarId, pagingId);
+
+        this.initOtherEvent();
+    }
+
+    // Khởi tạo một số sự kiện khác
+    initOtherEvent(){
+        
+        // Thêm datetimepicker
+        $(".datetimepicker").datetimepicker({
+            format:'d/m/Y H:i',
+            defaultTime:'07:00',
+            step:30,
+            timeFormat: 'HH:mm'
+        });
     }
     
     // Tạo form detail
@@ -20,13 +34,6 @@ class PeriodExamManagerPage extends BaseGrid {
         };
 
         return object;
-    }
-
-    //override: Tạo một số thuộc tính mặc định khi thêm mới
-    initAddNew(){
-        return {
-            Status: 1
-        };
     }
 
     // Custom các button bị disable

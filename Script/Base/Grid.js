@@ -112,7 +112,7 @@ class Grid{
     getTextValue(dataType, enumName, value){
         if(value){
             switch(dataType){
-                case "DateTime":
+                case "Date":
                     value = value.substr(0,10);
                     break;
                 case "Enum":
@@ -148,6 +148,7 @@ class Grid{
             case 'Number':
                 element.addClass("text-align-right");
                 break;
+            case 'Date':
             case 'DateTime':
                 element.addClass("text-align-center");
                 break;
