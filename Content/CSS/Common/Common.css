@@ -460,9 +460,9 @@ span#speed-button {
 h4.header-delete {
     padding: 12px 0px;
     margin: 0;
-    font-size: 18px;
-    color: #f15e5e;
-    background: #f2dede;
+    font-size: 16px;
+    color: white;
+    background: #2d7ad2;
 }
 .modal-confirm .modal-body {
     color: #999;
@@ -491,7 +491,7 @@ h4.header-delete {
     outline: none !important;
 }
 .modal-confirm .btn-info {
-    background: #00a65a;
+    background: #2e7dd6;
 }
 .modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {
     background: #a8a8a8;

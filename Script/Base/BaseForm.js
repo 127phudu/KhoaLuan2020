@@ -81,7 +81,7 @@ class BaseForm{
             }
 
             if(isValid){
-               // isValid = me.validateCheckDuplicate(); // Validate check trùng
+                isValid = me.validateCheckDuplicate(); // Validate check trùng
             }
 
         return isValid;
@@ -196,7 +196,6 @@ class BaseForm{
 
             if(value){
                 let isDuplicate = me.executeCheckDuplicate(value, setField);
-
                 if(isDuplicate){
                     $(this).parent().addClass("error-validate");
                     $(this).attr("title", tooltip);
@@ -214,15 +213,17 @@ class BaseForm{
     executeCheckDuplicate(value, setField){
         let me = this,
             isDuplicate = false,
+            entityName = me.jsCaller.config.entityName,
+            mode = (me.jsCaller.editMode == Enum.EditMode.Add) ? "Add" : "Edit",
             data = {
-                value: value,
-                editMode: me.jsCaller.editMode,
-                id: me.jsCaller.recordCache.Id
+                Id: me.jsCaller.recordCache.Id,
+                Code: value,
+                Mode: mode
             };
-
-        CommonFn.PostPutAjax("POST", me.jsCaller.config.configUrl.urlCheckDuplicate, data, function(response) {
+        
+        CommonFn.PostPutAjax("POST", mappingApi[entityName].urlCheckDuplicate, data, function(response) {
             if(response.status == Enum.StatusResponse.Success){
-                isDuplicate = response.data;
+                isDuplicate = (response.data);
             }
         }, false);
         

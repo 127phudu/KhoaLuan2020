@@ -52,6 +52,51 @@ class PeriodExamManagerPage extends BaseGrid {
 
         return listItemDisable;
     }
+
+    // Hàm dùng đối với từng loại toolbar đặc thù
+    customToolbarItem(commandName){
+        let me = this;
+
+        switch(commandName){
+            case "StartRegister":
+                me.startRegister();
+                break;
+            case "DoneRegister":
+                me.doneRegister();
+        }
+    }
+
+    // Hàm bắt đầu đăng ký
+    startRegister(){
+        let me = this,
+            record = me.getSelection()[0],
+            urlFull = mappingApi.Semesters.urlStartRegister.format(record.Id);
+            
+        if(record.Id){
+            CommonFn.PostPutAjax("PUT", urlFull, null, function(response) {
+                if(response.status == Enum.StatusResponse.Success){
+                    me.showMessageSuccess("Thiết lập thành công!");
+                    me.loadAjaxData();
+                }
+            });
+        }
+    }
+
+    // Hàm kết thúc đăng ký
+    doneRegister(){
+        let me = this,
+        record = me.getSelection()[0],
+        urlFull = mappingApi.Semesters.urlDoneRegister.format(record.Id);
+
+        if(record.Id){
+            CommonFn.PostPutAjax("PUT", urlFull, null, function(response) {
+                if(response.status == Enum.StatusResponse.Success){
+                    me.showMessageSuccess("Thiết lập thành công!");
+                    me.loadAjaxData();
+                }
+            });
+        }
+    }
 }
 
     // Khởi tạo trang quản lý Kì thi
