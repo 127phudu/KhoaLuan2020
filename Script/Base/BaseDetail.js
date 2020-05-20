@@ -5,8 +5,7 @@ class BaseDetail extends Grid{
 
         this.form = $(formId);
         this.jsCaller = jsCaller;
-
-        this.listDataFake = null; // Sau này xóa
+        this.config = this.getConfig();
 
         this.setSizeForm(width, height);
         this.initEvent();
@@ -73,16 +72,7 @@ class BaseDetail extends Grid{
         let me = this;
 
         me.form.parent().show();
-        me.loadAjaxDataFake(); 
-        //me.loadAjaxData(); 
-    }
-
-    loadAjaxDataFake(){
-        let me = this;
-
-        if(me.listDataFake){
-            me.loadData(me.listDataFake);
-        }
+        me.loadAjaxData(); 
     }
 
     // Đóng form
@@ -109,14 +99,19 @@ class BaseDetail extends Grid{
 
     // Hàm load dữ liệu
     loadAjaxData(){
-        let me = this,
-            periodExamId = localStorage.getItem("PeriodExamId");
+         let me = this,
+            entityName = me.config.entityName,
+            url = mappingApi[entityName].urlGetData,
+            urlFull = url + Constant.urlPaging.format(1000, 1);
 
-        if(me.config.configUrl.urlGetData && periodExamId){
-            // Ajax load data
-            CommonFn.PostPutAjax("POST", me.jsCaller.config.configUrl.urlGetDataDetail, periodExamId, function(response) {
+        $(".grid-wrapper").addClass("loading");
+
+        if(url && entityName){
+            CommonFn.GetAjax(urlFull, function (response) {
                 if(response.status == Enum.StatusResponse.Success){
-                    me.loadData(response);
+                    me.loadData(response.data[entityName]);
+                    me.editMode = Enum.EditMode.View;
+                    $(".grid-wrapper").removeClass("loading");
                 }
             });
         }
@@ -139,4 +134,6 @@ class BaseDetail extends Grid{
 
         return listItemDisable;
     }
+
+    getConfig(){return null;}
 }

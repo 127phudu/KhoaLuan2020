@@ -23,12 +23,20 @@ class ListSubject extends BaseGrid {
     //Hàm load dữ liệu
     loadAjaxData(){
         let me = this,
-            periodExamId = localStorage.getItem("PeriodExamId");
+            paramPaging = me.getParamPaging(),
+            periodExamId = localStorage.getItem("PeriodExamId"),
+            url = mappingApi.ListSubject.urlGetData.format(periodExamId),
+            urlFull = url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page);
 
-        if(me.config.configUrl.urlGetData && periodExamId){
-            CommonFn.PostPutAjax("POST", me.config.configUrl.urlGetData, periodExamId, function(response) {
+        $(".grid-wrapper").addClass("loading");
+
+        if(url && periodExamId){
+            CommonFn.GetAjax(urlFull, function (response) {
                 if(response.status == Enum.StatusResponse.Success){
-                    me.loadData(response.Data);
+                    me.loadData(response.data["subjectSemesterResponses"]);
+                    me.resetDisplayPaging(response.data.Page);
+                    me.editMode = Enum.EditMode.View;
+                    $(".grid-wrapper").removeClass("loading");
                 }
             });
         }
@@ -100,7 +108,6 @@ var listSubject = new ListSubject("#GridListSubject", "#ToolbarGridListSubject",
     listSubject.createFormDetail("#formSubject","#GridSubject", "#ToolbarChooseSubject", 800, 500);
     // Tạo trang chi tiết bên trong
     listSubject.createPageDetail("#StudentSubjectDetail", "#ToolbarStudentSubjectDetail", "#paging-StudentSubjectDetail");
-    listSubject.loadAjaxData();
 
 
     // Khởi tạo form thay đổi mật khẩu
