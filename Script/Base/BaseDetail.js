@@ -38,27 +38,25 @@ class BaseDetail extends Grid{
     // Lấy dữ liệu để cất
     getSubmitData(){
         let me = this,
-            records = me.getSelection(),
-            ids = [];
+            records = me.getSelection();
 
-        records.filter(function(item){
-            ids.push(item.Id);
-        });
+        records = me.cusomDataBeforeSave(records);
 
-        return ids;
+        return records;
+    }
+
+    // Custom dữ liệu trước khi cất
+    cusomDataBeforeSave(records){
+        return records;
     }
 
     // Lưu dữ liệu vào DB
-    saveChangeData(ids){
+    saveChangeData(data){
         let me = this,
-            periodExamId = localStorage.getItem("PeriodExamId");
-            data = {
-                PeriodExamId: periodExamId,
-                Ids: ids
-            };
-
+            entityName = me.jsCaller.config.entityName;
+debugger
         if(data){
-            CommonFn.PostPutAjax("POST", me.jsCaller.config.configUrl.urlCreate, data, function(response) {
+            CommonFn.PostPutAjax("POST", mappingApi[entityName].urlCreate, data, function(response) {
                 if(response.status == Enum.StatusResponse.Success){
                     me.showMessageSuccess();
                     me.jsCaller.loadAjaxData();
@@ -101,17 +99,15 @@ class BaseDetail extends Grid{
     loadAjaxData(){
          let me = this,
             entityName = me.config.entityName,
-            url = mappingApi[entityName].urlGetData,
+            periodExamId = parseInt(localStorage.getItem("PeriodExamId")),
+            url = mappingApi[entityName].urlGetDataNotInSemester.format(periodExamId),
             urlFull = url + Constant.urlPaging.format(1000, 1);
-
-        $(".grid-wrapper").addClass("loading");
 
         if(url && entityName){
             CommonFn.GetAjax(urlFull, function (response) {
                 if(response.status == Enum.StatusResponse.Success){
                     me.loadData(response.data[entityName]);
                     me.editMode = Enum.EditMode.View;
-                    $(".grid-wrapper").removeClass("loading");
                 }
             });
         }

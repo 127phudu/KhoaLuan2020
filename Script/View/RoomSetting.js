@@ -16,12 +16,19 @@ class RoomSetting extends BaseGrid {
     //Hàm load dữ liệu
     loadAjaxData(){
         let me = this,
-            periodExamId = localStorage.getItem("PeriodExamId");
+            periodExamId = parseInt(localStorage.getItem("PeriodExamId")),
+            url = mappingApi.RoomSetting.urlGetData.format(periodExamId),
+            urlFull = url + Constant.urlPaging.format(1000, 1);
 
-        if(me.config.configUrl.urlGetData && periodExamId){
-            CommonFn.PostPutAjax("POST", me.config.configUrl.urlGetData, periodExamId, function(response) {
+        if(url && periodExamId){
+            $(".grid-wrapper").addClass("loading");
+
+            CommonFn.GetAjax(urlFull, function (response) {
                 if(response.status == Enum.StatusResponse.Success){
-                    me.loadData(response.Data);
+                    debugger
+                    me.loadData(response.data["RoomSemesters"]);
+                    me.editMode = Enum.EditMode.View;
+                    $(".grid-wrapper").removeClass("loading");
                 }
             });
         }
@@ -43,16 +50,12 @@ class RoomSetting extends BaseGrid {
         super.initEventElement();
         let me = this;
 
-        $("#chooseExam").on('selectmenuchange', me.chooseExamChange);
-    }
+        $("#chooseExam").on('selectmenuchange', function(){
+            let  periodExamId = parseInt($(this).val());
 
-    // Xử lý khi thay đổi kì thi trên combo
-    chooseExamChange(){
-        let me = this,
-            periodExamId = parseInt($(this).val());
-
-        localStorage.setItem("PeriodExamId", periodExamId);
-        //me.loadAjaxData();
+            localStorage.setItem("PeriodExamId", periodExamId);
+            me.loadAjaxData();
+        });
     }
 
     //override: Thiết lập các config
@@ -99,19 +102,16 @@ class RoomSetting extends BaseGrid {
         if(isValid){
             dataSubmit = me.getSubmitData();
 
-            // if(dataSubmit.length > 0){
-            //     CommonFn.PostPutAjax("POST", me.config.configUrl.urlUpdateFullRecord, dataSubmit, function(response) {
-            //         if(response.status == Enum.StatusResponse.Success){
-            //             me.showMessageSuccess();
-            //             me.loadAjaxData();
-            //         }
-            //     });
-            // }
-
-            me.showMessageSuccess();
-            me.editMode = Enum.EditMode.View;
-            me.grid.find("input").addClass("notEdit");
-            me.setStatusToolbar();
+            if(dataSubmit.length > 0){
+                CommonFn.PostPutAjax("POST", me.config.configUrl.urlUpdateFullRecord, dataSubmit, function(response) {
+                    if(response.status == Enum.StatusResponse.Success){
+                        me.showMessageSuccess();
+                        me.editMode = Enum.EditMode.View;
+                        me.grid.find("input").addClass("notEdit");
+                        me.setStatusToolbar();
+                    }
+                });
+            }
         }
     }
   
@@ -206,12 +206,9 @@ class RoomSetting extends BaseGrid {
 var roomSetting = new RoomSetting("#GridRoomSetting", "#ToolbarGridRoomSetting");
     // Tạo một form detail
     roomSetting.createFormDetail("#formRoom","#GridRoom", "#ToolbarChooseRoom", 800, 500);
+    
+    
     // Khởi tạo form thay đổi mật khẩu
-var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
-    // Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
-    roomSetting.loadData(roomSettings);
-    roomSetting.listFakeData = roomSettings;
-
-
+    var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
 
 

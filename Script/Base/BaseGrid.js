@@ -104,7 +104,7 @@ class BaseGrid extends Grid{
     getDataComboExam(){
         let me = this,
             comboExam = $("#chooseExam");
-
+            
         if(comboExam.length){
             let url = mappingApi.Semesters.urlGetData,
                 urlFull = url + Constant.urlPaging.format(1000, 1);
@@ -211,9 +211,9 @@ class BaseGrid extends Grid{
             paramPaging = me.getParamPaging(),
             urlFull = url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page);
 
-        $(".grid-wrapper").addClass("loading");
-
         if(url && entityName){
+            $(".grid-wrapper").addClass("loading");
+
             CommonFn.GetAjax(urlFull, function (response) {
                 if(response.status == Enum.StatusResponse.Success){
                     me.loadData(response.data[entityName]);

@@ -14,6 +14,24 @@ class ChooseSubjectForm extends BaseDetail {
 
         return object;
     }
+
+    // Custom dữ liệu trước khi cất
+    cusomDataBeforeSave(records){
+        let data = [],
+            periodExamId = parseInt(localStorage.getItem("PeriodExamId"));
+
+        records.filter(function(item){
+            let obj = {
+                Description: item.Description,
+                SubjectId: item.Id,
+                SemesterId: periodExamId
+            };
+
+            data.push(obj);
+        });
+
+        return data;
+    }
 }
 
 

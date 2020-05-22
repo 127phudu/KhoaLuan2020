@@ -24,16 +24,16 @@ class ListSubject extends BaseGrid {
     loadAjaxData(){
         let me = this,
             paramPaging = me.getParamPaging(),
-            periodExamId = localStorage.getItem("PeriodExamId"),
-            url = mappingApi.ListSubject.urlGetData.format(periodExamId),
+            periodExamId = parseInt(localStorage.getItem("PeriodExamId")),
+            url = mappingApi.ListSubjects.urlGetData.format(periodExamId),
             urlFull = url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page);
 
-        $(".grid-wrapper").addClass("loading");
-
         if(url && periodExamId){
+            $(".grid-wrapper").addClass("loading");
+
             CommonFn.GetAjax(urlFull, function (response) {
                 if(response.status == Enum.StatusResponse.Success){
-                    me.loadData(response.data["subjectSemesterResponses"]);
+                    me.loadData(response.data["SubjectSemesters"]);
                     me.resetDisplayPaging(response.data.Page);
                     me.editMode = Enum.EditMode.View;
                     $(".grid-wrapper").removeClass("loading");
@@ -47,16 +47,12 @@ class ListSubject extends BaseGrid {
         super.initEventElement();
         let me = this;
 
-        $("#chooseExam").on('selectmenuchange', me.chooseExamChange);
-    }
+        $("#chooseExam").on('selectmenuchange', function(){
+            let  periodExamId = parseInt($(this).val());
 
-    // Xử lý khi thay đổi kì thi trên combo
-    chooseExamChange(){
-        let me = this,
-            periodExamId = parseInt($(this).val());
-
-        localStorage.setItem("PeriodExamId", periodExamId);
-        me.loadAjaxData();
+            localStorage.setItem("PeriodExamId", periodExamId);
+            me.loadAjaxData();
+        });
     }
 
     //override: Thiết lập các config

@@ -18,7 +18,7 @@ class StudentSubjectDetail extends BaseGrid {
     getConfig() {
         let object = {
             role: "Admin",
-            entityName: "Rooms",
+            entityName: "",
             formTitle:"Sinh viên"
         };
 
@@ -31,7 +31,7 @@ class StudentSubjectDetail extends BaseGrid {
             entityName = me.config.entityName,
             url = mappingApi[entityName].urlGetData,
             paramPaging = me.getParamPaging(),
-            urlFull = host + url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page),
+            urlFull = url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page),
             periodExamId = localStorage.getItem("PeriodExamId"),
             listSubjectId = masterData ? masterData.Id : me.masterId,
             data = {

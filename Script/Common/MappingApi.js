@@ -17,14 +17,16 @@ var mappingApi = {
         urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/subject",                        // Done
         urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/subject",                        // Done
         urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/subject/list",                   // Done
-        urlCheckDuplicate: "http://admin.dkt.vnu.edu.vn:8881/admin/subject/check_exist"     // Done
+        urlCheckDuplicate: "http://admin.dkt.vnu.edu.vn:8881/admin/subject/check_exist",     // Done
+        urlGetDataNotInSemester: "http://admin.dkt.vnu.edu.vn:8881/admin/subject_not_in_semester/{0}" // Done
     },
     Rooms:{ // Phòng thi
         urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/room/all",                      // Done
         urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/room",                           // Done
         urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/room",                           // Done
         urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/room/list",                      // Done
-        urlCheckDuplicate: "http://admin.dkt.vnu.edu.vn:8881/admin/room/check_exist"        // Done
+        urlCheckDuplicate: "http://admin.dkt.vnu.edu.vn:8881/admin/room/check_exist" ,      // Done
+        urlGetDataNotInSemester: "http://admin.dkt.vnu.edu.vn:8881/admin/room_not_in_semester/{0}" 
     },
     Semesters:{ // Kì thi
         urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/semester/all",                  // Done
@@ -36,24 +38,24 @@ var mappingApi = {
         urlDoneRegister: "http://admin.dkt.vnu.edu.vn:8881/admin/semester/{0}/done"         // Done
     },
 
-    ListSubject:{
-        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/subject_semesters/semester/{0}",
-        urlCreate: "",
-        urlDelete: "",
+    ListSubjects:{ // Danh sách học phần - Sinh viên
+        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/subject_semesters/semester/{0}",  // Done
+        urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/subject_semesters/list",           // Done
+        urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/subject_semesters/list",           // Done
         urlGetDataDetail: ""
     },
     StudentSubjectDetail: {
-        urlGetData: "",
+        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/semester/{0}",
         urlCreate: "",
         urlUpdate: "",
-        urlDelete: "",
+        urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/list",
         urlCheckDuplicate: ""
     },
     RoomSetting:{
-        urlGetData: "",
-        urlCreate: "",
+        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/semester/{0}",
+        urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/list",
         urlUpdate: "",
-        urlDelete: "",
+        urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/list",
         urlCheckDuplicate: ""
     },
     CreateExam:{
