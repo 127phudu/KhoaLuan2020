@@ -98,12 +98,11 @@ class RoomSetting extends BaseGrid {
             isValid = me.validatSave(),
             dataSubmit = null;
 
-            debugger
         if(isValid){
             dataSubmit = me.getSubmitData();
 
             if(dataSubmit.length > 0){
-                CommonFn.PostPutAjax("POST", mappingApi.RoomSetting.urlUpdate, dataSubmit, function(response) {
+                CommonFn.PostPutAjax("PUT", mappingApi.RoomSetting.urlUpdate, dataSubmit, function(response) {
                     if(response.status == Enum.StatusResponse.Success){
                         me.showMessageSuccess();
                         me.editMode = Enum.EditMode.View;

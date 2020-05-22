@@ -49,18 +49,17 @@ var mappingApi = {
         urlGetDataDetail: ""
     },
     StudentSubjectDetail: {
-        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/semester/{0}",
+        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/student_in_subject/{0}",
         urlCreate: "",
         urlUpdate: "",
         urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/list",
         urlCheckDuplicate: ""
     },
-    RoomSetting:{
+    RoomSetting:{ // Thiết lập phòng thi
         urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/semester/{0}", // Done
         urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/list", // Done
-        urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters",
-        urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/list",  // Done
-        urlCheckDuplicate: ""
+        urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/list", // Done
+        urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/list", // Done
     },
     CreateExam:{
         urlGetData: "",
