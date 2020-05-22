@@ -25,7 +25,6 @@ class RoomSetting extends BaseGrid {
 
             CommonFn.GetAjax(urlFull, function (response) {
                 if(response.status == Enum.StatusResponse.Success){
-                    debugger
                     me.loadData(response.data["RoomSemesters"]);
                     me.editMode = Enum.EditMode.View;
                     $(".grid-wrapper").removeClass("loading");
@@ -99,11 +98,12 @@ class RoomSetting extends BaseGrid {
             isValid = me.validatSave(),
             dataSubmit = null;
 
+            debugger
         if(isValid){
             dataSubmit = me.getSubmitData();
 
             if(dataSubmit.length > 0){
-                CommonFn.PostPutAjax("POST", me.config.configUrl.urlUpdateFullRecord, dataSubmit, function(response) {
+                CommonFn.PostPutAjax("POST", mappingApi.RoomSetting.urlUpdate, dataSubmit, function(response) {
                     if(response.status == Enum.StatusResponse.Success){
                         me.showMessageSuccess();
                         me.editMode = Enum.EditMode.View;
@@ -146,8 +146,8 @@ class RoomSetting extends BaseGrid {
             let id = $(this).data("value").Id,
                 object = {Id: id};
 
-            object.CountRoom = parseInt($(this).find("input").eq(0).val());
-            object.CountRoomBackup = parseInt($(this).find("input").eq(1).val());
+            object.NumberOfComputer = parseInt($(this).find("input").eq(0).val());
+            object.PreventiveComputer = parseInt($(this).find("input").eq(1).val());
             data.push(object);
         });
 

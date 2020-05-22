@@ -54,7 +54,7 @@ class BaseDetail extends Grid{
     saveChangeData(data){
         let me = this,
             entityName = me.jsCaller.config.entityName;
-debugger
+            
         if(data){
             CommonFn.PostPutAjax("POST", mappingApi[entityName].urlCreate, data, function(response) {
                 if(response.status == Enum.StatusResponse.Success){

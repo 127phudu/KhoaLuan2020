@@ -18,7 +18,68 @@ class BaseGrid extends Grid{
         
         me.checkRoleUser(); 
         me.initEvent();
+        me.initSearchInput();
         me.getDataComboExam();
+    }
+
+    // Khởi tạo ô tìm kiếm
+    initSearchInput(){
+        let me = this;
+
+        if(me.toolbar.length > 0){
+            let inputSearch = me.toolbar.parent().find(".input-Search");
+            if(inputSearch.length > 0){
+                inputSearch.find("input").on('keypress',function(e) {
+                    if(e.which == 13) {
+                        me.loadAjaxData();
+                    }
+                });
+                inputSearch.find(".glyphicon-search").on('click', me.loadAjaxData.bind(me));
+            }
+        }
+    }
+
+    // Lấy giá trị ô input search
+    getValueSearch(){
+        let me = this,
+            valueSearch = "";
+
+        if(me.toolbar.length > 0){
+            let inputSearch = me.toolbar.parent().find(".input-Search");
+
+            if(inputSearch.length > 0){
+                 valueSearch = inputSearch.find("input").val().trim();
+            }
+        }
+
+        return valueSearch;
+    }
+    
+    //Hàm load dữ liệu
+    loadAjaxData(){
+        let me = this,
+            entityName = me.config.entityName,
+            url = mappingApi[entityName].urlGetData,
+            paramPaging = me.getParamPaging(),
+            textSearch = me.getValueSearch(),
+            urlFull = url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page);
+            
+        if(textSearch){
+            urlFull = mappingApi[entityName].urlGetDataSearch + Constant.urlPagingSearch.format(textSearch, paramPaging.Size, paramPaging.Page);
+        }
+
+        if(url && entityName){
+            $(".grid-wrapper").addClass("loading");
+
+            CommonFn.GetAjax(urlFull, function (response) {
+                if(response.status == Enum.StatusResponse.Success){
+                    me.loadData(response.data[entityName]);
+                    me.resetDisplayPaging(response.data.Page);
+                    me.editMode = Enum.EditMode.View;
+                    $(".grid-wrapper").removeClass("loading");
+                }
+            });
+        }
     }
 
     // Kiểm tra quyền truy cập
@@ -203,27 +264,6 @@ class BaseGrid extends Grid{
         me.loadAjaxData();
     }
 
-    //Hàm load dữ liệu
-    loadAjaxData(){
-        let me = this,
-            entityName = me.config.entityName,
-            url = mappingApi[entityName].urlGetData,
-            paramPaging = me.getParamPaging(),
-            urlFull = url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page);
-
-        if(url && entityName){
-            $(".grid-wrapper").addClass("loading");
-
-            CommonFn.GetAjax(urlFull, function (response) {
-                if(response.status == Enum.StatusResponse.Success){
-                    me.loadData(response.data[entityName]);
-                    me.resetDisplayPaging(response.data.Page);
-                    me.editMode = Enum.EditMode.View;
-                    $(".grid-wrapper").removeClass("loading");
-                }
-            });
-        }
-    }
     
     // Lấy tham số paging
     getParamPaging(){
@@ -279,6 +319,8 @@ class BaseGrid extends Grid{
             if(page == sumPage){
                 me.paging.find(".icon-next, .icon-last").addClass("iconPaging-disable");
             }
+
+            sumPage = sumPage ? sumPage : 1;
 
             me.paging.find(".startIndex").text(start);
             me.paging.find(".end-Index").text(end);

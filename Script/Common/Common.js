@@ -142,6 +142,7 @@ Constant.url = {
 
 // pagin phân trang
 Constant.urlPaging = "?Size={0}&Page={1}";
+Constant.urlPagingSearch = "?Query={0}&Size={1}&Page={2}";
 
 ///////////////////////// Các Enum //////////////////////////////////
 var Enum = Enum || {};

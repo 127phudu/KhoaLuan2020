@@ -85,6 +85,7 @@ class Grid{
                 element;
 
             if(allowEdit){
+                value = value ? value : 0;
                 element = $('<td><input type="text" class="notEdit" value="'+ value + '"/></td>');
             }else{
                 element = $("<td></td>").text(value);
