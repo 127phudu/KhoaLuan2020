@@ -4,11 +4,23 @@ class SubjectManagerPage extends BaseGrid {
     // Hàm khởi tạo grid
     constructor(gridId, toolbarId, pagingId) {
         super(gridId, toolbarId, pagingId);
+
+        this.formImport = null;
     }
     
     // Tạo form detail
     createFormDetail(formID, width, height){
         this.formDetail = new SubjectForm(this, formID, width, height, this.config.formTitle);
+    }
+    
+    // Tạo thêm mới form nhập khẩu
+    createFormImport(idForm){
+        this.formImport = new ImportForm(this, idForm);
+    }
+
+    // Nhập khẩu danh sách
+    import(){
+        this.formImport.show();
     }
 
     //override: Thiết lập các config
@@ -27,6 +39,8 @@ class SubjectManagerPage extends BaseGrid {
 var subjectManagerPage = new SubjectManagerPage("#GridSubject", "#ToolbarGridSubject", "#paging-GridSubject");
     // Tạo một form detail
     subjectManagerPage.createFormDetail("#formSubjectDetail", 500, 185);
+    // Tạo một form nhập khẩu
+    subjectManagerPage.createFormImport("#formImportSubject");
     // Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
     subjectManagerPage.loadAjaxData();
 

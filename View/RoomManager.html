@@ -246,6 +246,49 @@
             </div>
         </div>
     </div>
+    
+    <!-- Form nhập khẩu -->
+    <div class="wrapper-form">
+        <div class="formDialog form-import" id="formImportRoom">
+
+            <!-- Header form -->
+            <div class="header-form">
+                NHẬP KHẨU DANH SÁCH PHÒNG THI
+            </div>
+
+            <!-- Body form -->
+            <div class="body-form">
+                <div class="row">
+                    <input type="file" name="fileImport" id="upload-file" accept=".xlsx, .xls, .csv" />
+                    <div class="col-md-12 flex">
+                        <div class="import-file">
+                            <div class="glyphicon glyphicon-cloud-upload"></div>
+                            <p class="text-import">Chọn file</p>
+                        </div>
+                        <div class="download-file">
+                            <div class="glyphicon glyphicon-cloud-download"></div>
+                            <p class="text-import">Tải file mẫu</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                       <div class="file-name"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer form -->
+            <div class="footer-form">
+                <div class="btn-cancel">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span>HỦY BỎ</span>
+                </div>
+                <div class="btn-save disable-button">
+                    <span class="glyphicon glyphicon-save"></span>
+                    <span>NHẬP KHẨU</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Form đổi mật khẩu -->
     <div class="wrapper-form formChanePassword">
@@ -332,6 +375,7 @@
     <script src="../Script/Base/BaseForm.js"></script>
 
     <!-- Script từng page -->
+    <script src="../Script/Import/ImportForm.js"></script>
     <script src="../Script/Form/RoomForm.js"></script>
     <script src="../Script/Form/ChangePasswordForm.js"></script>
     <script src="../Script/View/RoomManager.js"></script>

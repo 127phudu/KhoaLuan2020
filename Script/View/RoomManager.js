@@ -4,11 +4,23 @@ class RoomManagerPage extends BaseGrid {
     // Hàm khởi tạo grid
     constructor(gridId, toolbarId, pagingId) {
         super(gridId, toolbarId, pagingId);
+
+        this.formImport = null;
     }
     
     // Tạo form detail
     createFormDetail(formID, width, height){
         this.formDetail = new RoomForm(this, formID, width, height, this.config.formTitle);
+    }
+    
+    // Tạo thêm mới form nhập khẩu
+    createFormImport(idForm){
+        this.formImport = new ImportForm(this, idForm);
+    }
+
+    // Nhập khẩu danh sách
+    import(){
+        this.formImport.show();
     }
 
     //override: Thiết lập các config
@@ -27,6 +39,8 @@ class RoomManagerPage extends BaseGrid {
 var roomManagerPage = new RoomManagerPage("#GridRoom", "#ToolbarGridRoom", "#paging-GridRoom");
     // Tạo một form detail
     roomManagerPage.createFormDetail("#formRoomDetail", 500, 185);
+    // Tạo một form nhập khẩu
+    roomManagerPage.createFormImport("#formImportRoom");
     roomManagerPage.loadAjaxData();
 
 
