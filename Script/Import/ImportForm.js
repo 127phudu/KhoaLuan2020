@@ -30,31 +30,99 @@ class ImportForm{
         });
     }
 
-    // Hàm dùng tải file mẫu về
+    //Hàm dùng tải file mẫu về
     downloadFile(){
-        let me = this;
+        let me = this,
+            entityName = me.jsCaller.config.entityName,
+            url = mappingApi[entityName].urlDownloadFileTemplate,
+            fileName = entityName + "_Template.xlsx";
 
+            if(url){
+                let  xhr = new XMLHttpRequest();
+
+                xhr.responseType = 'blob';
+                xhr.withCredentials = true;
+                xhr.open("GET", url);
+
+                var authorization = localStorage.getItem("Authorization");
+                    xhr.setRequestHeader("Authorization", authorization);
+
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState == 4 && xhr.status == 200) {
+                        var downloadLink = window.document.createElement('a');
+                            var URL = window.URL || window.webkitURL;
+                            downloadLink.href = URL.createObjectURL(new Blob([xhr.response], { type: "application/vnd.ms-excel" }));
+                            downloadLink.download = fileName;
+                            document.body.appendChild(downloadLink);
+                            downloadLink.click();
+                            document.body.removeChild(downloadLink);
+                    }
+                }
+
+                xhr.send();
+            }
     }
     
     // Cất dữ liệu
     save(){
-        let me = this;
+        let me = this,
+            data = me.getSubmitData();
 
-        me.saveChangeData(); 
-        me.close();
+        if(data){
+            me.saveChangeData(data); 
+            me.close();
+        }
+    }
+
+    // Lấy dữ liệu file
+    getSubmitData(){
+        let me = this,
+            inputFile = me.form.find('input[type="file"]')[0];
+        
+        let data = new FormData();
+            data.append("file", inputFile.files[0]);
+        
+        return data;
     }
 
     // Lưu dữ liệu vào DB
     saveChangeData(data){
         let me = this,
-            entityName = me.jsCaller.config.entityName;
+            entityName = me.jsCaller.config.entityName,
+            url = mappingApi[entityName].urlUploadFile,
+            fileType = "application/vnd.ms-excel",
+            fileName = "Danh sách không hợp lệ.xlsx";
 
-            CommonFn.PostPutAjax("POST", mappingApi[entityName].urlCreate, data, function(response) {
-                if(response.status == Enum.StatusResponse.Success){
-                    me.showMessageSuccess();
-                    me.jsCaller.loadAjaxData();
+        if(data && url){
+
+            var xhr = new XMLHttpRequest();
+                xhr.responseType = 'blob';
+                xhr.withCredentials = true;
+                xhr.open("POST", url);
+
+            var authorization = localStorage.getItem("Authorization");
+                xhr.setRequestHeader("Authorization", authorization);
+
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState == 4 && xhr.status == 200) {
+                        if(xhr.response.type == fileType){
+                            var downloadLink = window.document.createElement('a');
+                            var URL = window.URL || window.webkitURL;
+                            downloadLink.href = URL.createObjectURL(new Blob([xhr.response], { type: fileType }));
+                            downloadLink.download = fileName;
+                            document.body.appendChild(downloadLink);
+                            downloadLink.click();
+                            document.body.removeChild(downloadLink);
+                        }else{
+                            me.showMessageSuccess("Nhập khẩu dữ liệu thành công");
+                        }
+                        
+                        me.jsCaller.loadAjaxData();
+                    }
                 }
-            });
+            
+                xhr.send(data);
+        }
     }
 
     // Hiển thị thông báo cất thành công

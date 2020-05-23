@@ -122,6 +122,34 @@ CommonFn.PostPutAjax = function(type, url, param, fnCallBack, async = true){
     }
 }
 
+// ajax gọi phương thức post
+CommonFn.SendFileAjax = function(url, data, fnCallBack){
+    var authorization = localStorage.getItem("Authorization");
+
+    if(authorization){
+        $.ajax({
+            url: url,
+            data: data,
+            async: true,
+            processData: false,
+            type: "POST",
+            headers: {
+                "Authorization": authorization
+            },
+            crossDomain: true,
+            contentType: false,
+            success: function (response) {
+                fnCallBack(response);
+            },
+            error: function (errormessage) {
+                console.log(errormessage.responseText);
+            }
+        });
+    }else{
+        window.location.replace(Constant.url["Login"]);
+    }
+}
+
 ///////////////////////// Các hằng số ///////////////////////////////
 var Constant = Constant || {};
 
