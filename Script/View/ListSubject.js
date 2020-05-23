@@ -17,6 +17,7 @@ class ListSubject extends BaseGrid {
     createPageDetail(gridId, toolbarId, pagingId){
         this.pageDetail = new StudentSubjectDetail(gridId, toolbarId, pagingId);
         this.pageDetail.createFormDetail("#formStudentSubjectDetail", 400, 133);
+        this.pageDetail.createFormImport("#formImportStudent");
         this.pageDetail.pageMaster = this;
     }
 

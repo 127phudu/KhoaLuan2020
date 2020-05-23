@@ -20,6 +20,7 @@ class ImportForm{
         
         me.form.find(".btn-save").on("click",me.save.bind(me));
         me.form.find(".btn-cancel").on("click",me.close.bind(me));
+        me.form.find(".download-file").on("click", me.downloadFile.bind(me));
 
         me.form.find('input[type="file"]').change(function(e){
             var fileName = e.target.files[0].name;
@@ -27,6 +28,12 @@ class ImportForm{
             me.form.find(".file-name").text(fileName);
             me.form.find(".btn-save").removeClass("disable-button");
         });
+    }
+
+    // Hàm dùng tải file mẫu về
+    downloadFile(){
+        let me = this;
+
     }
     
     // Cất dữ liệu

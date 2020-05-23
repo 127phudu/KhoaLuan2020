@@ -7,11 +7,17 @@ class StudentSubjectDetail extends BaseGrid {
 
         this.pageMaster = null;
         this.masterId = null;
+        this.formImport = null;
     }
     
     // Tạo form detail
     createFormDetail(formID, width, height){
         this.formDetail = new StudentSubjectDetailForm(this, formID, width, height, this.config.formTitle);
+    }
+
+    // Tạo thêm mới form nhập khẩu
+    createFormImport(idForm){
+        this.formImport = new ImportForm(this, idForm);
     }
 
     //override: Thiết lập các config
@@ -135,6 +141,11 @@ class StudentSubjectDetail extends BaseGrid {
                 }
             });
         }
+    }
+
+    // Nhập khẩu danh sách
+    import(){
+        this.formImport.show();
     }
 
     // Custom các button bị disable
