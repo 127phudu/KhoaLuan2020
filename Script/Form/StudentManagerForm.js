@@ -1,5 +1,5 @@
 // Form thêm , sửa, xóa sinh viên
-class StudentForm extends BaseForm {
+class StudentManagerForm extends BaseForm {
 
     // Hàm khởi tạo
     constructor(jsCaller, idForm, width, height, title){

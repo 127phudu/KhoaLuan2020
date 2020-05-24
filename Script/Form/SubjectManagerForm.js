@@ -1,5 +1,5 @@
-// Form thêm , sửa, xóa Phòng thi
-class RoomForm extends BaseForm {
+// Form thêm , sửa, xóa Học phần
+class SubjectManagerForm extends BaseForm {
 
     // Hàm khởi tạo
     constructor(jsCaller, idForm, width, height, title){

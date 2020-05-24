@@ -160,9 +160,9 @@ Constant.url = {
     StudentManager: "file:///D:/KhoaLuan2020/View/StudentManager.html",
     SubjectManager: "file:///D:/KhoaLuan2020/View/SubjectManager.html",
     RoomManager:"file:///D:/KhoaLuan2020/View/RoomManager.html",
-    PeriodExamManager: "file:///D:/KhoaLuan2020/View/PeriodExamManager.html",
+    SemesterManager: "file:///D:/KhoaLuan2020/View/SemesterManager.html",
 
-    ListSubject: "file:///D:/KhoaLuan2020/View/ListSubject.html",
+    SubjectSemester: "file:///D:/KhoaLuan2020/View/SubjectSemester.html",
     SettingRoom: "file:///D:/KhoaLuan2020/View/RoomSetting.html",
     CreateExam: "file:///D:/KhoaLuan2020/View/CreateExam.html",
     ExamRegisterResult: "file:///D:/KhoaLuan2020/View/ExamRegisterResult.html"
@@ -195,7 +195,8 @@ Enum.EditMode = {
 Enum.StatusResponse = {
     Success: 200,
     NotFound: 404,
-    BadRequest: 500
+    BadRequest: 500,
+    Exists: 409
 }
 
 // Enum giới tính

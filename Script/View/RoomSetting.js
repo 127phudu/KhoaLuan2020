@@ -16,11 +16,11 @@ class RoomSetting extends BaseGrid {
     //Hàm load dữ liệu
     loadAjaxData(){
         let me = this,
-            periodExamId = parseInt(localStorage.getItem("PeriodExamId")),
-            url = mappingApi.RoomSetting.urlGetData.format(periodExamId),
+            semesterId = parseInt(localStorage.getItem("SemesterId")),
+            url = mappingApi.RoomSetting.urlGetData.format(semesterId),
             urlFull = url + Constant.urlPaging.format(1000, 1);
 
-        if(url && periodExamId){
+        if(url && semesterId){
             $(".grid-wrapper").addClass("loading");
 
             CommonFn.GetAjax(urlFull, function (response) {
@@ -50,9 +50,9 @@ class RoomSetting extends BaseGrid {
         let me = this;
 
         $("#chooseExam").on('selectmenuchange', function(){
-            let  periodExamId = parseInt($(this).val());
+            let  semesterId = parseInt($(this).val());
 
-            localStorage.setItem("PeriodExamId", periodExamId);
+            localStorage.setItem("SemesterId", semesterId);
             me.loadAjaxData();
         });
     }

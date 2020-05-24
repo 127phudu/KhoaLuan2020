@@ -85,7 +85,7 @@ class Login {
                 localStorage.setItem("FullName", parseJwt(response.data.Token).fullName);
                 localStorage.setItem("Role", parseJwt(response.data.Token).role);
                 
-                window.location.replace(Constant.url["StudentManager"]);
+                window.location.replace(Constant.url["SemesterManager"]);
             }else{
                 me.setMessageError(Enum.TypeError.LoginInvalid);
             }

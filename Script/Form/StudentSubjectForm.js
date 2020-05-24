@@ -1,27 +1,9 @@
 // Form thêm , sửa, xóa sinh viên thuộc học phần
-class StudentSubjectDetailForm extends BaseForm {
+class StudentSubjectForm extends BaseForm {
 
     // Hàm khởi tạo
     constructor(jsCaller, idForm, width, height, title){
         super(jsCaller, idForm, width, height, title);
-    }
-
-    // Thực hiện check trùng
-    executeCheckDuplicate(value, setField){
-        let me = this,
-            isDuplicate = false,
-            data = {
-                value: value,
-                id: me.jsCaller.masterId
-            };
-
-        CommonFn.PostPutAjax("POST", me.jsCaller.config.configUrl.urlCheckDuplicate, data, function(response) {
-            if(response.status == Enum.StatusResponse.Success){
-                isDuplicate = response.data;
-            }
-        }, false);
-        
-        return isDuplicate;
     }
 
     // Validate từng phần tử
@@ -39,17 +21,24 @@ class StudentSubjectDetailForm extends BaseForm {
     // Validate Mã sinh viên kiểm tra xem tồn tại không hệ thống không
     validateStudentCode(value){
         let me = this,
-            isExist = false;
-
-        CommonFn.PostPutAjax("POST", me.jsCaller.config.configUrl.urlCheckExistItem, data, function(response) {
-            if(response.status == Enum.StatusResponse.Success){
-                isExist = response.data;
-            }
+            statusResponse = 0,
+            result = {},
+            entityName = me.jsCaller.config.entityName,
+            data = {
+                StudentCode: value,
+                SubjectSemesterId: me.jsCaller.masterData.Id
+            };
+        
+        CommonFn.PostPutAjax("POST", mappingApi[entityName].urlCheckExistItem, data, function(response) {
+            statusResponse = response.status;
         }, false);
 
-        if(!isExist){
+        if(statusResponse == Enum.StatusResponse.NotFound){
             result.isValid = false;
             result.tooltip = "Mã sinh viên không tồn tại!";
+        } else if(statusResponse == Enum.StatusResponse.Exists){
+            result.isValid = false;
+            result.tooltip = "Sinh viên đã tồn tại trong học phần!";
         }else{
             result.isValid = true;
         }
@@ -61,7 +50,7 @@ class StudentSubjectDetailForm extends BaseForm {
     mappingData(source, destination){
         let me = this;
 
-        source.MasterId = me.jsCaller.masterId;
+        source.SubjectSemesterId = me.jsCaller.masterData.Id;
 
         return source;
     }

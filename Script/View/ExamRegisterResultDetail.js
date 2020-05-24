@@ -23,17 +23,17 @@ class ExamRegisterResultDetail extends BaseGrid {
     //Hàm load dữ liệu
     loadAjaxData(masterData){
         let me = this,
-            periodExamId = localStorage.getItem("PeriodExamId"),
+            semesterId = localStorage.getItem("SemesterId"),
             listSubjectId = masterData ? masterData.Id : me.masterId,
             data = {
-                PeriodExamId: periodExamId,
+                SemesterId: semesterId,
                 ListSubjectId: listSubjectId
             };
 
         // Gán masterId lưu lại dùng 
         me.masterId = masterData ? masterData.Id : me.masterId;
 
-        if(me.config.configUrl.urlGetData && periodExamId){
+        if(me.config.configUrl.urlGetData && semesterId){
             CommonFn.PostPutAjax("POST", me.config.configUrl.urlGetData, data, function(response) {
                 if(response.status == Enum.StatusResponse.Success){
                     me.loadData(response.Data);

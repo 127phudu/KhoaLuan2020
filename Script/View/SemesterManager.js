@@ -1,5 +1,5 @@
 // Trang quản lý kì thi
-class PeriodExamManagerPage extends BaseGrid {
+class SemesterManagerPage extends BaseGrid {
 
     // Hàm khởi tạo grid
     constructor(gridId, toolbarId, pagingId) {
@@ -22,7 +22,7 @@ class PeriodExamManagerPage extends BaseGrid {
     
     // Tạo form detail
     createFormDetail(formID, width, height){
-        this.formDetail = new PeriodExamForm(this, formID, width, height, this.config.formTitle);
+        this.formDetail = new SemesterManagerForm(this, formID, width, height, this.config.formTitle);
     }
 
     //override: Thiết lập các config
@@ -100,11 +100,11 @@ class PeriodExamManagerPage extends BaseGrid {
 }
 
     // Khởi tạo trang quản lý Kì thi
-var periodExamManagerPage = new PeriodExamManagerPage("#GridPeriodExam", "#ToolbarGridPeriodExam", "#paging-GridPeriodExam");
+var semesterManagerPage = new SemesterManagerPage("#GridSemester", "#ToolbarGridSemester", "#paging-GridSemester");
     // Tạo một form detail
-    periodExamManagerPage.createFormDetail("#formPeriodExam", 500, 235);
+    semesterManagerPage.createFormDetail("#formSemester", 500, 235);
     // Load dữ liệu cho grid 
-    periodExamManagerPage.loadAjaxData();
+    semesterManagerPage.loadAjaxData();
 
 
     // Khởi tạo form thay đổi mật khẩu

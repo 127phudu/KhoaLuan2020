@@ -17,6 +17,7 @@ class ImportForm{
 
         me.form.find(".btn-save").off("click");
         me.form.find(".btn-cancel").off("click");
+        me.form.find(".download-file").off("click");
         
         me.form.find(".btn-save").on("click",me.save.bind(me));
         me.form.find(".btn-cancel").on("click",me.close.bind(me));
@@ -25,8 +26,13 @@ class ImportForm{
         me.form.find('input[type="file"]').change(function(e){
             var fileName = e.target.files[0].name;
 
-            me.form.find(".file-name").text(fileName);
-            me.form.find(".btn-save").removeClass("disable-button");
+            if(!(fileName.endsWith(".xlsx") || fileName.endsWith(".xls") || fileName.endsWith(".csv"))){
+                me.form.find(".file-name").text("Vui lòng chọn file excel!");
+                me.form.find(".btn-save").addClass("disable-button");
+            }else{
+                me.form.find(".file-name").text(fileName);
+                me.form.find(".btn-save").removeClass("disable-button");
+            }
         });
     }
 

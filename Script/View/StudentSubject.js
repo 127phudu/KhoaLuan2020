@@ -1,18 +1,18 @@
 // Trang danh sách sinh viên chi tiết
-class StudentSubjectDetail extends BaseGrid {
+class StudentSubject extends BaseGrid {
 
     // Hàm khởi tạo grid
     constructor(gridId, toolbarId, pagingId) {
         super(gridId, toolbarId, pagingId);
 
         this.pageMaster = null;
-        this.masterId = null;
+        this.masterData = null;
         this.formImport = null;
     }
     
     // Tạo form detail
     createFormDetail(formID, width, height){
-        this.formDetail = new StudentSubjectDetailForm(this, formID, width, height, this.config.formTitle);
+        this.formDetail = new StudentSubjectForm(this, formID, width, height, this.config.formTitle);
     }
 
     // Tạo thêm mới form nhập khẩu
@@ -24,7 +24,7 @@ class StudentSubjectDetail extends BaseGrid {
     getConfig() {
         let object = {
             role: "Admin",
-            entityName: "",
+            entityName: "StudentSubjects",
             formTitle:"Sinh viên"
         };
 
@@ -32,45 +32,42 @@ class StudentSubjectDetail extends BaseGrid {
     }
 
     //Hàm load dữ liệu
-    loadAjaxData(masterData){
-        let me = this,
-            entityName = me.config.entityName,
-            url = mappingApi[entityName].urlGetData,
-            paramPaging = me.getParamPaging(),
-            urlFull = url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page),
-            periodExamId = localStorage.getItem("PeriodExamId"),
-            listSubjectId = masterData ? masterData.Id : me.masterId,
-            data = {
-                PeriodExamId: periodExamId,
-                ListSubjectId: listSubjectId
-            };
+    loadAjaxData(){
+        let me = this;
 
-        // Gán masterId lưu lại dùng 
-        me.masterId = masterData ? masterData.Id : me.masterId;
+        if(me.masterData){
+            let entityName = me.config.entityName,
+                url = mappingApi[entityName].urlGetData,
+                paramPaging = me.getParamPaging(),
+                urlFull = url.format(me.masterData.Id) + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page);
+    
+            if(url){
+                $(".grid-wrapper").addClass("loading");
 
-        if(url && periodExamId){
-            CommonFn.PostPutAjax("POST", urlFull, data, function(response) {
-                if(response.status == Enum.StatusResponse.Success){
-                    me.loadData(response.Data);
-                    me.resetDisplayPaging(response.data.Page);
-                    me.editMode = Enum.EditMode.View;
-                }
-            });
+                CommonFn.GetAjax(urlFull, function (response) {
+                    if(response.status == Enum.StatusResponse.Success){
+                        me.loadData(response.data["Students"]);
+                        me.resetDisplayPaging(response.data.Page);
+                        me.editMode = Enum.EditMode.View;
+                        $(".grid-wrapper").removeClass("loading");
+                    }
+                });
+            }
         }
     }
 
     // Hiển thị khi từ màn hình cha truyền vào
-    show(masterData){
+    show(){
         let me = this;
 
-        me.configTitlePage(masterData);
-
-        me.loadAjaxData(masterData);
+        me.configTitlePage();
+        me.loadAjaxData();
     }
 
     // Thiết lập tiêu đề cho trang
-    configTitlePage(masterData){
+    configTitlePage(){
         let me = this,
+            masterData = me.masterData,
             subjectName = masterData.SubjectName,
             subjectCode = masterData.SubjectCode,
             titlePage = 'Danh sách sinh viên - ' + subjectName + ' (' + subjectCode + ')';
@@ -101,7 +98,8 @@ class StudentSubjectDetail extends BaseGrid {
 
         $("[Layout='Master']").show();
         $("[Layout='Detail']").hide();
-        
+
+        me.masterData = null;
         me.pageMaster.loadAjaxData();
     }
 

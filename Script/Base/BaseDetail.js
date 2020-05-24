@@ -99,8 +99,8 @@ class BaseDetail extends Grid{
     loadAjaxData(){
          let me = this,
             entityName = me.config.entityName,
-            periodExamId = parseInt(localStorage.getItem("PeriodExamId")),
-            url = mappingApi[entityName].urlGetDataNotInSemester.format(periodExamId),
+            semesterId = parseInt(localStorage.getItem("SemesterId")),
+            url = mappingApi[entityName].urlGetDataNotInSemester.format(semesterId),
             urlFull = url + Constant.urlPaging.format(1000, 1);
 
         if(url && entityName){

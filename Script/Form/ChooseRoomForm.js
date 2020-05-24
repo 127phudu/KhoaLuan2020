@@ -18,12 +18,12 @@ class ChooseRoomForm extends BaseDetail {
     // Custom dữ liệu trước khi cất
     cusomDataBeforeSave(records){
         let data = [],
-            periodExamId = parseInt(localStorage.getItem("PeriodExamId"));
+            semesterId = parseInt(localStorage.getItem("SemesterId"));
 
         records.filter(function(item){
             let obj = {
                 RoomId: item.Id,
-                SemesterId: periodExamId
+                SemesterId: semesterId
             };
 
             data.push(obj);

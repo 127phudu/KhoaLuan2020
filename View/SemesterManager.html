@@ -40,12 +40,12 @@
                             <span>Quản lý kì thi</span>
                         </a>
                     </li>
-                    <li class="flex item-3 submenu-item hover-color" key="PeriodExamManager">
+                    <li class="flex item-3 submenu-item hover-color" key="SemesterManager">
                         <a href="#" class="tabLeft">
                             <span>Kì thi</span>
                         </a>
                     </li>
-                    <li class="flex item-1 submenu-item" key="ListSubject">
+                    <li class="flex item-1 submenu-item" key="SubjectSemester">
                         <a href="#" class="tabLeft">
                             <span>Danh sách học phần - SV</span>
                         </a>
@@ -102,7 +102,7 @@
             <div class="body-right flex1 main-content">
                 
                 <!-- Nội dung thay thế từng trang -->
-                <div class="container-fluid" id="PeriodExamContainer">
+                <div class="container-fluid" id="SemesterContainer">
                     <div class="row breadrum">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -118,7 +118,7 @@
                     <!-- Toolbar -->
                     <div class="row">
                         <div class="col-xl-12 flex">
-                            <div class="toolbar" id="ToolbarGridPeriodExam">
+                            <div class="toolbar" id="ToolbarGridSemester">
                                 <div class="toolbar-item" CommanName='Add'>
                                     <span class="icon-toolbar glyphicon glyphicon-plus"></span>
                                     <span class="text-toolbar">Thêm</span>
@@ -151,7 +151,7 @@
                     <div class="grid-wrapper">
                         <div class="row">
                             <div class="col-xl-12">
-                                <div class="Grid" id="GridPeriodExam" useCheckBox='true' useIndex="true">
+                                <div class="Grid" id="GridSemester" useCheckBox='true' useIndex="true">
                                     <div class="column" setField="SemesterName">Tên kì thi</div>
                                     <div class="column" setField="SemesterCode">Mã kì thi</div>
                                     <div class="column" setField="Year" dataType="Number">Năm</div>
@@ -166,7 +166,7 @@
                     <!-- Paging -->
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="paging" id="paging-GridPeriodExam">
+                            <div class="paging" id="paging-GridSemester">
                             <div class="paging-left float-left flex">
                                 <div class="icon-paging icon-first" title="Trang đầu"></div>
                                 <div class="icon-paging icon-pre" title="Trang trước"></div>
@@ -198,7 +198,7 @@
 
     <!-- Form thêm mới kì thi -->
     <div class="wrapper-form">
-        <div class="formDialog" id="formPeriodExam">
+        <div class="formDialog" id="formSemester">
 
             <!-- Header form -->
             <div class="header-form">
@@ -335,7 +335,6 @@
     <script src="../Script/Library/jquery.datetimepicker.js"></script>
 
     <!-- Script common -->
-    <script src="../Script/Common/Data.js"></script>
     <script src="../Script/Common/MappingApi.js"></script>
     <script src="../Script/Common/Common.js"></script>
     <script src="../Script/Common/Master.js"></script>
@@ -344,8 +343,8 @@
     <script src="../Script/Base/BaseForm.js"></script>
 
     <!-- Script từng page -->
-    <script src="../Script/Form/PeriodExamForm.js"></script>
+    <script src="../Script/Form/SemesterManagerForm.js"></script>
     <script src="../Script/Form/ChangePasswordForm.js"></script>
-    <script src="../Script/View/PeriodExamManager.js"></script>
+    <script src="../Script/View/SemesterManager.js"></script>
 </body>
 </html>

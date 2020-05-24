@@ -1,5 +1,5 @@
 // Trang danh sách học phần - sinh viên
-class ListSubject extends BaseGrid {
+class SubjectSemester extends BaseGrid {
 
     // Hàm khởi tạo grid
     constructor(gridId, toolbarId, pagingId) {
@@ -15,8 +15,8 @@ class ListSubject extends BaseGrid {
 
     // Tạo page detail
     createPageDetail(gridId, toolbarId, pagingId){
-        this.pageDetail = new StudentSubjectDetail(gridId, toolbarId, pagingId);
-        this.pageDetail.createFormDetail("#formStudentSubjectDetail", 400, 133);
+        this.pageDetail = new StudentSubject(gridId, toolbarId, pagingId);
+        this.pageDetail.createFormDetail("#formStudentSubject", 400, 133);
         this.pageDetail.createFormImport("#formImportStudent");
         this.pageDetail.pageMaster = this;
     }
@@ -25,11 +25,11 @@ class ListSubject extends BaseGrid {
     loadAjaxData(){
         let me = this,
             paramPaging = me.getParamPaging(),
-            periodExamId = parseInt(localStorage.getItem("PeriodExamId")),
-            url = mappingApi.ListSubjects.urlGetData.format(periodExamId),
+            semesterId = parseInt(localStorage.getItem("SemesterId")),
+            url = mappingApi.SubjectSemesters.urlGetData.format(semesterId),
             urlFull = url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page);
 
-        if(url && periodExamId){
+        if(url && semesterId){
             $(".grid-wrapper").addClass("loading");
 
             CommonFn.GetAjax(urlFull, function (response) {
@@ -49,9 +49,9 @@ class ListSubject extends BaseGrid {
         let me = this;
 
         $("#chooseExam").on('selectmenuchange', function(){
-            let  periodExamId = parseInt($(this).val());
+            let  semesterId = parseInt($(this).val());
 
-            localStorage.setItem("PeriodExamId", periodExamId);
+            localStorage.setItem("SemesterId", semesterId);
             me.loadAjaxData();
         });
     }
@@ -60,7 +60,7 @@ class ListSubject extends BaseGrid {
     getConfig() {
         let object = {
             role: "Admin",
-            entityName: "ListSubjects",
+            entityName: "SubjectSemesters",
             formTitle:"Danh sách học phần"
         };
 
@@ -95,16 +95,17 @@ class ListSubject extends BaseGrid {
         $("[Layout='Master']").hide();
         $("[Layout='Detail']").show();
         
-        me.pageDetail.show(masterData);
+        me.pageDetail.masterData = masterData;
+        me.pageDetail.show();
     }
 }
 
     // Khởi tạo trang quản lý Học phần
-var listSubject = new ListSubject("#GridListSubject", "#ToolbarGridListSubject", "#paging-GridListSubject");
+var subjectSemester = new SubjectSemester("#GridListSubject", "#ToolbarGridListSubject", "#paging-GridListSubject");
     // Tạo một form detail
-    listSubject.createFormDetail("#formSubject","#GridSubject", "#ToolbarChooseSubject", 800, 500);
+    subjectSemester.createFormDetail("#formSubject","#GridSubject", "#ToolbarChooseSubject", 800, 500);
     // Tạo trang chi tiết bên trong
-    listSubject.createPageDetail("#StudentSubjectDetail", "#ToolbarStudentSubjectDetail", "#paging-StudentSubjectDetail");
+    subjectSemester.createPageDetail("#StudentSubject", "#ToolbarStudentSubject", "#paging-StudentSubject");
 
 
     // Khởi tạo form thay đổi mật khẩu

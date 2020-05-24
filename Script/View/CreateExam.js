@@ -33,9 +33,9 @@ class CreateExamPage extends BaseGrid {
     // Xử lý khi thay đổi kì thi trên combo
     chooseExamChange(){
         let me = this,
-            periodExamId = parseInt($(this).val());
+            semesterId = parseInt($(this).val());
 
-        localStorage.setItem("PeriodExamId", periodExamId);
+        localStorage.setItem("SemesterId", semesterId);
         me.loadAjaxData();
     }
 }

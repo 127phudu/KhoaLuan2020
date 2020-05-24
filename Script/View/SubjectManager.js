@@ -10,7 +10,7 @@ class SubjectManagerPage extends BaseGrid {
     
     // Tạo form detail
     createFormDetail(formID, width, height){
-        this.formDetail = new SubjectForm(this, formID, width, height, this.config.formTitle);
+        this.formDetail = new SubjectManagerForm(this, formID, width, height, this.config.formTitle);
     }
     
     // Tạo thêm mới form nhập khẩu

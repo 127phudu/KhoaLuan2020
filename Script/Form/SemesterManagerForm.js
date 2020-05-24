@@ -1,5 +1,5 @@
 // Form thêm , sửa, xóa kì thi
-class PeriodExamForm extends BaseForm {
+class SemesterManagerForm extends BaseForm {
 
     // Hàm khởi tạo
     constructor(jsCaller, idForm, width, height, title){

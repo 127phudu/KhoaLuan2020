@@ -18,13 +18,13 @@ class ChooseSubjectForm extends BaseDetail {
     // Custom dữ liệu trước khi cất
     cusomDataBeforeSave(records){
         let data = [],
-            periodExamId = parseInt(localStorage.getItem("PeriodExamId"));
+            semesterId = parseInt(localStorage.getItem("SemesterId"));
 
         records.filter(function(item){
             let obj = {
                 Description: item.Description,
                 SubjectId: item.Id,
-                SemesterId: periodExamId
+                SemesterId: semesterId
             };
 
             data.push(obj);

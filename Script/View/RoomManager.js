@@ -10,7 +10,7 @@ class RoomManagerPage extends BaseGrid {
     
     // Tạo form detail
     createFormDetail(formID, width, height){
-        this.formDetail = new RoomForm(this, formID, width, height, this.config.formTitle);
+        this.formDetail = new RoomManagerForm(this, formID, width, height, this.config.formTitle);
     }
     
     // Tạo thêm mới form nhập khẩu

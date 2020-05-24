@@ -17,10 +17,10 @@ class ExamRegisterResult extends BaseGrid {
     //Hàm load dữ liệu
     loadAjaxData(){
         let me = this,
-            periodExamId = localStorage.getItem("PeriodExamId");
+            semesterId = localStorage.getItem("SemesterId");
 
-        if(me.config.configUrl.urlGetData && periodExamId){
-            CommonFn.PostPutAjax("POST", me.config.configUrl.urlGetData, periodExamId, function(response) {
+        if(me.config.configUrl.urlGetData && semesterId){
+            CommonFn.PostPutAjax("POST", me.config.configUrl.urlGetData, semesterId, function(response) {
                 if(response.status == Enum.StatusResponse.Success){
                     me.loadData(response.Data);
                 }
@@ -39,9 +39,9 @@ class ExamRegisterResult extends BaseGrid {
     // Xử lý khi thay đổi kì thi trên combo
     chooseExamChange(){
         let me = this,
-            periodExamId = parseInt($(this).val());
+            semesterId = parseInt($(this).val());
 
-        localStorage.setItem("PeriodExamId", periodExamId);
+        localStorage.setItem("SemesterId", semesterId);
         me.loadAjaxData();
     }
 

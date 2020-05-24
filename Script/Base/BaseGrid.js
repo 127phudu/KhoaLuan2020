@@ -182,7 +182,7 @@ class BaseGrid extends Grid{
     renderComboExam(listData){
         let me = this,
             comboExam = $("#chooseExam"),
-            periodExamId = localStorage.getItem("PeriodExamId");
+            semesterId = localStorage.getItem("SemesterId");
 
         if(listData && listData.length > 0){
 
@@ -196,15 +196,32 @@ class BaseGrid extends Grid{
                 comboExam.append(option);
             });
 
-            if(!periodExamId){
-                periodExamId = listData[0].Id;
-                localStorage.setItem("PeriodExamId", periodExamId);
+            if((!semesterId) || (!me.checkPeriodIdExist(listData))){
+                semesterId = listData[0].Id;
+                localStorage.setItem("SemesterId", semesterId);
             }
 
             me.loadAjaxData();
 
-            comboExam.val(periodExamId).selectmenu("refresh");
+            comboExam.val(semesterId).selectmenu("refresh");
+        }else{
+            localStorage.removeItem("SemesterId");
         }
+    }
+
+    // Kiểm tra xem kì thi bị xóa chưa
+    checkPeriodIdExist(dataArray){
+        let me = this,
+            semesterId = parseInt(localStorage.getItem("SemesterId")),
+            check = false;
+
+            dataArray.filter(function(item){
+                if(item.Id == semesterId){
+                    check = true;
+                }
+            });
+
+        return check;
     }
 
     // Hàm thực hiện xóa bản ghi
