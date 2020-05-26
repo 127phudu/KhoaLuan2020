@@ -41,7 +41,7 @@ class ImportForm{
         let me = this,
             entityName = me.jsCaller.config.entityName,
             url = mappingApi[entityName].urlDownloadFileTemplate,
-            fileName = entityName + "_Template.xlsx";
+            fileName = Enum.FileName[entityName].FileNameExport;
 
             if(url){
                 let  xhr = new XMLHttpRequest();
@@ -96,8 +96,8 @@ class ImportForm{
         let me = this,
             entityName = me.jsCaller.config.entityName,
             url = mappingApi[entityName].urlUploadFile,
-            fileType = "application/vnd.ms-excel",
-            fileName = "Danh sách không hợp lệ.xlsx";
+            fileName = Enum.FileName[entityName].FileNameError,
+            fileType = "application/vnd.ms-excel";
 
         if(data && url){
 
@@ -128,6 +128,39 @@ class ImportForm{
                 }
             
                 xhr.send(data);
+        }
+    }
+
+    // Xuất khẩu dữ liệu
+    exportData(){
+        let me = this,
+            entityName = me.jsCaller.config.entityName,
+            url = mappingApi[entityName].urlExport,
+            fileName = Enum.FileName[entityName].FileNameExport;
+
+        if(url){
+            let  xhr = new XMLHttpRequest();
+
+            xhr.responseType = 'blob';
+            xhr.withCredentials = true;
+            xhr.open("GET", url);
+
+            var authorization = localStorage.getItem("Authorization");
+                xhr.setRequestHeader("Authorization", authorization);
+
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    var downloadLink = window.document.createElement('a');
+                        var URL = window.URL || window.webkitURL;
+                        downloadLink.href = URL.createObjectURL(new Blob([xhr.response], { type: "application/vnd.ms-excel" }));
+                        downloadLink.download = fileName;
+                        document.body.appendChild(downloadLink);
+                        downloadLink.click();
+                        document.body.removeChild(downloadLink);
+                }
+            }
+
+            xhr.send();
         }
     }
 

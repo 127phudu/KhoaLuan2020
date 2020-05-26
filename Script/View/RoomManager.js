@@ -17,10 +17,15 @@ class RoomManagerPage extends BaseGrid {
     createFormImport(idForm){
         this.formImport = new ImportForm(this, idForm);
     }
-
+    
     // Nhập khẩu danh sách
     import(){
         this.formImport.show();
+    }
+
+    // Xuất khẩu danh sách
+    export(){
+        this.formImport.exportData();
     }
 
     //override: Thiết lập các config
@@ -41,12 +46,13 @@ var roomManagerPage = new RoomManagerPage("#GridRoom", "#ToolbarGridRoom", "#pag
     roomManagerPage.createFormDetail("#formRoomDetail", 500, 185);
     // Tạo một form nhập khẩu
     roomManagerPage.createFormImport("#formImportRoom");
+    // Load danh sách phòng thi
     roomManagerPage.loadAjaxData();
 
 
     // Khởi tạo form thay đổi mật khẩu
 var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
-    // Load dữ liệu cho grid ( sau này sẽ bỏ đi để dùng ajax)
+
 
 
 

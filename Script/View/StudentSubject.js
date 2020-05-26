@@ -46,7 +46,7 @@ class StudentSubject extends BaseGrid {
 
                 CommonFn.GetAjax(urlFull, function (response) {
                     if(response.status == Enum.StatusResponse.Success){
-                        me.loadData(response.data["Students"]);
+                        me.loadData(response.data["StudentSubjects"]);
                         me.resetDisplayPaging(response.data.Page);
                         me.editMode = Enum.EditMode.View;
                         $(".grid-wrapper").removeClass("loading");
@@ -105,35 +105,31 @@ class StudentSubject extends BaseGrid {
 
     // Hàm dùng để cho phép thi
     accept(){
-        let me = this,
-            record = me.getSelection()[0],
-            studentSubjectId = record.Id,
-            data = {
-                studentSubjectId: studentSubjectId,
-                Status: 1
-            };
+        let me = this;
 
-        if(data){
-            CommonFn.PostPutAjax("POST", me.config.configUrl.urlChangeStatus, data, function(response) {
-                if(response.status == Enum.StatusResponse.Success){
-                    me.loadAjaxData();
-                }
-            });
-        }
+        me.changeStatus(1);
     }
 
     // Hàm dùng để cấm thi
     reject(){
+        let me = this;
+
+        me.changeStatus(2);
+    }
+
+    // Thay đổi trạng thái sinh viên
+    changeStatus(status){
         let me = this,
             record = me.getSelection()[0],
-            studentSubjectId = record.Id,
+            entityName = me.config.entityName,
+            url = mappingApi[entityName].urlReject,
             data = {
-                studentSubjectId: studentSubjectId,
-                Status: 2
+                Id: record.StudentSubjectId,
+                Status: status
             };
 
-        if(data){
-            CommonFn.PostPutAjax("POST", me.config.configUrl.urlChangeStatus, data, function(response) {
+        if(url){
+            CommonFn.PostPutAjax("PUT", url, data, function(response) {
                 if(response.status == Enum.StatusResponse.Success){
                     me.loadAjaxData();
                 }

@@ -23,6 +23,11 @@ class StudentManagerPage extends BaseGrid {
         this.formImport.show();
     }
 
+    // Xuất khẩu danh sách
+    export(){
+        this.formImport.exportData();
+    }
+
     //override: Thiết lập các config
     getConfig() {
         let object = {

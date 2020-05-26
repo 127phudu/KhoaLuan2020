@@ -11,8 +11,8 @@ class StudentManagerForm extends BaseForm {
         let me = this;
 
         switch(setField){
-            case "Course": // Khóa học
-                return me.validateCourses(value);
+            // case "Course": // Khóa học
+            //     return me.validateCourses(value);
             case "Email": // Email
                 return me.validateEmail(value);
             default:

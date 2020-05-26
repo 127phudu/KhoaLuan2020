@@ -122,34 +122,6 @@ CommonFn.PostPutAjax = function(type, url, param, fnCallBack, async = true){
     }
 }
 
-// ajax gọi phương thức post
-CommonFn.SendFileAjax = function(url, data, fnCallBack){
-    var authorization = localStorage.getItem("Authorization");
-
-    if(authorization){
-        $.ajax({
-            url: url,
-            data: data,
-            async: true,
-            processData: false,
-            type: "POST",
-            headers: {
-                "Authorization": authorization
-            },
-            crossDomain: true,
-            contentType: false,
-            success: function (response) {
-                fnCallBack(response);
-            },
-            error: function (errormessage) {
-                console.log(errormessage.responseText);
-            }
-        });
-    }else{
-        window.location.replace(Constant.url["Login"]);
-    }
-}
-
 ///////////////////////// Các hằng số ///////////////////////////////
 var Constant = Constant || {};
 
@@ -207,4 +179,24 @@ Enum.StatusPeriod = ["Trạng thái kì thi", "Chưa đăng ký", "Đang đăng 
 
 // Text thông báo lỗi
 Enum.TypeErrorMessage = ["Tên đăng nhập không được để trống!","Mật khẩu không được để trống!","Tên đăng nhập hoặc mật khẩu không chính xác!",""];
+
+// Các enum lưu lại tên file
+Enum.FileName = {
+    Students: {
+        FileNameError: "Danh sách sinh viên không hợp lệ.xlsx",
+        FileNameExport: "Danh sách sinh viên.xlsx"
+    },
+    Subjects: {
+        FileNameError: "Danh sách học phần không hợp lệ.xlsx",
+        FileNameExport: "Danh sách học phần.xlsx"
+    },
+    Rooms: {
+        FileNameError: "Danh sách phòng thi không hợp lệ.xlsx",
+        FileNameExport: "Danh sách phòng thi.xlsx"
+    },
+    StudentSubjects: {
+        FileNameError: "Danh sách sinh viên không hợp lệ.xlsx",
+        FileNameExport: "Danh sách sinh viên.xlsx"
+    }
+}
 
