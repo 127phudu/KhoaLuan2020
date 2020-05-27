@@ -236,11 +236,14 @@ class BaseGrid extends Grid{
         });
 
         CommonFn.PostPutAjax("DELETE", mappingApi[entityName].urlDelete, data, function(response) {
+            $("#myModal").modal("hide");
+            me.editMode = Enum.EditMode.View;
+            
             if(response.status == Enum.StatusResponse.Success){
-                $("#myModal").modal("hide");
-                me.editMode = Enum.EditMode.View;
                 me.showMessageSuccess("Xóa dữ liệu thành công");
                 me.loadAjaxData();
+            }else{
+                $("#myModalWarning").modal("show");
             }
         });
     }

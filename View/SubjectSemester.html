@@ -228,12 +228,12 @@
                         <div class="row" Layout="Detail" style="display: none;">
                             <div class="col-xl-12">
                                 <div class="Grid" id="StudentSubject" useCheckBox='true' useIndex="true">
-                                    <div class="column" setField="FullName">Họ và tên</div>
+                                    <div class="column" setField="StudentName">Họ và tên</div>
                                     <div class="column" setField="StudentCode">Mã sinh viên</div>
                                     <div class="column" setField="Email">Địa chỉ email</div>
                                     <div class="column" setField="Gender" dataType="Enum" enumName="Gender">Giới tính
                                     </div>
-                                    <div class="column" setField="StudentDateOfBirth" dataType="Date">Ngày sinh</div>
+                                    <div class="column" setField="DateOfBirth" dataType="Date">Ngày sinh</div>
                                     <div class="column" setField="Course">Khóa học</div>
                                     <div class="column" setField="Status" dataType="Enum" enumName="StatusStudent">Trạng
                                         thái</div>
@@ -460,6 +460,21 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal">HỦY BỎ</button>
                     <button type="button" id="btn-Delete" class="btn btn-danger">XÓA</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form cảnh báo xóa -->
+    <div id="myModalWarning" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="header-delete">CẢNH BÁO</h4>
+                    <h4 class="modal-title">Bản ghi đã phát sinh dữ liệu liên quan nên không thể xóa!</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">ĐỒNG Ý</button>
                 </div>
             </div>
         </div>

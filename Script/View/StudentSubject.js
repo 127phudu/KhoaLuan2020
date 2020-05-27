@@ -124,7 +124,7 @@ class StudentSubject extends BaseGrid {
             entityName = me.config.entityName,
             url = mappingApi[entityName].urlReject,
             data = {
-                Id: record.StudentSubjectId,
+                Id: record.Id,
                 Status: status
             };
 

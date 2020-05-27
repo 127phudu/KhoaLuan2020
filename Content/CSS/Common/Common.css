@@ -801,3 +801,11 @@ td.text-align-right input.notEdit {
 .iconPaging-disable{
     pointer-events: none;
 }
+
+#myModalWarning h4.header-delete {
+    padding: 12px 0px;
+    margin: 0;
+    font-size: 16px;
+    color: white;
+    background: #f15e5e;
+}
