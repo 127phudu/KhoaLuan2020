@@ -21,6 +21,40 @@ function convertDate(dateStr){
     return new Date(newDateStr);
 }
 
+// Hàm dùng để chuyển một chuỗi sang định dạng picker
+function convertDateToPicker(dateStr){
+    let me = this,
+        hour = parseInt(dateStr.substr(0,2)),
+        min = parseInt(dateStr.substr(3,2)),
+        type = 'AM'
+
+        if(hour > 12){
+            hour = hour - 12;
+            type = 'PM';
+        }
+
+        hour = hour < 10 ? ('0' + hour) : hour;
+        min = min < 10 ? ('0' + min) : min;
+
+    return hour + ':' + min + ' ' + type;
+}
+
+// Convert từ chuỗi 04:04 PM sang 16:04
+function convertTimepicker(dateStr){
+    let hour = parseInt(dateStr.substr(0,2)),
+        min = parseInt(dateStr.substr(3,2)),
+        type = dateStr.substr(6,2);
+
+    if(type == 'PM'){
+        hour = hour + 12;
+    }
+
+    hour = hour < 10 ? ('0' + hour) : hour;
+    min = min < 10 ? ('0' + min) : min;
+ 
+    return hour  + ':' + min;
+}
+
 // Hàm dùng format chuỗi
 String.prototype.format = function() {
     var args = arguments;
@@ -67,13 +101,14 @@ CommonFn.LoginAjax = function(param, fnCallBack){
 }
 
 // Ajax gọi phương thức get
-CommonFn.GetAjax = function(url, fnCallBack){
+CommonFn.GetAjax = function(url, fnCallBack, async = true){
     var authorization = localStorage.getItem("Authorization");
 
     if(authorization){
         $.ajax({
             url: url,
             type: "GET",
+            async: async,
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": authorization

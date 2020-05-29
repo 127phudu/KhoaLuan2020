@@ -138,6 +138,9 @@ class ImportForm{
             url = mappingApi[entityName].urlExport,
             fileName = Enum.FileName[entityName].FileNameExport;
 
+        // Custom lại tùy vào từng màn hình
+        url = me.getCustomUrlExport(url);
+
         if(url){
             let  xhr = new XMLHttpRequest();
 
@@ -162,6 +165,23 @@ class ImportForm{
 
             xhr.send();
         }
+    }
+
+    // Custom lại url tùy từng màn hình
+    getCustomUrlExport(url){
+        let me = this,
+            entityName = me.jsCaller.config.entityName;
+
+        switch(entityName){
+            case "StudentSubjects":
+                let masterId = me.jsCaller.masterData.Id;
+                url = url.format(masterId);
+                break;
+            default:
+                return url;
+        }
+
+        return url;
     }
 
     // Hiển thị thông báo cất thành công

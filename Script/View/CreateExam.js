@@ -22,21 +22,39 @@ class CreateExamPage extends BaseGrid {
         return object;
     }
 
+    //Hàm load dữ liệu
+    loadAjaxData(){
+        let me = this,
+            paramPaging = me.getParamPaging(),
+            semesterId = parseInt(localStorage.getItem("SemesterId")),
+            url = mappingApi.CreateExams.urlGetData.format(semesterId),
+            urlFull = url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page);
+
+        if(url && semesterId){
+            $(".grid-wrapper").addClass("loading");
+
+            CommonFn.GetAjax(urlFull, function (response) {
+                if(response.status == Enum.StatusResponse.Success){
+                    me.loadData(response.data["ExamResponses"]);
+                    me.resetDisplayPaging(response.data.Page);
+                    me.editMode = Enum.EditMode.View;
+                    $(".grid-wrapper").removeClass("loading");
+                }
+            });
+        }
+    }
+
     // Khởi tạo một số sự kiện
     initEventElement(){
         super.initEventElement();
         let me = this;
 
-        $("#chooseExam").on('selectmenuchange', me.chooseExamChange);
-    }
+        $("#chooseExam").on('selectmenuchange', function(){
+            let  semesterId = parseInt($(this).val());
 
-    // Xử lý khi thay đổi kì thi trên combo
-    chooseExamChange(){
-        let me = this,
-            semesterId = parseInt($(this).val());
-
-        localStorage.setItem("SemesterId", semesterId);
-        me.loadAjaxData();
+            localStorage.setItem("SemesterId", semesterId);
+            me.loadAjaxData();
+        });
     }
 }
 
@@ -44,8 +62,6 @@ class CreateExamPage extends BaseGrid {
 var createExamPage = new CreateExamPage("#GridCreateExam", "#ToolbarGridCreateExam", "#paging-GridCreateExam");
     // Tạo một form detail
     createExamPage.createFormDetail("#formCreateExam", 500, 233);
-    // Load dữ liệu cho grid
-    createExamPage.loadAjaxData();
 
 
     // Khởi tạo form thay đổi mật khẩu

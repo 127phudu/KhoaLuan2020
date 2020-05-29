@@ -57,6 +57,7 @@ class BaseForm{
         if(isValid){
             let data = me.submitData();
                 data = me.mappingData(data, me.jsCaller.recordCache);
+                data = me.customData(data);
 
             me.saveChangeData(data); 
             me.close();
@@ -284,6 +285,7 @@ class BaseForm{
             this.resetFormData();
         }else{
             title = 'Sửa ' + this.title;
+            data = this.customDataBeforeBinding(data);
             this.bindingData(data);
         }
 
@@ -375,5 +377,15 @@ class BaseForm{
 
     // Tạo các combo dữ liệu
     buildEnumDynamic(){
+    }
+
+    // Custom dữ liệu trước khi cất
+    customData(data){
+        return data;
+    }
+
+    // Custom dữ liệu trước khi binding
+    customDataBeforeBinding(data){
+        return data;
     }
 }

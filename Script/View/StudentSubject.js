@@ -142,6 +142,11 @@ class StudentSubject extends BaseGrid {
         this.formImport.show();
     }
 
+    // Xuất khẩu danh sách
+    export(){
+        this.formImport.exportData();
+    }
+
     // Custom các button bị disable
     getCustomToolbarDisable(listItemDisable){
         let me = this,

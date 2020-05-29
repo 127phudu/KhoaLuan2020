@@ -20,23 +20,27 @@ class CreateExamForm extends BaseForm {
                 $(this).parent().removeClass("error-validate");
             }
         });
-
     }
 
     // Tạo các combo dữ liệu
     buildEnumDynamic(){
-        let me = this;
+        let me = this,
+            semesterId = parseInt(localStorage.getItem("SemesterId")),
+            urlDetail = Constant.urlPaging.format(1000, 1),
+            urlSubjects = mappingApi.SubjectSemesters.urlGetData.format(semesterId) + urlDetail,
+            urlRooms = mappingApi.RoomSetting.urlGetData.format(semesterId) + urlDetail;
 
-        // CommonFn.GetAjax(mappingApi.Subject.urlGetData, function (response) {
-        //     me.renderComboboxExam(response, "#ChooseSubjectCombo", "SubjectName");
-        // });
+        // Render danh sách học phần
+        CommonFn.GetAjax(urlSubjects, function (response) {
+            if(response.status == Enum.StatusResponse.Success){
+                me.renderComboboxExam(response.data["SubjectSemesters"], "ChooseSubject", "SubjectName");
+            }
+        },false);
 
-        // CommonFn.GetAjax(mappingApi.Room.urlGetData, function (response) {
-        //     me.renderComboboxExam(response, "#ChooseRoomCombo", "RoomName");
-        // });
-        
-        me.renderComboboxExam(subjects, "ChooseSubject", "SubjectName");
-        me.renderComboboxExam(rooms, "ChooseRoom", "RoomName");
+        // Render danh sách phòng thi
+        CommonFn.GetAjax(urlRooms, function (response) {
+            me.renderComboboxExam(response.data["RoomSemesters"], "ChooseRoom", "RoomName");
+        },false);
     }
 
     // Render dữ liệu combo
@@ -56,13 +60,38 @@ class CreateExamForm extends BaseForm {
                 combo.append(option);
             });
 
+            if(listData.length > 0 && me.jsCaller.editMode == Enum.EditMode.Add){
+                combo.val(listData[0].Id).selectmenu("refresh");
+            }
+
             if(me.jsCaller.editMode == Enum.EditMode.Edit){
-                let field = (fieldName == "RoomName") ? "RoomId" : "SubjectId",
+                let field = (fieldName == "RoomName") ? "RoomSemesterId" : "SubjectSemesterId",
                     value = me.jsCaller.recordCache[field];
 
-                combo.val(value).selectmenu("refresh");
+               combo.val(value).selectmenu("refresh");
             }
         }
+    }
+
+    // Custom dữ liệu trước khi cất
+    customData(data){
+        let me = this;
+
+            data.Date = data.Date.substr(0,10);
+            data.StartTime = data.Date + ' ' + convertTimepicker(data.StartTime);
+            data.EndTime = data.Date + ' ' + convertTimepicker(data.EndTime);
+
+        return data;
+    }
+
+    // Custom dữ liệu trước khi binding
+    customDataBeforeBinding(data){
+        let me = this;
+
+        data.StartTime = convertDateToPicker(data.Time.substr(0,5));
+        data.EndTime = convertDateToPicker(data.Time.substr(6,5));
+
+        return data;
     }
 
     // Xóa dữ liệu form
