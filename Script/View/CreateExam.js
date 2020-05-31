@@ -4,11 +4,10 @@ class CreateExamPage extends BaseGrid {
     // Hàm khởi tạo grid
     constructor(gridId, toolbarId, pagingId) {
         super(gridId, toolbarId, pagingId);
-    }
-    
-    // Tạo form detail
-    createFormDetail(formID, width, height){
-        this.formDetail = new CreateExamForm(this, formID, width, height, this.config.formTitle);
+
+        this.editMode = Enum.EditMode.View;
+
+        this.setStatusToolbar();
     }
 
     //override: Thiết lập các config
@@ -20,6 +19,91 @@ class CreateExamPage extends BaseGrid {
         };
 
         return object;
+    }
+    
+    // Tạo page detail
+    createPageDetail(){
+        this.pageDetail = new CreateExamDetail(this);
+    }
+    
+    // Hàm dùng đối với từng loại toolbar đặc thù
+    customToolbarItem(commandName){
+        let me = this;
+
+        switch(commandName){
+            case "CreateAgain":
+                me.createAgain();
+                break;
+            case "Back":
+                me.back();
+                break;
+        }
+    }
+
+    // Hàm quay lại màn  hình chính
+    back(){
+        let me = this;
+
+        $("[Layout='Master']").show();
+        $("[Layout='Detail']").hide();
+        me.editMode = Enum.EditMode.View;
+        me.setStatusToolbar();
+        
+        me.loadAjaxData();
+    }
+
+    // Khi bấm vào xem chi tiết
+    createAgain(){
+        let me = this;
+
+        $("[Layout='Master']").hide();
+        $("[Layout='Detail']").show();
+        me.editMode = Enum.EditMode.Edit;
+        me.setStatusToolbar();
+        
+        me.pageDetail.show();
+    }
+
+    // Xử lý cất
+    save(){
+        let me = this;
+
+        $("[Layout='Master']").show();
+        $("[Layout='Detail']").hide();
+        me.editMode = Enum.EditMode.View;
+        me.setStatusToolbar();
+        
+        me.pageDetail.save();
+    }
+
+    // Thiết lập nếu không có bản ghi nào chọn thì disable sửa, xóa
+    setStatusToolbar(){
+        let me = this,
+            listToolbarVisible = me.getbarItemVisible();
+
+        $("[CommanName]").each(function(){
+            let commanName = $(this).attr("CommanName");
+
+            if(listToolbarVisible.includes(commanName)){
+                $(this).show();
+            }else{
+                $(this).hide();
+            }
+        });
+    }
+
+    // Lấy các toolbar bị ẩn
+    getbarItemVisible(){
+        let me = this,
+            listToolbarVisible = [];
+
+        if(me.editMode == Enum.EditMode.View){
+            listToolbarVisible = ["CreateAgain", "Delete", "Export"];
+        }else{
+            listToolbarVisible = ["Back", "Save"];
+        }
+
+        return listToolbarVisible;
     }
 
     //Hàm load dữ liệu
@@ -60,8 +144,8 @@ class CreateExamPage extends BaseGrid {
 
     // Khởi tạo trang quản lý Phòng thi
 var createExamPage = new CreateExamPage("#GridCreateExam", "#ToolbarGridCreateExam", "#paging-GridCreateExam");
-    // Tạo một form detail
-    createExamPage.createFormDetail("#formCreateExam", 500, 233);
+    // Tạo trang detail
+    createExamPage.createPageDetail();
 
 
     // Khởi tạo form thay đổi mật khẩu

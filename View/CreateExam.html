@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/jquery.timepicker.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
+    <link rel="stylesheet" href="../Content/CSS/View/CreateExamDetail.css">
 </head>
 
 <body>
@@ -116,7 +117,7 @@
                         </nav>
                     </div>
 
-                    <div class="row header-title header-title-combo">
+                    <div class="row header-title header-title-combo" Layout="Master">
                         <select class="speed combox-select" aria-placeholder="Chọn kì thi..." DataType="EnumCombobox"
                             id="chooseExam">
                         </select>
@@ -126,13 +127,17 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="toolbar" id="ToolbarGridCreateExam">
-                                <div class="toolbar-item" CommanName='Add'>
-                                    <span class="icon-toolbar glyphicon glyphicon-plus"></span>
-                                    <span class="text-toolbar">Thêm</span>
+                                <div class="toolbar-item" CommanName='Back'>
+                                    <span class="icon-toolbar glyphicon glyphicon-share-alt"></span>
+                                    <span class="text-toolbar">Quay lại</span>
                                 </div>
-                                <div class="toolbar-item" CommanName='Edit'>
-                                    <span class="icon-toolbar glyphicon glyphicon-pencil"></span>
-                                    <span class="text-toolbar">Sửa</span>
+                                <div class="toolbar-item" CommanName='CreateAgain'>
+                                    <span class="icon-toolbar glyphicon glyphicon-retweet"></span>
+                                    <span class="text-toolbar">Xếp lại lịch</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Save'>
+                                    <span class="icon-toolbar glyphicon glyphicon-download-alt"></span>
+                                    <span class="text-toolbar">Cất</span>
                                 </div>
                                 <div class="toolbar-item" CommanName='Delete'>
                                     <span class="icon-toolbar glyphicon glyphicon-trash"></span>
@@ -147,7 +152,7 @@
                     </div>
 
                     <!-- Grid  -->
-                    <div class="grid-wrapper">
+                    <div class="grid-wrapper" Layout="Master">
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="Grid" id="GridCreateExam" useCheckBox='true' useIndex="true">
@@ -165,7 +170,7 @@
                     </div>
 
                     <!-- Paging -->
-                    <div class="row">
+                    <div class="row" Layout="Master">
                         <div class="col-xl-12">
                             <div class="paging" id="paging-GridCreateExam">
                                <div class="paging-left float-left flex">
@@ -191,75 +196,79 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- end content -->
-            </div>
-        </div>
-    </div>
 
-    <!-- Form thêm mới lịch thi -->
-    <div class="wrapper-form">
-        <div class="formDialog" id="formCreateExam">
+                    <!-- Grid  -->
+                    <div class="grid-wrapper content-detail" Layout="Detail">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="period-clone" style="display: none;">
+                                    <ul class="period-sortable item-period">
+                                    </ul>
+                                </div>
+                               
+                                <div class="content-header">
+                                    
+                                </div>
+                            
+                                <div class="flex content-head">
+                                    <ul class="flex1 title-table">
+                                        <li class="backgound-brown2">
+                                            <div class="item flex">
+                                                <div class="flex4">Tên học phần</div>
+                                                <div class="flex1">Mã HP</div>
+                                                <div class="flex1 align-right">Số SV</div>
+                                                <div class="square-color align-right"></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="flex1 title-table">
+                                        <li class="backgound-brown2">
+                                            <div class="item flex">
+                                                <div class="flex2">Tên phòng</div>
+                                                <div class="flex3">Khu vực</div>
+                                                <div class="flex1 align-right">Số máy</div>
+                                                <div class="square-color align-right" ></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
 
-            <!-- Header form -->
-            <div class="header-form">
-                Thêm lịch thi
-            </div>
-
-            <!-- Body form -->
-            <div class="body-form">
-                <div class="row">
-                    <div class="col-md-12 row-custom">
-                        <div class="row-grid">
-                            <div class="text-field flex1">
-                                <b>Học phần <span class="require">(*)</span></b>
-                                <select class="speed combox-select" Require="true" SetField="SubjectSemesterId" title="Không được để trống"
-                                    aria-placeholder="Chọn học phần..." DataType="Enum" id="speed" ComboboxName="ChooseSubject">
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row-grid">
-                            <div class="text-field flex1 border-topright-none">
-                                <b>Phòng thi <span class="require">(*)</span></b>
-                                <select class="speed combox-select" Require="true" title="Không được để trống" SetField="RoomSemesterId" ComboboxName="ChooseRoom"
-                                    aria-placeholder="Chọn phòng thi..." DataType="Enum" id="speed">
-                                </select>
-                            </div>
-                            <div class="text-field flex1 border-top-none">
-                                <b>Số sinh viên <span class="require">(*)</span></b>
-                                <input type="number" Require="true" SetField="NumberOfStudent" MaxLength="10" min="0" DataType='Number'
-                                title="Không được để trống" placeholder="Nhập số sinh viên...">
-                            </div>
-                        </div>
-                        <div class="row-grid">
-                            <div class="text-field flex1 border-right-none border-top-none">
-                                <b>Ngày thi <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="Date" DataType="Date" MaxLength="10"
-                                class="datepicker" placeholder="Nhập ngày thi...">
-                            </div>
-                            <div class="text-field flex1 border-top-none border-right-none">
-                                <b>Giờ bắt đầu <span class="require">(*)</span></b>
-                                <input id="timepicker" SetField="StartTime" placeholder="Nhập giờ bắt đầu..." Require="true" class="timepicker"/>
-                            </div>
-                            <div class="text-field flex1 border-top-none">
-                                <b>Giờ kết thúc <span class="require">(*)</span></b>
-                                <input id="timepicker" SetField="EndTime" Require="true" placeholder="Nhập giờ kết thúc..." class="timepicker"/>
+                                <div class="content flex">
+                                    <div class="subject-clone" style="display: none;">
+                                        <li class="backgound-brown itemSubject">
+                                            <div class="item flex">
+                                                <div class="item-name flex4">Lập trình nâng cao</div>
+                                                <div class="item-code flex1">INT33097</div>
+                                                <div class="item-count flex1 align-right">230</div>
+                                                <div class="square-color align-right"></div>
+                                            </div>
+                                        </li>
+                                    </div>
+                            
+                                    <ul class="comboSortable flex1 listSubject">
+                                       
+                                    </ul>
+                                   
+                                    <div class="room-clone" style="display: none;">
+                                        <li class="backgound-brown itemRoom">
+                                            <div class="item flex">
+                                                <div class="item-name flex2">Phòng 301 G2</div>
+                                                <div class="item-location flex3">Đại học quốc gia</div>
+                                                <div class="item-count flex1 align-right">36</div>
+                                                <div class="icon-eye"><span class='glyphicon glyphicon-eye-open'></span></div>
+                                            </div>
+                                        </li>
+                                    </div>
+                            
+                                    <ul class="comboSortable flex1 listRoom">
+                                        
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Footer form -->
-            <div class="footer-form">
-                <div class="btn-cancel">
-                    <span class="glyphicon glyphicon-remove"></span>
-                    <span>HỦY BỎ</span>
-                </div>
-                <div class="btn-save">
-                    <span class="glyphicon glyphicon-save"></span>
-                    <span>CẤT</span>
-                </div>
+                <!-- end content -->
             </div>
         </div>
     </div>
@@ -357,6 +366,7 @@
 
     <!-- Script common -->
     <script src="../Script/Common/MappingApi.js"></script>
+    <script src="../Script/Common/data.js"></script>
     <script src="../Script/Common/Common.js"></script>
     <script src="../Script/Common/Master.js"></script>
     <script src="../Script/Base/Grid.js"></script>
@@ -365,8 +375,8 @@
     <script src="../Script/Base/BaseForm.js"></script>
 
     <!-- Script từng page -->
-    <script src="../Script/Form/CreateExamForm.js"></script>
     <script src="../Script/Form/ChangePasswordForm.js"></script>
+    <script src="../Script/View/CreateExamDetail.js"></script>
     <script src="../Script/View/CreateExam.js"></script>
 </body>
 

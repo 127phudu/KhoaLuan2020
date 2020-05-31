@@ -21,6 +21,27 @@ function convertDate(dateStr){
     return new Date(newDateStr);
 }
 
+// Tính tổng một mảng theo tham số
+function sumArrObject(arr, propName) {
+    let value = 0;
+
+    arr.filter(function(item){
+        value += item[propName];
+    });
+    
+    return value;
+}
+
+// Lấy màu ngẫu nhiên
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 // Hàm dùng để chuyển một chuỗi sang định dạng picker
 function convertDateToPicker(dateStr){
     let me = this,
@@ -214,6 +235,9 @@ Enum.StatusPeriod = ["Trạng thái kì thi", "Chưa đăng ký", "Đang đăng 
 
 // Text thông báo lỗi
 Enum.TypeErrorMessage = ["Tên đăng nhập không được để trống!","Mật khẩu không được để trống!","Tên đăng nhập hoặc mật khẩu không chính xác!",""];
+
+// Danh sách các màu sắc random
+var listCorlor = ["#23c6b6","#248f1a","#6d7ccd","#a44c5c","#0ed657","#b4ca98","#bbfcbb","#0fb4db","#93831d"];
 
 // Các enum lưu lại tên file
 Enum.FileName = {
