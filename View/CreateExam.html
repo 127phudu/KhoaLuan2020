@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../Content/CSS/Common/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/jquery.timepicker.min.css">
+    <link rel="stylesheet" href="../Content/CSS/Common/jquery.datetimepicker.css">
     <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
     <link rel="stylesheet" href="../Content/CSS/View/CreateExamDetail.css">
 </head>
@@ -173,96 +174,161 @@
                     <div class="row" Layout="Master">
                         <div class="col-xl-12">
                             <div class="paging" id="paging-GridCreateExam">
-                               <div class="paging-left float-left flex">
-                                   <div class="icon-paging icon-first" title="Trang đầu"></div>
-                                   <div class="icon-paging icon-pre" title="Trang trước"></div>
-                                   <div class="paging-text1">Trang</div>
-                                   <input type="text" class="page-number" value="1">
-                                   <div class="paging-text1">Trên <span class="totalPage">2</span></div>
-                                   <div class="icon-paging icon-next" title="Trang sau"></div>
-                                   <div class="icon-paging icon-last" title="Trang cuối"></div>
-                                   <div class="paging-text1">Số dòng</div>
-                                   <select class="page-Size">
+                                <div class="paging-left float-left flex">
+                                    <div class="icon-paging icon-first" title="Trang đầu"></div>
+                                    <div class="icon-paging icon-pre" title="Trang trước"></div>
+                                    <div class="paging-text1">Trang</div>
+                                    <input type="text" class="page-number" value="1">
+                                    <div class="paging-text1">Trên <span class="totalPage">2</span></div>
+                                    <div class="icon-paging icon-next" title="Trang sau"></div>
+                                    <div class="icon-paging icon-last" title="Trang cuối"></div>
+                                    <div class="paging-text1">Số dòng</div>
+                                    <select class="page-Size">
                                         <option value="15">15</option>
                                         <option value="30">30</option>
                                         <option value="50">50</option>
-                                </select>
-                               </div>
-                               <div class="paging-right float-right flex">
-                                   <div class="content-paging-right">
-                                       Hiển thị <span class="startIndex">1</span> - <span class="end-Index">10</span> trên <span class="total-record">12</span> kết quả
-                                   </div>
-                               </div>
+                                    </select>
+                                </div>
+                                <div class="paging-right float-right flex">
+                                    <div class="content-paging-right">
+                                        Hiển thị <span class="startIndex">1</span> - <span class="end-Index">10</span>
+                                        trên <span class="total-record">12</span> kết quả
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Grid  -->
                     <div class="grid-wrapper content-detail" Layout="Detail">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="period-clone" style="display: none;">
-                                    <ul class="period-sortable item-period">
-                                    </ul>
-                                </div>
-                               
-                                <div class="content-header">
-                                    
-                                </div>
-                            
-                                <div class="flex content-head">
-                                    <ul class="flex1 title-table">
-                                        <li class="backgound-brown2">
-                                            <div class="item flex">
-                                                <div class="flex4">Tên học phần</div>
-                                                <div class="flex1">Mã HP</div>
-                                                <div class="flex1 align-right">Số SV</div>
-                                                <div class="square-color align-right"></div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <ul class="flex1 title-table">
-                                        <li class="backgound-brown2">
-                                            <div class="item flex">
-                                                <div class="flex2">Tên phòng</div>
-                                                <div class="flex3">Khu vực</div>
-                                                <div class="flex1 align-right">Số máy</div>
-                                                <div class="square-color align-right" ></div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                        <div class="row content-detailWrapperParent">
+                            <div class="col-xl-12 content-detailWrapper">
+
+                                <div class="row header-title tile-pink" Layout="Detail">
+                                    <span>DANH SÁCH CÁC CA THI</span>
                                 </div>
 
-                                <div class="content flex">
-                                    <div class="subject-clone" style="display: none;">
-                                        <li class="backgound-brown itemSubject">
-                                            <div class="item flex">
-                                                <div class="item-name flex4">Lập trình nâng cao</div>
-                                                <div class="item-code flex1">INT33097</div>
-                                                <div class="item-count flex1 align-right">230</div>
-                                                <div class="square-color align-right"></div>
-                                            </div>
-                                        </li>
+                                <div class="period-clone" style="display: none;">
+                                    <div class="item-rooms">
+                                        <ul class="period-sortable item-period">
+                                        </ul>
+                                        <span class="period-name">Ca <span class="periodNumber">1</span></span>
                                     </div>
-                            
-                                    <ul class="comboSortable flex1 listSubject">
-                                       
-                                    </ul>
-                                   
-                                    <div class="room-clone" style="display: none;">
-                                        <li class="backgound-brown itemRoom">
-                                            <div class="item flex">
-                                                <div class="item-name flex2">Phòng 301 G2</div>
-                                                <div class="item-location flex3">Đại học quốc gia</div>
-                                                <div class="item-count flex1 align-right">36</div>
-                                                <div class="icon-eye"><span class='glyphicon glyphicon-eye-open'></span></div>
+                                </div>
+
+                                <div class="content-header">
+                                </div>
+
+                                <ul class="nav nav-tabs">
+                                    <li><a href="#home" id="tabPanelRoom" data-toggle="tab">Xếp phòng thi</a></li>
+                                    <li><a href="#info" id="tabPanelTime" data-toggle="tab">Thiết lập thời gian</a></li>
+                                </ul>
+
+                                <div class="tab-content content-WrapperChild">
+                                    <div class="tab-pane" id="home">
+                                        <div class="flex content-head">
+                                            <ul class="flex1 title-table">
+                                                <li class="backgound-brown2">
+                                                    <div class="item flex">
+                                                        <div class="flex4">Tên học phần</div>
+                                                        <div class="flex1">Mã HP</div>
+                                                        <div class="flex1 align-right">Số SV</div>
+                                                        <div class="square-color align-right"></div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <ul class="flex1 title-table">
+                                                <li class="backgound-brown2">
+                                                    <div class="item flex">
+                                                        <div class="flex2">Tên phòng</div>
+                                                        <div class="flex3">Khu vực</div>
+                                                        <div class="flex1 align-right">Số máy</div>
+                                                        <div class="square-color align-right"></div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="content flex">
+                                            <div class="subject-clone" style="display: none;">
+                                                <li class="backgound-brown itemSubject">
+                                                    <div class="item flex">
+                                                        <div class="item-name flex4">Lập trình nâng cao</div>
+                                                        <div class="item-code flex1">INT33097</div>
+                                                        <div class="item-count flex1 align-right">230</div>
+                                                        <div class="square-color align-right"></div>
+                                                    </div>
+                                                </li>
                                             </div>
-                                        </li>
+
+                                            <ul class="comboSortable flex1 listSubject">
+                                            </ul>
+
+                                            <div class="room-clone" style="display: none;">
+                                                <li class="backgound-brown itemRoom">
+                                                    <div class="item flex">
+                                                        <div class="item-name flex2">Phòng 301 G2</div>
+                                                        <div class="item-location flex3">Đại học quốc gia</div>
+                                                        <div class="item-count flex1 align-right">36</div>
+                                                        <div class="icon-eye"><span
+                                                                class='glyphicon glyphicon-eye-open'></span></div>
+                                                    </div>
+                                                </li>
+                                            </div>
+
+                                            <ul class="comboSortable flex1 listRoom">
+                                            </ul>
+                                        </div>
                                     </div>
-                            
-                                    <ul class="comboSortable flex1 listRoom">
-                                        
-                                    </ul>
+                                    <div class="tab-pane" id="info">
+                                        <div class="flex content-head">
+                                            
+                                            <ul class="flex1 title-table">
+                                                <li class="backgound-brown2">
+                                                    <div class="item flex">
+                                                        <div class="flex4">Tên học phần</div>
+                                                        <div class="flex2 align-right">Thời gian thi</div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+                                            <ul class="flex1 title-table">
+                                                <li class="backgound-brown2">
+                                                    <div class="item flex">
+                                                        <div class="flex2">Tên ca thi</div>
+                                                        <div class="flex3">Thời gian bắt đầu</div>
+                                                        <div class="flex3">Thời gian kết thúc</div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <div class="content flex">
+
+                                            <ul class="comboSortable flex1 listSubject2">
+                                                <li class="backgound-brown itemSubject2">
+                                                    <div class="item flex">
+                                                        <div class="item-name flex4">Đại số</div>
+                                                        <div class="item-code flex1">
+                                                            <input type="text" class="numberMinus">
+                                                        </div>
+                                                        <div class="text-minus" style="width:20px">phút</div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+                                            <ul class="comboSortable flex1 listRoom2">
+                                                <li class="backgound-brown itemRoom2">
+                                                    <div class="item flex">
+                                                        <div class="item-name flex2">Ca 1</div>
+                                                        <div class="item-location flex3">
+                                                            <input type="text" class="datetimepicker"/></div>
+                                                        <div class="item-count flex3">05/06/2020 07:05</div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -363,6 +429,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="../Script/Library/jquery-ui.min.js"></script>
     <script src="../Script/Library/jquery.timepicker.min.js"></script>
+    <script src="../Script/Library/jquery.datetimepicker.js"></script>
 
     <!-- Script common -->
     <script src="../Script/Common/MappingApi.js"></script>

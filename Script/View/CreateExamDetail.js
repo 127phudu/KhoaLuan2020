@@ -43,6 +43,14 @@ class CreateExamDetail {
             me.renderPeriod();
         });
 
+        // Thêm datetimepicker
+        $(".datetimepicker").datetimepicker({
+            format:'d/m/Y H:i',
+            defaultTime:'07:00',
+            step:30,
+            timeFormat: 'HH:mm'
+        });
+
         // Sự kiện khi bấm vào icon mắt
         $(".comboSortable").on("click", ".icon-eye span", function () {
             let className = $(this).attr("class"),
@@ -85,6 +93,7 @@ class CreateExamDetail {
     show() {
         let me = this;
 
+        $("#tabPanelRoom").click();
         me.loadAjaxData();
     }
 
@@ -157,18 +166,19 @@ class CreateExamDetail {
         $(".content-header").html("");
 
         for (var i = 0; i < sumPeriod; i++) {
-            let element = $(".period-clone .item-period").clone(true);
+            let element = $(".period-clone .item-rooms").clone(true);
 
             listRoomCache[i].filter(function (item) {
                 if (item.IsShow) {
                     let elementBox = $("<li class='backgound-brown item-number'></li>");
                     elementBox.text(item.NumberComputer);
                     elementBox.data("room", item);
-                    element.append(elementBox);
+                    element.find(".item-period").append(elementBox);
                 }
             });
 
-            element.data("indexPeriod", i);
+            element.find(".item-period").data("indexPeriod", i);
+            element.find(".periodNumber").text(i + 1);
 
             $(".content-header").append(element);
         }

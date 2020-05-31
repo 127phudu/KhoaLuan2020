@@ -66,7 +66,8 @@ var listSubjects = [
         SubjectCode: "INT3301",
         NumberStudent: 100,
         SortOrder: 1,
-        Color: null
+        Color: null,
+        Minus: 60
     },
     {
         SubjectID: 2,
@@ -74,7 +75,8 @@ var listSubjects = [
         SubjectCode: "INT3302",
         NumberStudent: 180,
         SortOrder: 2,
-        Color: null
+        Color: null,
+        Minus: 60
     },
     {
         SubjectID: 3,
@@ -82,7 +84,8 @@ var listSubjects = [
         SubjectCode: "INT3303",
         NumberStudent: 190,
         SortOrder: 3,
-        Color: null
+        Color: null,
+        Minus: 60
     },
     {
         SubjectID: 4,
@@ -90,7 +93,8 @@ var listSubjects = [
         SubjectCode: "INT3304",
         NumberStudent: 110,
         SortOrder: 4,
-        Color: null
+        Color: null,
+        Minus: 60
     },
     {
         SubjectID: 5,
@@ -98,7 +102,8 @@ var listSubjects = [
         SubjectCode: "INT3305",
         NumberStudent: 170,
         SortOrder: 5,
-        Color: null
+        Color: null,
+        Minus: 60
     }
 ];
 

@@ -1,6 +1,6 @@
 .comboSortable
  {
-    border: 1px solid #085ebf;
+    border: 1px solid #3276c3;
     min-height: 20px;
     list-style-type: none;
     margin: 0;
@@ -8,11 +8,90 @@
     float: left;
     margin-right: 10px;
     margin-left: 10px;
-    max-height: 300px;
     overflow-y: auto;
+    height: calc(100% - 30px);
 }
 
 *{}
+
+.text-minus {
+    margin-right: 10px;
+    line-height: 20px;
+}
+
+input.numberMinus {
+    width: 40px;
+    border-color: #84b5ed;
+    border-width: 0.5px;
+    outline: none;
+    border-radius: 2px;
+}
+
+span.period-name {
+    font-size: 12px;
+    font-weight: bold;
+    color: #3276c3;
+}
+
+.item-rooms {
+    float: left;
+    text-align: center;
+}
+
+.tab-pane.active {
+    height: 101%;
+}
+
+.tab-pane.active .content {
+    height: calc(100% - 12px);
+    padding-bottom: 0;
+}
+
+.nav-tabs>li.active>a {
+    border-color: #3276c3;
+    border-bottom-color: transparent;
+}
+
+.col-xl-12.content-detailWrapper {
+    height: 100%;
+}
+
+.row.content-detailWrapperParent {
+    height: 100%;
+}
+
+.grid-wrapper.content-detail {
+    height: calc(100% - 118px);
+}
+
+ul.nav.nav-tabs {
+    margin: 10px;
+    margin-bottom: 0;
+}
+
+ul.nav.nav-tabs {
+    border-color: #3276c3;
+}
+
+ul.nav.nav-tabs {
+    font-weight: bold;
+}
+
+.tab-content {
+    margin: 10px;
+    margin-top: 0px;
+    padding-top: 10px;
+    border-top: none;
+    border: 1px solid #3276c3;
+    border-top: none;
+    padding-bottom: 10px;
+    height: calc(100% - 350px);
+}
+
+.row.header-title.tile-pink {
+    margin-left: 10px;
+    margin-bottom: -10px;
+}
 
 li.backgound-brown2 {
     margin-left: 10px;
@@ -55,6 +134,36 @@ li.backgound-brown2 {
     cursor: pointer;
 }
 
+li.backgound-brown.itemRoom2 .item-name {
+    line-height: 21px;
+}
+
+li.backgound-brown.itemRoom2 input {
+    border-color: #8fb5e1;
+    border-width: 0.5px;
+    height: 23px;
+    outline: none;
+    width: 115px;
+}
+
+li.backgound-brown.itemSubject2 .item .item-name {
+    line-height: 23px;
+}
+
+li.backgound-brown.itemSubject2 .item-code {
+    text-align: right;
+    margin-right: 9px;
+}
+
+li.backgound-brown.itemSubject2 {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+li.backgound-brown.itemSubject2:last-child {
+    border-bottom: 1px solid #c5c5c5;
+}
+
 .backgound-brown{
     border: 1px solid #c5c5c5;
     background: #f6f6f6;
@@ -62,9 +171,22 @@ li.backgound-brown2 {
     color: #454545;
 }
 
+li.backgound-brown.itemRoom2 {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+li.backgound-brown.itemRoom2 .item-count {
+    line-height: 21px;
+}
+
+li.backgound-brown.itemRoom2:last-child {
+    border-bottom: 1px solid #c5c5c5;
+}
+
 .content-header{
     height: 240px;
-    border: 1px solid #085ebf;
+    border: 1px solid #3276c3;
     margin: 10px;
     margin-bottom: 20px;
     padding: 10px;
@@ -106,11 +228,10 @@ li.backgound-brown2 {
     margin: 3px;
     padding: 0;
     width: 183px;
-    float: left;
     height: 75px;
     border: 1px solid #4b87e1;
     overflow-y: auto;
-    margin-bottom: 31px;
+    margin-bottom: 5px;
 }
 .period-sortable li {
     margin: 3px 3px 3px 3px;
@@ -128,4 +249,12 @@ li.backgound-brown2 {
 
 .disable-item{
     opacity: 0.5;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #3276c3;
+    border-bottom-color: transparent;
 }
