@@ -6,6 +6,7 @@ class CreateExamDetail {
         this.listSubjects = [];
         this.listRooms = [];
         this.listRoomCache = [];
+        this.listTimeCache = [];
         this.periodFocusNow = 0;
 
         this.initEvent();
@@ -43,14 +44,6 @@ class CreateExamDetail {
             me.renderPeriod();
         });
 
-        // Thêm datetimepicker
-        $(".datetimepicker").datetimepicker({
-            format:'d/m/Y H:i',
-            defaultTime:'07:00',
-            step:30,
-            timeFormat: 'HH:mm'
-        });
-
         // Sự kiện khi bấm vào icon mắt
         $(".comboSortable").on("click", ".icon-eye span", function () {
             let className = $(this).attr("class"),
@@ -65,6 +58,12 @@ class CreateExamDetail {
             me.listRoomCache[me.periodFocusNow][index].IsShow = isShow;
             me.renderPeriod();
             me.renderRooms();
+        });
+
+        // Sự kiện khi click vào tab 2
+        $("#tabPanelTime").click(function(){
+            me.renderSubjectMinus();
+            me.renderPeriodTime();
         });
     }
 
@@ -260,6 +259,58 @@ class CreateExamDetail {
         });
     }
 
+    // Render danh sách các học phần có thời gian phút
+    renderSubjectMinus() {
+        let me = this,
+            listSubjects = me.listSubjects;
+
+        $(".listSubject2").html("");
+
+        listSubjects.filter(function (item) {
+            let element = $(".subject-clone2 .itemSubject2").clone(true);
+
+            element.find(".item-name").text(item.SubjectName);
+            element.find(".numberMinus").val(item.Minus);
+
+            element.data("value", item);
+
+            $(".listSubject2").append(element);
+        });
+    }
+
+    // Render bảng thời gian của các ca thi
+    renderPeriodTime(){
+        let me = this;
+
+        $(".listRoom2").html("");
+
+        $(".content-header .item-rooms").each(function(index, value){
+            let itemRoom = $(this).find(".item-number").eq(0),
+                data = itemRoom.data("subject");
+
+            if(data){
+
+                let element = $(".roomTime-clone2 .itemRoom2").clone(true),
+                    periodIndex = index + 1;
+
+                element.find(".item-name").text("Ca " + periodIndex);
+                element.find("input").attr("class","classDatepicker" + periodIndex);
+                element.find("input").data("periodIndex", periodIndex);
+                element.find("input").val(me.listTimeCache[periodIndex].StartTime);
+                element.find(".item-endTime").text(me.listTimeCache[periodIndex].EndTime);
+
+                $(".listRoom2").append(element);
+
+                $(".classDatepicker" + periodIndex).datetimepicker({
+                    format:'d/m/Y H:i',
+                    defaultTime:'07:00',
+                    step:30,
+                    timeFormat: 'HH:mm'
+                });
+            }
+        });
+    }
+
     // Cập nhật cache học phần
     updateCacheSubject(){
         let me = this,
@@ -283,8 +334,13 @@ class CreateExamDetail {
         me.listRoomCache = [];
     
         for(var i = 0; i < listRooms.length*2 ; i++){
-            var obj = JSON.parse(JSON.stringify(listRooms));
-    
+            var obj = JSON.parse(JSON.stringify(listRooms)),
+                objTime = {
+                    StartTime: "",
+                    EndTime: ""
+                };
+            
+            me.listTimeCache.push(objTime);
             me.listRoomCache.push(obj);
         }
     }

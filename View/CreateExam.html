@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tạo lịch thi</title>
     <link rel="shortcut icon" href="../Content/Images/vnuLogo.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Script/Library/bootstrap-3.4.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/jquery.timepicker.min.css">
@@ -281,7 +281,7 @@
                                     </div>
                                     <div class="tab-pane" id="info">
                                         <div class="flex content-head">
-                                            
+
                                             <ul class="flex1 title-table">
                                                 <li class="backgound-brown2">
                                                     <div class="item flex">
@@ -304,7 +304,7 @@
                                         </div>
                                         <div class="content flex">
 
-                                            <ul class="comboSortable flex1 listSubject2">
+                                            <div class="subject-clone2" style="display: none;">
                                                 <li class="backgound-brown itemSubject2">
                                                     <div class="item flex">
                                                         <div class="item-name flex4">Đại số</div>
@@ -314,19 +314,26 @@
                                                         <div class="text-minus" style="width:20px">phút</div>
                                                     </div>
                                                 </li>
+                                            </div>
+
+                                            <ul class="comboSortable flex1 listSubject2">
+                                               
                                             </ul>
 
-                                            <ul class="comboSortable flex1 listRoom2">
+                                            <div class="roomTime-clone2" style="display: none;">
                                                 <li class="backgound-brown itemRoom2">
                                                     <div class="item flex">
-                                                        <div class="item-name flex2">Ca 1</div>
+                                                        <div class="item-name flex2"></div>
                                                         <div class="item-location flex3">
                                                             <input type="text" class="datetimepicker"/></div>
-                                                        <div class="item-count flex3">05/06/2020 07:05</div>
+                                                        <div class="item-endTime flex3"></div>
                                                     </div>
                                                 </li>
-                                            </ul>
+                                            </div>
 
+                                            <ul class="comboSortable flex1 listRoom2">
+                                               
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -426,7 +433,7 @@
 
     <!-- Script library -->
     <script src="../Script/Library/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="../Script/Library/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
     <script src="../Script/Library/jquery-ui.min.js"></script>
     <script src="../Script/Library/jquery.timepicker.min.js"></script>
     <script src="../Script/Library/jquery.datetimepicker.js"></script>
