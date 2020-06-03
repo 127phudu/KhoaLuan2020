@@ -125,6 +125,9 @@ class BaseGrid extends Grid{
                 case "Export":
                     me.export();
                     break;
+                case "Save":
+                    me.save();
+                    break;
                 default:
                     me.customToolbarItem(commandName);
             }
@@ -414,6 +417,8 @@ class BaseGrid extends Grid{
     import(){}
     // Xuất khẩu
     export(){}
+    // Cất
+    save(){}
     // Hàm dùng đối với từng loại toolbar đặc thù
     customToolbarItem(commandName){}
 }

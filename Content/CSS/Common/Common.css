@@ -435,6 +435,11 @@ span#speed-button {
     left: calc(50% - 100px);
 }
 
+div#error-alert {
+    background: #f44d4df0;
+    color: white;
+}
+
 /* ------------------------------ */
 
 .modal-confirm {

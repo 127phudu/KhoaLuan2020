@@ -68,11 +68,6 @@ class CreateExamPage extends BaseGrid {
     save(){
         let me = this;
 
-        $("[Layout='Master']").show();
-        $("[Layout='Detail']").hide();
-        me.editMode = Enum.EditMode.View;
-        me.setStatusToolbar();
-        
         me.pageDetail.save();
     }
 

@@ -32,6 +32,36 @@ function sumArrObject(arr, propName) {
     return value;
 }
 
+// Thêm thời gian một khoảng
+function addMinutes(dateStr, number){
+    var date = convertDate(dateStr);
+
+    date.setMinutes(date.getMinutes() + number); 
+
+    let year = date.getFullYear(),
+        month = formatNumber(date.getMonth() + 1),
+        day = formatNumber(date.getDate()),
+        hour = formatNumber(date.getHours()),
+        min = formatNumber(date.getMinutes());
+
+    return day + "/" + month + "/" + year + " " + hour + ":" + min;
+}
+
+// Parse dữ liệu từ chuỗi sang số
+function TryParseInt(str, defaultValue) {
+    var retValue = defaultValue;
+
+    if(str !== null) {
+        if(str.length > 0) {
+            if (!isNaN(str)) {
+                retValue = parseInt(str);
+            }
+        }
+    }
+
+    return retValue > 0 ? retValue : defaultValue;
+}
+
 // Lấy màu ngẫu nhiên
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
@@ -40,6 +70,11 @@ function getRandomColor() {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+}
+
+// Format number
+function formatNumber(number){
+    return number < 10 ? ('0' + number) : number;
 }
 
 // Hàm dùng để chuyển một chuỗi sang định dạng picker
@@ -54,10 +89,7 @@ function convertDateToPicker(dateStr){
             type = 'PM';
         }
 
-        hour = hour < 10 ? ('0' + hour) : hour;
-        min = min < 10 ? ('0' + min) : min;
-
-    return hour + ':' + min + ' ' + type;
+    return formatNumber(hour) + ':' + formatNumber(min) + ' ' + type;
 }
 
 // Convert từ chuỗi 04:04 PM sang 16:04
@@ -70,10 +102,7 @@ function convertTimepicker(dateStr){
         hour = hour + 12;
     }
 
-    hour = hour < 10 ? ('0' + hour) : hour;
-    min = min < 10 ? ('0' + min) : min;
- 
-    return hour  + ':' + min;
+    return formatNumber(hour)  + ':' + formatNumber(min);
 }
 
 // Hàm dùng format chuỗi
