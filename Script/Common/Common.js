@@ -259,7 +259,7 @@ Enum.StatusResponse = {
 // Enum giới tính
 Enum.Gender = ["Giới tính","Nam","Nữ","Khác"];
 Enum.Status = ["Trạng thái phòng thi","Sử dụng", "Không sử dụng"];
-Enum.StatusStudent = ["Trạng thái sinh viên","Đủ điều kiện", "Cấm thi"];
+Enum.StatusStudent = ["Trạng thái sinh viên","", "Không"];
 Enum.StatusPeriod = ["Trạng thái kì thi", "Chưa đăng ký", "Đang đăng ký", "Đã đăng ký"];
 
 // Text thông báo lỗi
@@ -285,6 +285,9 @@ Enum.FileName = {
     StudentSubjects: {
         FileNameError: "Danh sách sinh viên không hợp lệ.xlsx",
         FileNameExport: "Danh sách sinh viên.xlsx"
+    },
+    RoomSetting:{
+        FileNameExport: "Danh sách phòng thi.xlsx"
     }
 }
 

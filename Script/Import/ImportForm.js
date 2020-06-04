@@ -99,6 +99,9 @@ class ImportForm{
             fileName = Enum.FileName[entityName].FileNameError,
             fileType = "application/vnd.ms-excel";
 
+        // Custom lại tùy vào từng màn hình
+        url = me.getCustomUrlImport(url);
+
         if(data && url){
 
             var xhr = new XMLHttpRequest();
@@ -169,6 +172,27 @@ class ImportForm{
 
     // Custom lại url tùy từng màn hình
     getCustomUrlExport(url){
+        let me = this,
+            entityName = me.jsCaller.config.entityName;
+
+        switch(entityName){
+            case "StudentSubjects":
+                let masterId = me.jsCaller.masterData.Id;
+                url = url.format(masterId);
+                break;
+            case "RoomSetting":
+                let semesterId = parseInt(localStorage.getItem("SemesterId"));
+                    url = url.format(semesterId);
+                break;
+            default:
+                return url;
+        }
+
+        return url;
+    }
+
+    // Custom lại url tùy từng màn hình
+    getCustomUrlImport(url){
         let me = this,
             entityName = me.jsCaller.config.entityName;
 

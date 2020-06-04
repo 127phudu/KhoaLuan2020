@@ -48,6 +48,7 @@ class CreateExamPage extends BaseGrid {
         $("[Layout='Detail']").hide();
         me.editMode = Enum.EditMode.View;
         me.setStatusToolbar();
+        me.pageDetail.resetData();
         
         me.loadAjaxData();
     }

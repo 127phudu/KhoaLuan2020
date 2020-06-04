@@ -158,14 +158,77 @@ class CreateExamDetail {
         me.renderSubject();
         me.renderPeriod();
     }
+
+    // Lấy dữ liệu học phần và phòng thi
+    buildListDataCache(){
+        let me = this,
+            semesterId = parseInt(localStorage.getItem("SemesterId")),
+            urlDetail = Constant.urlPaging.format(1000, 1),
+            urlSubjects = mappingApi.SubjectSemesters.urlGetData.format(semesterId) + urlDetail,
+            urlRooms = mappingApi.RoomSetting.urlGetData.format(semesterId) + urlDetail;
+
+        // Render danh sách học phần
+        CommonFn.GetAjax(urlSubjects, function (response) {
+            if(response.status == Enum.StatusResponse.Success){
+                me.listSubjects =  response.data["SubjectSemesters"];
+            }
+        },false);
+
+        // Render danh sách phòng thi
+        CommonFn.GetAjax(urlRooms, function (response) {
+            if(response.status == Enum.StatusResponse.Success){
+                me.listRooms = response.data["RoomSemesters"];
+            }
+        },false);
+
+        // Convert dữ liệu
+        me.convertData();
+    }
+
+    // Thực hiện chuyển đổi dữ liệu
+    convertData(){
+        let me = this,
+            listSub = [],
+            listRoom = [];
+
+        // Convert danh sách học phần
+        me.listSubjects.filter(function(item, index){
+            let obj = {
+                SubjectID: item.Id,
+                SubjectName: item.SubjectName,
+                SubjectCode: item.SubjectCode,
+                NumberStudent: item.NumberStudent,
+                SortOrder: index,
+                Color: null,
+                Minus: 60
+            };
+
+            listSub.push(obj);
+        });
+
+        // Convert danh sách phòng thi
+        me.listRooms.filter(function(item, index){
+            let obj = {
+                RoomId: item.Id,
+                RoomName: item.RoomName,
+                Location: item.Location,
+                NumberComputer: item.NumberOfComputer,
+                SortOrder: index,
+                IsShow: true
+            };
+
+            listRoom.push(obj);
+        });
+
+        me.listSubjects = listSub;
+        me.listRooms = listRoom;
+    }
     
     // load dữ liệu từ DB
     loadAjaxData() {
         let me = this;
 
-        me.listRooms = listRooms;
-        me.listSubjects = listSubjects;
-        
+        me.buildListDataCache();
         me.executeBeforeLoadAjax();
     }
     
@@ -190,16 +253,46 @@ class CreateExamDetail {
     // Thực hiện cất dữ liệu
     doSaveData(){
         let me = this,
-            data = geSubmitData();
+            data = me.geSubmitData();
 
+        if(data.length > 0){
+            let semesterId = parseInt(localStorage.getItem("SemesterId")),
+                url = mappingApi.CreateExams.urlCreate.format(semesterId);
 
+                CommonFn.PostPutAjax("POST",url, data, function(response) {
+                    if(response.status == Enum.StatusResponse.Success){
+                        me.showMessageSuccess("Cất dữ liệu thành công");
+                    }
+                });
+        }
     }
 
     // Lấy dữ liệu trước khi lưu
     geSubmitData(){
-        let me = this;
+        let me = this,
+            listDataSubmit = [];
 
+        $(".content-header .item-number").each(function(inde, val){
+            let sumStudent = $(this).data("sumStudent"),
+                room = $(this).data("room"),
+                subject = $(this).data("subject"),
+                indexPeriod =  $(this).data("indexPeriod");
 
+            if(sumStudent){
+                let obj = {
+                    NumberOfStudent: sumStudent,
+                    StartTime: me.listTimeCache[indexPeriod].StartTime,
+                    EndTime: me.listTimeCache[indexPeriod].EndTime,
+                    SubjectSemesterId: subject.SubjectID,
+                    RoomSemesterId: room.RoomId,
+                    Date: me.listTimeCache[indexPeriod].StartTime.substr(0,10)
+                };
+
+                listDataSubmit.push(obj);
+            }
+        });
+
+        return listDataSubmit;
     }
 
     // Hàm sau khi save thành công
@@ -282,6 +375,7 @@ class CreateExamDetail {
                     let elementBox = $("<li class='backgound-brown item-number'></li>");
                     elementBox.text(item.NumberComputer);
                     elementBox.data("room", item);
+                    elementBox.data("indexPeriod", i);
                     element.find(".item-period").append(elementBox);
                 }
             });
@@ -317,7 +411,10 @@ class CreateExamDetail {
                 index++;
 
                 if (sumBox >= numberStudent) {
+                    $(elementBoxs[j]).data("sumStudent",numberComputer - (sumBox - numberStudent));
                     break;
+                }else{
+                    $(elementBoxs[j]).data("sumStudent",numberComputer);
                 }
             }
         });

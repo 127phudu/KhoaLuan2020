@@ -68,8 +68,8 @@ var mappingApi = {
         urlCheckExistItem: "http://admin.dkt.vnu.edu.vn:8881/admin/student_subject/check_create", // Done
         urlReject: "http://admin.dkt.vnu.edu.vn:8881/admin/student_subject/status",         // Done
         urlDownloadFileTemplate: "http://admin.dkt.vnu.edu.vn:8881/admin/student_subject/template",      // Done
-        urlUploadFile: "http://admin.dkt.vnu.edu.vn:8881/admin/student_subject/import",    // Done  
-        urlExport: "http://admin.dkt.vnu.edu.vn:8881/admin/student_subject/export/student_subject/{0}"       
+        urlUploadFile: "http://admin.dkt.vnu.edu.vn:8881/admin/student_subject/import/subject_semester/{0}",    // Done  
+        urlExport: "http://admin.dkt.vnu.edu.vn:8881/admin/student_subject/export/subject_semester/{0}"       
     },
 
     RoomSetting:{ // Thiết lập phòng thi
@@ -77,13 +77,14 @@ var mappingApi = {
         urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/list", // Done
         urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/list", // Done
         urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/list", // Done
+        urlExport: "http://admin.dkt.vnu.edu.vn:8881/admin/room_semesters/export/semester/{0}"
     },
 
     CreateExams:{ // Tạo lịch thi
         urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/semester/{0}",
-        urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/exam",
+        urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/list/semester/{0}",
         urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/exam",
-        urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/exam"
+        urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/list"
     },
 
     ExamRegisterResult:{

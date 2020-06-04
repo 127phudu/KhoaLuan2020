@@ -6,11 +6,22 @@ class RoomSetting extends BaseGrid {
         super(gridId, toolbarId);
 
         this.editMode = Enum.EditMode.View;
+        this.formImport = null;
     }
     
     // Tạo form detail
     createFormDetail(formId, gridId, toolbarId, width, height){
         this.formDetail = new ChooseRoomForm(formId, gridId, toolbarId, this, width, height);
+    }
+
+    // Tạo thêm mới form nhập khẩu
+    createFormImport(idForm){
+        this.formImport = new ImportForm(this, idForm);
+    }
+    
+    // Xuất khẩu danh sách
+    export(){
+        this.formImport.exportData();
     }
 
     //Hàm load dữ liệu
@@ -205,6 +216,8 @@ class RoomSetting extends BaseGrid {
 var roomSetting = new RoomSetting("#GridRoomSetting", "#ToolbarGridRoomSetting");
     // Tạo một form detail
     roomSetting.createFormDetail("#formRoom","#GridRoom", "#ToolbarChooseRoom", 800, 500);
+    // Tạo form xuất khẩu
+    roomSetting.createFormImport("#formRoom2");
     
     
     // Khởi tạo form thay đổi mật khẩu
