@@ -288,6 +288,9 @@ Enum.FileName = {
     },
     RoomSetting:{
         FileNameExport: "Danh sách phòng thi.xlsx"
+    },
+    CreateExams:{
+        FileNameExport: "Danh sách lịch thi.xlsx"
     }
 }
 

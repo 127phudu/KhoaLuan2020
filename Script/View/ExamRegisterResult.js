@@ -17,12 +17,20 @@ class ExamRegisterResult extends BaseGrid {
     //Hàm load dữ liệu
     loadAjaxData(){
         let me = this,
-            semesterId = localStorage.getItem("SemesterId");
+            paramPaging = me.getParamPaging(),
+            semesterId = parseInt(localStorage.getItem("SemesterId")),
+            url = mappingApi.ExamRegisterResult.urlGetData.format(semesterId),
+            urlFull = url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page);
 
-        if(me.config.configUrl.urlGetData && semesterId){
-            CommonFn.PostPutAjax("POST", me.config.configUrl.urlGetData, semesterId, function(response) {
+        if(url && semesterId){
+            $(".grid-wrapper").addClass("loading");
+
+            CommonFn.GetAjax(urlFull, function (response) {
                 if(response.status == Enum.StatusResponse.Success){
-                    me.loadData(response.Data);
+                    me.loadData(response.data["ExamResponses"]);
+                    me.resetDisplayPaging(response.data.Page);
+                    me.editMode = Enum.EditMode.View;
+                    $(".grid-wrapper").removeClass("loading");
                 }
             });
         }
@@ -33,16 +41,12 @@ class ExamRegisterResult extends BaseGrid {
         super.initEventElement();
         let me = this;
 
-        $("#chooseExam").on('selectmenuchange', me.chooseExamChange);
-    }
+        $("#chooseExam").on('selectmenuchange', function(){
+            let  semesterId = parseInt($(this).val());
 
-    // Xử lý khi thay đổi kì thi trên combo
-    chooseExamChange(){
-        let me = this,
-            semesterId = parseInt($(this).val());
-
-        localStorage.setItem("SemesterId", semesterId);
-        me.loadAjaxData();
+            localStorage.setItem("SemesterId", semesterId);
+            me.loadAjaxData();
+        });
     }
 
     //override: Thiết lập các config
@@ -82,8 +86,6 @@ class ExamRegisterResult extends BaseGrid {
 var examRegisterResult = new ExamRegisterResult("#GridExamRegisterResult", "#ToolbarGridExamRegisterResult", "#paging-GridExamRegisterResult");
     // Tạo trang chi tiết bên trong
     examRegisterResult.createPageDetail("#StudentSubjectDetail", "#ToolbarStudentSubjectDetail", "#paging-StudentSubjectDetail");
-    // Load dữ liệu cho grid 
-    examRegisterResult.loadAjaxData();
 
 
     // Khởi tạo form thay đổi mật khẩu

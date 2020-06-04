@@ -181,6 +181,7 @@ class ImportForm{
                 url = url.format(masterId);
                 break;
             case "RoomSetting":
+            case "CreateExams":
                 let semesterId = parseInt(localStorage.getItem("SemesterId"));
                     url = url.format(semesterId);
                 break;

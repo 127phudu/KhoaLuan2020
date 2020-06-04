@@ -23,20 +23,23 @@ class ExamRegisterResultDetail extends BaseGrid {
     //Hàm load dữ liệu
     loadAjaxData(masterData){
         let me = this,
-            semesterId = localStorage.getItem("SemesterId"),
             listSubjectId = masterData ? masterData.Id : me.masterId,
-            data = {
-                SemesterId: semesterId,
-                ListSubjectId: listSubjectId
-            };
+            paramPaging = me.getParamPaging(),
+            url = mappingApi.ExamRegisterResultDetail.urlGetData.format(listSubjectId),
+            urlFull = url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page);
 
         // Gán masterId lưu lại dùng 
         me.masterId = masterData ? masterData.Id : me.masterId;
 
-        if(me.config.configUrl.urlGetData && semesterId){
-            CommonFn.PostPutAjax("POST", me.config.configUrl.urlGetData, data, function(response) {
+        if(url && listSubjectId){
+            $(".grid-wrapper").addClass("loading");
+
+            CommonFn.GetAjax(urlFull, function (response) {
                 if(response.status == Enum.StatusResponse.Success){
-                    me.loadData(response.Data);
+                    me.loadData(response.data["StudentSubjectExams"]);
+                    me.resetDisplayPaging(response.data.Page);
+                    me.editMode = Enum.EditMode.View;
+                    $(".grid-wrapper").removeClass("loading");
                 }
             });
         }
@@ -60,14 +63,6 @@ class ExamRegisterResultDetail extends BaseGrid {
             titlePage = 'Danh sách sinh viên - ' + roomName + ' : ' + subjectName + ' (' + subjectCode + ')';
 
         $(".header-title[Layout='Detail']").text(titlePage.toLocaleUpperCase());
-    }
-
-    // Sau này xóa
-    loadAjaxDataFake(){
-        let me = this;
-
-        me.loadData(studentSubjects);
-        me.listFakeData = studentSubjects;
     }
 
     // Hàm dùng đối với từng loại toolbar đặc thù

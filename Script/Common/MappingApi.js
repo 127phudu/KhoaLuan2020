@@ -81,25 +81,20 @@ var mappingApi = {
     },
 
     CreateExams:{ // Tạo lịch thi
-        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/semester/{0}",
-        urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/list/semester/{0}",
+        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/semester/{0}", // Done
+        urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/list/semester/{0}", // Done
         urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/exam",
-        urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/list"
+        urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/list", // Done
+        urlExport: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/export/semester/{0}" // Done
     },
 
-    ExamRegisterResult:{
-        urlGetData: "",
-        urlCreate: "",
-        urlUpdate: "",
-        urlDelete: "",
-        urlCheckDuplicate: ""
+    ExamRegisterResult:{ // Kết quả đăng ký thi
+        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/semester/{0}",
+        urlExport: ""
     },
 
-    ExamRegisterResultDetail: {
-        urlGetData: "",
-        urlCreate: "",
-        urlUpdate: "",
-        urlDelete: "",
-        urlCheckDuplicate: ""
+    ExamRegisterResultDetail: { // Lấy danh sách xem chi tiết
+        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/student_subject_exam/subject_semester/{0}",
+        urlExport: ""
     }
 }

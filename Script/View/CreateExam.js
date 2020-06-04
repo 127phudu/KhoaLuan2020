@@ -6,6 +6,7 @@ class CreateExamPage extends BaseGrid {
         super(gridId, toolbarId, pagingId);
 
         this.editMode = Enum.EditMode.View;
+        this.formImport = null;
 
         this.setStatusToolbar();
     }
@@ -24,6 +25,16 @@ class CreateExamPage extends BaseGrid {
     // Tạo page detail
     createPageDetail(){
         this.pageDetail = new CreateExamDetail(this);
+    }
+
+    // Tạo thêm mới form nhập khẩu
+    createFormImport(idForm){
+        this.formImport = new ImportForm(this, idForm);
+    }
+    
+    // Xuất khẩu danh sách
+    export(){
+        this.formImport.exportData();
     }
     
     // Hàm dùng đối với từng loại toolbar đặc thù
@@ -142,6 +153,8 @@ class CreateExamPage extends BaseGrid {
 var createExamPage = new CreateExamPage("#GridCreateExam", "#ToolbarGridCreateExam", "#paging-GridCreateExam");
     // Tạo trang detail
     createExamPage.createPageDetail();
+    // Tạo form xuất khẩu
+    createExamPage.createFormImport("#formExport");
 
 
     // Khởi tạo form thay đổi mật khẩu
