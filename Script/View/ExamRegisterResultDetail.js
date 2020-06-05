@@ -23,15 +23,15 @@ class ExamRegisterResultDetail extends BaseGrid {
     //Hàm load dữ liệu
     loadAjaxData(masterData){
         let me = this,
-            listSubjectId = masterData ? masterData.Id : me.masterId,
+            masterId = masterData ? masterData.SubjectSemesterId : me.masterId,
             paramPaging = me.getParamPaging(),
-            url = mappingApi.ExamRegisterResultDetail.urlGetData.format(listSubjectId),
+            url = mappingApi.ExamRegisterResultDetail.urlGetData.format(masterId),
             urlFull = url + Constant.urlPaging.format(paramPaging.Size, paramPaging.Page);
 
         // Gán masterId lưu lại dùng 
         me.masterId = masterData ? masterData.Id : me.masterId;
 
-        if(url && listSubjectId){
+        if(url && masterId){
             $(".grid-wrapper").addClass("loading");
 
             CommonFn.GetAjax(urlFull, function (response) {

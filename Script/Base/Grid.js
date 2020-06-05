@@ -52,6 +52,9 @@ class Grid{
     // Hàm dùng để load dữ liệu cho bảng
     loadData(data){
         let grid = this;
+
+        // Custom dữ liệu trước khi binding
+        data = grid.prepareBeforeRender(data);
         
         if(data){
             let body = $("<tbody></tbody>");
@@ -268,4 +271,7 @@ class Grid{
 
     // Hàm chạy khi load data xong
     loadDataComplete(){}
+
+    // Custom dữ liệu trước khi binding
+    prepareBeforeRender(data){return data}
 }

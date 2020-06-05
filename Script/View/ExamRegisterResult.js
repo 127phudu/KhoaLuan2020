@@ -6,12 +6,23 @@ class ExamRegisterResult extends BaseGrid {
         super(gridId, toolbarId, pagingId);
 
         this.pageDetail = null;
+        this.formImport = null;
     }
     
     // Tạo page detail
     createPageDetail(gridId, toolbarId, pagingId){
         this.pageDetail = new ExamRegisterResultDetail(gridId, toolbarId, pagingId);
         this.pageDetail.pageMaster = this;
+    }
+
+    // Tạo thêm mới form nhập khẩu
+    createFormImport(idForm){
+        this.formImport = new ImportForm(this, idForm);
+    }
+    
+    // Xuất khẩu danh sách
+    export(){
+        this.formImport.exportData();
     }
 
     //Hàm load dữ liệu
@@ -53,7 +64,7 @@ class ExamRegisterResult extends BaseGrid {
     getConfig() {
         let object = {
             role: "Admin",
-            entityName: "ExamRegisterResults",
+            entityName: "ExamRegisterResult",
             formTitle:"Kết quả đăng ký thi"
         };
 
@@ -80,12 +91,26 @@ class ExamRegisterResult extends BaseGrid {
         
         me.pageDetail.show(masterData);
     }
+
+    // Custom dữ liệu trước khi binding
+    prepareBeforeRender(data){
+        let me = this;
+
+        data = data.filter(function(item){
+            item.NumberOfStudent = item.NumberOfStudentSubscribe + "/" + item.NumberOfStudent;
+            return item;
+        });
+
+        return data
+    }
 }
 
     // Khởi tạo trang
 var examRegisterResult = new ExamRegisterResult("#GridExamRegisterResult", "#ToolbarGridExamRegisterResult", "#paging-GridExamRegisterResult");
     // Tạo trang chi tiết bên trong
     examRegisterResult.createPageDetail("#StudentSubjectDetail", "#ToolbarStudentSubjectDetail", "#paging-StudentSubjectDetail");
+    // Xuất khẩu dữ liệu
+    examRegisterResult.createFormImport("#formExport");
 
 
     // Khởi tạo form thay đổi mật khẩu
