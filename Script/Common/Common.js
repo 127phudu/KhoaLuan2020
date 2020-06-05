@@ -132,7 +132,7 @@ CommonFn.Clone = function(source){
 
 // Hàm dùng login
 CommonFn.LoginAjax = function(param, fnCallBack){
-    let url = host + mappingApi.Master.urlLogin;
+    let url = mappingApi.Master.urlLogin;
 
     $.ajax({
         url: url,
