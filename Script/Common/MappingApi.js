@@ -3,7 +3,7 @@
 var mappingApi = {
     Master:{
         urlLogin: "http://admin.dkt.vnu.edu.vn:8881/admin/auth/login",                      // Done
-        urlChangePassword: "",
+        urlChangePassword: "http://admin.dkt.vnu.edu.vn:8881/admin/auth/change_password",
     },
 
     Students:{ // Sinh viên

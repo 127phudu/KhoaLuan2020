@@ -166,26 +166,27 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="paging" id="paging-GridSubject">
-                               <div class="paging-left float-left flex">
-                                   <div class="icon-paging icon-first" title="Trang đầu"></div>
-                                   <div class="icon-paging icon-pre" title="Trang trước"></div>
-                                   <div class="paging-text1">Trang</div>
-                                   <input type="text" class="page-number" value="1">
-                                   <div class="paging-text1">Trên <span class="totalPage">2</span></div>
-                                   <div class="icon-paging icon-next" title="Trang sau"></div>
-                                   <div class="icon-paging icon-last" title="Trang cuối"></div>
-                                   <div class="paging-text1">Số dòng</div>
-                                   <select class="page-Size">
-                                       <option value="15">15</option>
-                                       <option value="30">30</option>
-                                       <option value="50">50</option>
-                                   </select>
-                               </div>
-                               <div class="paging-right float-right flex">
-                                   <div class="content-paging-right">
-                                       Hiển thị <span class="startIndex">1</span> - <span class="end-Index">10</span> trên <span class="total-record">12</span> kết quả
-                                   </div>
-                               </div>
+                                <div class="paging-left float-left flex">
+                                    <div class="icon-paging icon-first" title="Trang đầu"></div>
+                                    <div class="icon-paging icon-pre" title="Trang trước"></div>
+                                    <div class="paging-text1">Trang</div>
+                                    <input type="text" class="page-number" value="1">
+                                    <div class="paging-text1">Trên <span class="totalPage">2</span></div>
+                                    <div class="icon-paging icon-next" title="Trang sau"></div>
+                                    <div class="icon-paging icon-last" title="Trang cuối"></div>
+                                    <div class="paging-text1">Số dòng</div>
+                                    <select class="page-Size">
+                                        <option value="15">15</option>
+                                        <option value="30">30</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </div>
+                                <div class="paging-right float-right flex">
+                                    <div class="content-paging-right">
+                                        Hiển thị <span class="startIndex">1</span> - <span class="end-Index">10</span>
+                                        trên <span class="total-record">12</span> kết quả
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -195,46 +196,41 @@
         </div>
     </div>
 
-    <!-- Form thêm mới Học phần -->
+    <!-- Form đổi mật khẩu -->
     <div class="wrapper-form">
-        <div class="formDialog" id="formSubjectDetail">
-
+        <div class="formDialog" id="formChangePassword">
             <!-- Header form -->
             <div class="header-form">
-                Thêm học phần
+                ĐỔI MẬT KHẨU
             </div>
-
             <!-- Body form -->
             <div class="body-form">
                 <div class="row">
                     <div class="col-md-12 row-custom">
                         <div class="row-grid">
-                            <div class="text-field flex1 border-right-none">
-                                <b>Tên học phần <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="SubjectName" MaxLength="100"
-                                    title="Không được để trống" placeholder="Nhập tên học phần...">
-                            </div>
                             <div class="text-field flex1">
-                                <b>Mã học phần <span class="require">(*)</span></b>
-                                <input type="text" Require="true" SetField="SubjectCode" CheckDuplicate="true"
-                                    MaxLength="15" title="Không được để trống" placeholder="Nhập mã sinh viên...">
+                                <b>Mật khẩu hiện tại <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="Password" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu hiện tại...">
                             </div>
                         </div>
                         <div class="row-grid">
-                            <div class="text-field flex1 border-topright-none">
-                                <b>Số tín chỉ <span class="require">(*)</span> </b>
-                                <input type="number" Require="true" SetField="NumberOfCredit" DataType="Number"
-                                    MaxLength="3" title="Không được để trống" placeholder="Nhập số tín chỉ...">
-                            </div>
                             <div class="text-field flex1 border-top-none">
-                                <b>Mô tả</b>
-                                <input type="text" SetField="Description" placeholder="Nhập mô tả..." MaxLength="200">
+                                <b>Mật khẩu mới <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="PasswordNew" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu mới...">
+                            </div>
+                        </div>
+                        <div class="row-grid">
+                            <div class="text-field flex1 border-top-none">
+                                <b>Xác nhận mật khẩu <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="PasswordConfirm" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu xác nhận...">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <!-- Footer form -->
             <div class="footer-form">
                 <div class="btn-cancel">
@@ -248,7 +244,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Form nhập khẩu -->
     <div class="wrapper-form">
         <div class="formDialog form-import" id="formImportSubject">
@@ -273,7 +269,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                       <div class="file-name"></div>
+                        <div class="file-name"></div>
                     </div>
                 </div>
             </div>

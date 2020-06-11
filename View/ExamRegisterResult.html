@@ -160,26 +160,27 @@
                     <div class="row" Layout="Master">
                         <div class="col-xl-12">
                             <div class="paging" id="paging-GridExamRegisterResult">
-                               <div class="paging-left float-left flex">
-                                   <div class="icon-paging icon-first" title="Trang đầu"></div>
-                                   <div class="icon-paging icon-pre" title="Trang trước"></div>
-                                   <div class="paging-text1">Trang</div>
-                                   <input type="text" class="page-number" value="1">
-                                   <div class="paging-text1">Trên <span class="totalPage">2</span></div>
-                                   <div class="icon-paging icon-next" title="Trang sau"></div>
-                                   <div class="icon-paging icon-last" title="Trang cuối"></div>
-                                   <div class="paging-text1">Số dòng</div>
-                                   <select class="page-Size">
+                                <div class="paging-left float-left flex">
+                                    <div class="icon-paging icon-first" title="Trang đầu"></div>
+                                    <div class="icon-paging icon-pre" title="Trang trước"></div>
+                                    <div class="paging-text1">Trang</div>
+                                    <input type="text" class="page-number" value="1">
+                                    <div class="paging-text1">Trên <span class="totalPage">2</span></div>
+                                    <div class="icon-paging icon-next" title="Trang sau"></div>
+                                    <div class="icon-paging icon-last" title="Trang cuối"></div>
+                                    <div class="paging-text1">Số dòng</div>
+                                    <select class="page-Size">
                                         <option value="15">15</option>
                                         <option value="30">30</option>
                                         <option value="50">50</option>
-                                </select>
-                               </div>
-                               <div class="paging-right float-right flex">
-                                   <div class="content-paging-right">
-                                       Hiển thị <span class="startIndex">1</span> - <span class="end-Index">10</span> trên <span class="total-record">12</span> kết quả
-                                   </div>
-                               </div>
+                                    </select>
+                                </div>
+                                <div class="paging-right float-right flex">
+                                    <div class="content-paging-right">
+                                        Hiển thị <span class="startIndex">1</span> - <span class="end-Index">10</span>
+                                        trên <span class="total-record">12</span> kết quả
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -223,30 +224,31 @@
                         </div>
                     </div>
 
-                      <!-- Paging -->
-                      <div class="row" Layout="Detail" style="display: none;">
+                    <!-- Paging -->
+                    <div class="row" Layout="Detail" style="display: none;">
                         <div class="col-xl-12">
                             <div class="paging" id="paging-StudentSubjectDetail">
-                               <div class="paging-left float-left flex">
-                                   <div class="icon-paging icon-first" title="Trang đầu"></div>
-                                   <div class="icon-paging icon-pre" title="Trang trước"></div>
-                                   <div class="paging-text1">Trang</div>
-                                   <input type="text" class="page-number" value="1">
-                                   <div class="paging-text1">Trên <span class="totalPage">2</span></div>
-                                   <div class="icon-paging icon-next" title="Trang sau"></div>
-                                   <div class="icon-paging icon-last" title="Trang cuối"></div>
-                                   <div class="paging-text1">Số dòng</div>
-                                   <select class="page-Size">
+                                <div class="paging-left float-left flex">
+                                    <div class="icon-paging icon-first" title="Trang đầu"></div>
+                                    <div class="icon-paging icon-pre" title="Trang trước"></div>
+                                    <div class="paging-text1">Trang</div>
+                                    <input type="text" class="page-number" value="1">
+                                    <div class="paging-text1">Trên <span class="totalPage">2</span></div>
+                                    <div class="icon-paging icon-next" title="Trang sau"></div>
+                                    <div class="icon-paging icon-last" title="Trang cuối"></div>
+                                    <div class="paging-text1">Số dòng</div>
+                                    <select class="page-Size">
                                         <option value="15">15</option>
                                         <option value="30">30</option>
                                         <option value="50">50</option>
-                                </select>
-                               </div>
-                               <div class="paging-right float-right flex">
-                                   <div class="content-paging-right">
-                                       Hiển thị <span class="startIndex">1</span> - <span class="end-Index">10</span> trên <span class="total-record">12</span> kết quả
-                                   </div>
-                               </div>
+                                    </select>
+                                </div>
+                                <div class="paging-right float-right flex">
+                                    <div class="content-paging-right">
+                                        Hiển thị <span class="startIndex">1</span> - <span class="end-Index">10</span>
+                                        trên <span class="total-record">12</span> kết quả
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -271,21 +273,21 @@
                         <div class="row-grid">
                             <div class="text-field flex1">
                                 <b>Mật khẩu hiện tại <span class="require">(*)</span></b>
-                                <input type="password" Require="true" SetField="CurrentPassword" MaxLength="100"
+                                <input type="password" Require="true" SetField="Password" MaxLength="100"
                                     title="Không được để trống" placeholder="Nhập mật khẩu hiện tại...">
                             </div>
                         </div>
                         <div class="row-grid">
                             <div class="text-field flex1 border-top-none">
                                 <b>Mật khẩu mới <span class="require">(*)</span></b>
-                                <input type="password" Require="true" SetField="NewPassword" MaxLength="100"
+                                <input type="password" Require="true" SetField="PasswordNew" MaxLength="100"
                                     title="Không được để trống" placeholder="Nhập mật khẩu mới...">
                             </div>
                         </div>
                         <div class="row-grid">
                             <div class="text-field flex1 border-top-none">
                                 <b>Xác nhận mật khẩu <span class="require">(*)</span></b>
-                                <input type="password" Require="true" SetField="ConfirmPassWord" MaxLength="100"
+                                <input type="password" Require="true" SetField="PasswordConfirm" MaxLength="100"
                                     title="Không được để trống" placeholder="Nhập mật khẩu xác nhận...">
                             </div>
                         </div>

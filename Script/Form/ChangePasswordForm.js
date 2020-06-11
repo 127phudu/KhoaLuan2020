@@ -14,7 +14,6 @@ class ChangePasswordForm extends BaseForm {
         if(isValid){
             let data = me.submitData();
 
-            data.UserName = localStorage.getItem("UserName");
             me.saveChangePassword(data);
             me.close();
         }
@@ -26,7 +25,7 @@ class ChangePasswordForm extends BaseForm {
 
         CommonFn.PostPutAjax("POST", mappingApi.Master.urlChangePassword, data, function(response) {
             if(response.status == Enum.StatusResponse.Success){
-                localStorage.setItem("Password", data.NewPassword);
+                localStorage.setItem("Password", data.PasswordNew);
                 me.showMessageSuccess("Đổi mật khẩu thành công!");
             }
         });
@@ -37,9 +36,9 @@ class ChangePasswordForm extends BaseForm {
         let me = this;
 
         switch(setField){
-            case "CurrentPassword": // Mật khẩu hiện tại
+            case "Password": // Mật khẩu hiện tại
                 return me.validateCurrentPassword(value);
-            case "ConfirmPassWord": // Mật khẩu xác nhận
+            case "PasswordConfirm": // Mật khẩu xác nhận
                 return me.validateConfirmPassWord(value);
             default:
                 return {isValid: true};
@@ -49,7 +48,7 @@ class ChangePasswordForm extends BaseForm {
     // Validate mật khẩu hiện tại phải đúng
     validateCurrentPassword(value){
         let result = {},
-            passWord = localStorage.getItem("PassWord");
+            passWord = localStorage.getItem("Password");
 
         if(value != passWord){
             result.isValid = false;
@@ -64,7 +63,7 @@ class ChangePasswordForm extends BaseForm {
     // Validate mật khẩu mới phải khớp nhau
     validateConfirmPassWord(value){
         let result = {},
-            newPassword = $("input[SetField='NewPassword']").val();
+            newPassword = $("input[SetField='PasswordNew']").val();
 
         if(value != newPassword){
             result.isValid = false;
