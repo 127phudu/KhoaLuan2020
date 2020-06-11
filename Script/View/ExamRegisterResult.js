@@ -13,6 +13,7 @@ class ExamRegisterResult extends BaseGrid {
     createPageDetail(gridId, toolbarId, pagingId){
         this.pageDetail = new ExamRegisterResultDetail(gridId, toolbarId, pagingId);
         this.pageDetail.pageMaster = this;
+        this.pageDetail.createFormImport("#importStudents");
     }
 
     // Tạo thêm mới form nhập khẩu

@@ -177,6 +177,7 @@ class ImportForm{
 
         switch(entityName){
             case "StudentSubjects":
+            case "ExamRegisterResultDetail":
                 let masterId = me.jsCaller.masterData.Id;
                 url = url.format(masterId);
                 break;

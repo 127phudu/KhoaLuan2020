@@ -7,17 +7,29 @@ class ExamRegisterResultDetail extends BaseGrid {
 
         this.pageMaster = null;
         this.masterId = null;
+        this.masterData = {};
+        this.formImport = null;
     }
     
     //override: Thiết lập các config
     getConfig() {
         let object = {
             role: "Admin",
-            entityName: "Rooms",
+            entityName: "ExamRegisterResultDetail",
             formTitle:"Sinh viên"
         };
 
         return object;
+    }
+
+    // Tạo thêm mới form nhập khẩu
+    createFormImport(idForm){
+        this.formImport = new ImportForm(this, idForm);
+    }
+    
+    // Xuất khẩu danh sách
+    export(){
+        this.formImport.exportData();
     }
 
     //Hàm load dữ liệu
@@ -30,6 +42,7 @@ class ExamRegisterResultDetail extends BaseGrid {
 
         // Gán masterId lưu lại dùng 
         me.masterId = masterData ? masterData.Id : me.masterId;
+        me.masterData.Id = me.masterId;
 
         if(url && masterId){
             $(".grid-wrapper").addClass("loading");

@@ -94,7 +94,7 @@ var mappingApi = {
     },
 
     ExamRegisterResultDetail: { // Lấy danh sách xem chi tiết
-        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/student_subject_exam/subject_semester/{0}",
-        urlExport: ""
+        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/student_subject_exam/subject_semester/{0}", // Done
+        urlExport: "http://admin.dkt.vnu.edu.vn:8881/admin/student_subject_exam/export/subject_semester/{0}"
     }
 }

@@ -294,6 +294,9 @@ Enum.FileName = {
     },
     ExamRegisterResult:{
         FileNameExport: "Danh sách lịch thi.xlsx"
+    },
+    ExamRegisterResultDetail:{
+        FileNameExport: "Danh sách sinh viên.xlsx"
     }
 }
 
