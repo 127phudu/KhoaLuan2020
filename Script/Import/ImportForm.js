@@ -104,6 +104,8 @@ class ImportForm{
 
         if(data && url){
 
+            $(".grid-wrapper").addClass("loading");
+
             var xhr = new XMLHttpRequest();
                 xhr.responseType = 'blob';
                 xhr.withCredentials = true;
