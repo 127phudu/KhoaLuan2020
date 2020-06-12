@@ -204,39 +204,51 @@
                         <div class="row content-detailWrapperParent">
                             <div class="col-xl-12 content-detailWrapper">
 
-                                <div class="row header-title tile-pink" Layout="Detail">
-                                    <span>DANH SÁCH CÁC CA THI</span>
-                                </div>
-
-                                <div class="period-clone" style="display: none;">
-                                    <div class="item-rooms">
-                                        <ul class="period-sortable item-period">
+                                <div class="content-main flex">
+                                    <div class="content-left" style="width:400px">
+                                        <ul class="flex1 title-table">
+                                            <li class="backgound-brown2">
+                                                <div class="item flex">
+                                                    <div class="flex4">Tên học phần</div>
+                                                    <div class="flex1">Mã HP</div>
+                                                    <div class="flex1 align-right">Số SV</div>
+                                                    <div class="flex2 align-right">Thời gian thi</div>
+                                                    <div class="square-color align-right"></div>
+                                                </div>
+                                            </li>
                                         </ul>
-                                        <span class="period-name">Ca <span class="periodNumber">1</span></span>
-                                    </div>
-                                </div>
-
-                                <div class="content-header">
-                                </div>
-
-                                <ul class="nav nav-tabs">
-                                    <li><a href="#home" id="tabPanelRoom" data-toggle="tab">Xếp phòng thi</a></li>
-                                    <li><a href="#info" id="tabPanelTime" data-toggle="tab">Thiết lập thời gian</a></li>
-                                </ul>
-
-                                <div class="tab-content content-WrapperChild">
-                                    <div class="tab-pane" id="home">
-                                        <div class="flex content-head">
-                                            <ul class="flex1 title-table">
-                                                <li class="backgound-brown2">
-                                                    <div class="item flex">
-                                                        <div class="flex4">Tên học phần</div>
-                                                        <div class="flex1">Mã HP</div>
-                                                        <div class="flex1 align-right">Số SV</div>
-                                                        <div class="square-color align-right"></div>
+                                        <div class="subject-clone" style="display: none;">
+                                            <li class="backgound-brown itemSubject">
+                                                <div class="item flex">
+                                                    <div class="item-name flex4">Lập trình nâng cao</div>
+                                                    <div class="item-code flex1">INT33097</div>
+                                                    <div class="item-count center flex1">230</div>
+                                                    <div class="flex1">
+                                                        <input type="text" class="numberMinus">
                                                     </div>
-                                                </li>
-                                            </ul>
+                                                    <div class="text-minus" style="width:20px">phút</div>
+                                                    <div class="square-color align-right"></div>
+                                                </div>
+                                            </li>
+                                        </div>
+
+                                        <ul class="comboSortable flex1 listSubject">
+                                        </ul>
+                                    </div>
+                                    <div class="content-right flex1">
+                                        <div class="content-right-top">
+                                            <div class="period-clone" style="display: none;">
+                                                <div class="item-rooms">
+                                                    <ul class="period-sortable item-period">
+                                                    </ul>
+                                                    <span class="period-name">Ca <span
+                                                            class="periodNumber">1</span></span>
+                                                </div>
+                                            </div>
+                                            <div class="content-header">
+                                            </div>
+                                        </div>
+                                        <div class="content-right-bottom">
                                             <ul class="flex1 title-table">
                                                 <li class="backgound-brown2">
                                                     <div class="item flex">
@@ -247,22 +259,6 @@
                                                     </div>
                                                 </li>
                                             </ul>
-                                        </div>
-                                        <div class="content flex">
-                                            <div class="subject-clone" style="display: none;">
-                                                <li class="backgound-brown itemSubject">
-                                                    <div class="item flex">
-                                                        <div class="item-name flex4">Lập trình nâng cao</div>
-                                                        <div class="item-code flex1">INT33097</div>
-                                                        <div class="item-count flex1 align-right">230</div>
-                                                        <div class="square-color align-right"></div>
-                                                    </div>
-                                                </li>
-                                            </div>
-
-                                            <ul class="comboSortable flex1 listSubject">
-                                            </ul>
-
                                             <div class="room-clone" style="display: none;">
                                                 <li class="backgound-brown itemRoom">
                                                     <div class="item flex">
@@ -279,74 +275,17 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="info">
-                                        <div class="flex content-head">
-
-                                            <ul class="flex1 title-table">
-                                                <li class="backgound-brown2">
-                                                    <div class="item flex">
-                                                        <div class="flex4">Tên học phần</div>
-                                                        <div class="flex2 align-right">Thời gian thi</div>
-                                                        <div class="square-color align-right"></div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-
-                                            <ul class="flex1 title-table">
-                                                <li class="backgound-brown2">
-                                                    <div class="item flex">
-                                                        <div class="flex2">Tên ca thi</div>
-                                                        <div class="flex3">Thời gian bắt đầu</div>
-                                                        <div class="flex3">Thời gian kết thúc</div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                        <div class="content flex">
-
-                                            <div class="subject-clone2" style="display: none;">
-                                                <li class="backgound-brown itemSubject2">
-                                                    <div class="item flex">
-                                                        <div class="item-name flex4">Đại số</div>
-                                                        <div class="item-code flex1">
-                                                            <input type="text" class="numberMinus">
-                                                        </div>
-                                                        <div class="text-minus" style="width:20px">phút</div>
-                                                        <div class="square-color align-right"></div>
-                                                    </div>
-                                                </li>
-                                            </div>
-
-                                            <ul class="comboSortable flex1 listSubject2">
-
-                                            </ul>
-
-                                            <div class="roomTime-clone2" style="display: none;">
-                                                <li class="backgound-brown itemRoom2">
-                                                    <div class="item flex">
-                                                        <div class="item-name flex2"></div>
-                                                        <div class="item-location flex3">
-                                                            <input type="text" class="datetimepicker" />
-                                                        </div>
-                                                        <div class="item-endTime flex3"></div>
-                                                    </div>
-                                                </li>
-                                            </div>
-
-                                            <ul class="comboSortable flex1 listRoom2">
-
-                                            </ul>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- end content -->
             </div>
         </div>
+    </div>
+    <!-- end content -->
+    </div>
+    </div>
     </div>
 
     <!-- Form đổi mật khẩu -->

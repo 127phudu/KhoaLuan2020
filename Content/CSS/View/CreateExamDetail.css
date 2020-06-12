@@ -5,14 +5,39 @@
     list-style-type: none;
     margin: 0;
     padding: 5px 0 0 0;
-    float: left;
-    margin-right: 10px;
     margin-left: 10px;
     overflow-y: auto;
-    height: calc(100% - 30px);
+    height: calc(100% - 19px);
+}
+
+ul.comboSortable.flex1.listRoom.ui-sortable {
+    height: calc(100% - 39px);
 }
 
 *{}
+
+span.numberReal {
+    font-size: 11px;
+    position: relative;
+    left: 5px;
+    bottom: 3px;
+}
+
+span.numberBlank {
+    font-size: 8.5px;
+    position: relative;
+    top: 7px;
+    left: 1px;
+}
+
+.content-right-bottom {
+    height: 254px;
+    margin-right: 10px;
+}
+
+.content-right-top {
+    height: calc(100% - 244px);
+}
 
 .text-minus {
     margin-right: 10px;
@@ -96,7 +121,7 @@ ul.nav.nav-tabs {
 li.backgound-brown2 {
     margin-left: 10px;
     padding: 7px;
-    font-weight: bold;
+    font-weight: 600;
     background: #3276c3;
     color: white;
 }
@@ -109,10 +134,8 @@ li.backgound-brown2 {
     min-height: 20px;
     list-style-type: none;
     margin: 0;
-    padding: 5px 0 0 0;
-    float: left;
-    margin-right: 10px;
-    max-height: 300px;
+    padding: 9px 0 0 0;
+    width: 100%;
 }
 
 .square-color, .icon-eye{
@@ -185,7 +208,7 @@ li.backgound-brown.itemRoom2:last-child {
 }
 
 .content-header{
-    height: 240px;
+    height: 98%;
     border: 1px solid #3276c3;
     margin: 10px;
     margin-bottom: 20px;
@@ -207,8 +230,20 @@ li.backgound-brown.itemRoom2:last-child {
     display: flex;
 }
 
+.content-main.flex {
+    height: calc(100% - 32px);
+}
+
 .flex1{
     flex: 1;
+}
+
+.item-count.center.flex1 {
+    text-align: center;
+}
+
+.content-left.flex1 {
+    width: 400px !important;
 }
 
 .flex2{
