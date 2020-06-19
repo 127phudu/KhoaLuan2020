@@ -48,7 +48,15 @@ class CreateExamPage extends BaseGrid {
             case "Back":
                 me.back();
                 break;
+            case "SettingTime":
+                me.settingTime();
+                break;
         }
+    }
+
+    // Thiết lập thời gian
+    settingTime(){
+        $(".settingTime").toggleClass("display-none");
     }
 
     // Hàm quay lại màn  hình chính
@@ -107,7 +115,7 @@ class CreateExamPage extends BaseGrid {
         if(me.editMode == Enum.EditMode.View){
             listToolbarVisible = ["CreateAgain", "Delete", "Export"];
         }else{
-            listToolbarVisible = ["Back", "Save"];
+            listToolbarVisible = ["Back", "Save","SettingTime"];
         }
 
         return listToolbarVisible;

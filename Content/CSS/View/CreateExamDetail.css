@@ -16,6 +16,32 @@ ul.comboSortable.flex1.listRoom.ui-sortable {
 
 *{}
 
+.endtime {
+    width: 115px;
+    margin-left: -6px;
+}
+
+.item-time {
+    /* display: none; */
+}
+
+.item-time-left {
+    width: 55px;
+    text-align: left;
+    line-height: 21px;
+    color: black;
+    margin-left: 7px;
+    font-size: 11px;
+}
+
+input.datetimepicker {
+    border-width: 0.5px;
+    width: 115px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #3083e0ba;
+}
+
 span.numberReal {
     font-size: 11px;
     position: relative;
@@ -61,6 +87,8 @@ span.period-name {
 .item-rooms {
     float: left;
     text-align: center;
+    border: 1px solid #3276c3;
+    margin: 4px;
 }
 
 .tab-pane.active {
@@ -208,10 +236,10 @@ li.backgound-brown.itemRoom2:last-child {
 }
 
 .content-header{
-    height: 98%;
+    height: 100%;
     border: 1px solid #3276c3;
     margin: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 10px;
     overflow-x: auto;
     overflow-y: auto;
@@ -228,6 +256,10 @@ li.backgound-brown.itemRoom2:last-child {
 
 .flex{
     display: flex;
+}
+
+.item-time_child.flex {
+    margin: 4px 0;
 }
 
 .content-main.flex {
@@ -260,14 +292,17 @@ li.backgound-brown.itemRoom2:last-child {
 
 .period-sortable {
     list-style-type: none;
-    margin: 3px;
     padding: 0;
     width: 183px;
     height: 75px;
     border: 1px solid #4b87e1;
+    border-right: none;
     overflow-y: auto;
-    margin-bottom: 5px;
+    border-left: none;
+    border-top: none;
+    margin-bottom: -1px;
 }
+
 .period-sortable li {
     margin: 3px 3px 3px 3px;
     padding: 1px;
@@ -292,4 +327,8 @@ li.backgound-brown.itemRoom2:last-child {
     background-color: #fff;
     border: 1px solid #3276c3;
     border-bottom-color: transparent;
+}
+
+.display-none{
+    display: none;
 }

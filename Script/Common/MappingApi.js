@@ -85,7 +85,8 @@ var mappingApi = {
         urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/list/semester/{0}", // Done
         urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/exam",
         urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/list", // Done
-        urlExport: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/export/semester/{0}" // Done
+        urlExport: "http://admin.dkt.vnu.edu.vn:8881/admin/exam/export/semester/{0}", // Done
+        urlGetConflic: "http://admin.dkt.vnu.edu.vn:8881/admin/subject_semesters/subject_conflict/semester/{0}"
     },
 
     ExamRegisterResult:{ // Kết quả đăng ký thi

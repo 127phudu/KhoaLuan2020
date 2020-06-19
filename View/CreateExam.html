@@ -148,6 +148,10 @@
                                     <span class="icon-toolbar glyphicon glyphicon-cloud-download"></span>
                                     <span class="text-toolbar">Xuất khẩu</span>
                                 </div>
+                                <div class="toolbar-item" CommanName='SettingTime'>
+                                    <span class="icon-toolbar glyphicon glyphicon-time"></span>
+                                    <span class="text-toolbar">Thiết lập thời gian</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -212,7 +216,7 @@
                                                     <div class="flex4">Tên học phần</div>
                                                     <div class="flex1">Mã HP</div>
                                                     <div class="flex1 align-right">Số SV</div>
-                                                    <div class="flex2 align-right">Thời gian thi</div>
+                                                    <div class="flex2 align-right settingTime display-none">Thời gian thi</div>
                                                     <div class="square-color align-right"></div>
                                                 </div>
                                             </li>
@@ -223,10 +227,10 @@
                                                     <div class="item-name flex4">Lập trình nâng cao</div>
                                                     <div class="item-code flex1">INT33097</div>
                                                     <div class="item-count center flex1">230</div>
-                                                    <div class="flex1">
+                                                    <div class="flex1 settingTime display-none">
                                                         <input type="text" class="numberMinus">
                                                     </div>
-                                                    <div class="text-minus" style="width:20px">phút</div>
+                                                    <div class="text-minus settingTime display-none" style="width:20px">phút</div>
                                                     <div class="square-color align-right"></div>
                                                 </div>
                                             </li>
@@ -241,8 +245,22 @@
                                                 <div class="item-rooms">
                                                     <ul class="period-sortable item-period">
                                                     </ul>
+                                                    <div class="item-time settingTime display-none">
+                                                        <div class="item-time_child flex">
+                                                            <div class="item-time-left">
+                                                                Bắt đầu:
+                                                            </div>
+                                                            <input type="text" class="datetimepicker"/>
+                                                        </div>
+                                                        <div class="item-time_child flex">
+                                                            <div class="item-time-left">
+                                                                Kết thúc:
+                                                            </div>
+                                                            <div class="endtime"></div>
+                                                        </div>
+                                                    </div>
                                                     <span class="period-name">Ca <span
-                                                            class="periodNumber">1</span></span>
+                                                        class="periodNumber">1</span></span>
                                                 </div>
                                             </div>
                                             <div class="content-header">
@@ -254,7 +272,8 @@
                                                     <div class="item flex">
                                                         <div class="flex2">Tên phòng</div>
                                                         <div class="flex3">Khu vực</div>
-                                                        <div class="flex1 align-right">Số máy</div>
+                                                        <div class="flex3">Học phần</div>
+                                                        <div class="flex1 align-right">SV/Số máy</div>
                                                         <div class="square-color align-right"></div>
                                                     </div>
                                                 </li>
@@ -264,7 +283,8 @@
                                                     <div class="item flex">
                                                         <div class="item-name flex2">Phòng 301 G2</div>
                                                         <div class="item-location flex3">Đại học quốc gia</div>
-                                                        <div class="item-count flex1 align-right">36</div>
+                                                        <div class="item-subject flex3"></div>
+                                                        <div class="item-count flex1 align-right"><span class="sv"></span>/<span class="computer"></span></div>
                                                         <div class="icon-eye"><span
                                                                 class='glyphicon glyphicon-eye-open'></span></div>
                                                     </div>
@@ -387,7 +407,6 @@
 
     <!-- Script common -->
     <script src="../Script/Common/MappingApi.js"></script>
-    <script src="../Script/Common/data.js"></script>
     <script src="../Script/Common/Common.js"></script>
     <script src="../Script/Common/Master.js"></script>
     <script src="../Script/Base/Grid.js"></script>

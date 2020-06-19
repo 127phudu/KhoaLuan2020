@@ -7,6 +7,7 @@ class CreateExamDetail {
         this.listRooms = [];
         this.listRoomCache = [];
         this.listTimeCache = [];
+        this.listSubjectConflic = [];
         this.periodFocusNow = 0;
 
         this.initEvent();
@@ -32,16 +33,13 @@ class CreateExamDetail {
             }
         }).disableSelection();
 
-        $(".period-sortable").sortable().disableSelection();
-
         // Sự kiện khi bấm chuột xuống
-        $(".period-sortable").mousedown(function () {
+        $(".item-rooms").mousedown(function () {
             $(".period-focus").removeClass("period-focus");
             $(this).addClass("period-focus");
 
-            me.periodFocusNow = $(this).data("indexPeriod");
+            me.periodFocusNow = $(this).find(".period-sortable").data("indexPeriod");
             me.renderRooms();
-            me.renderPeriod();
         });
 
         // Sự kiện khi bấm vào icon mắt
@@ -57,13 +55,12 @@ class CreateExamDetail {
             let index = me.getIndexByID(data.RoomId, me.listRoomCache[me.periodFocusNow]);
             me.listRoomCache[me.periodFocusNow][index].IsShow = isShow;
             me.renderPeriod();
-            me.renderRooms();
         });
 
         // Thay đổi giá trị phút
-        //me.setEventChangeMinusSubject();
+        me.setEventChangeMinusSubject();
         // Thay đổi giá trị ngày tháng
-        //me.setEventChangeTimePeriod();
+        me.setEventChangeTimePeriod();
     }
 
     // Thực hiện reset dữ liệu
@@ -78,68 +75,66 @@ class CreateExamDetail {
     }
 
     // Thay đổi giá trị phút
-    // setEventChangeMinusSubject(){
-    //     let me = this;
+    setEventChangeMinusSubject(){
+        let me = this;
 
-    //     $(".listSubject2").on("blur", "input",function(){
-    //         let value = $(this).val(),
-    //             index = $(this).data("index"),
-    //             valuePre = me.listSubjects[index].Minus,
-    //             realValue = TryParseInt(value, valuePre);
-            
-    //             me.listSubjects[index].Minus = realValue;
-    //             $(this).val(realValue);
+        $(".listSubject").on("blur", "input",function(){
+            let value = $(this).val(),
+                index = $(this).data("index"),
+                valuePre = me.listSubjects[index].Minus,
+                realValue = TryParseInt(value, valuePre);
 
-    //         //me.changeAllValueMinus();
-    //     });
-    // }
+                me.listSubjects[index].Minus = realValue;
+                $(this).val(realValue);
+
+            me.renderPeriod();
+        });
+    }
 
     // Thay đổi hàng loạt thời gian
-    // changeAllValueMinus(){
-    //     let me = this;
+    changeAllValueMinus(){
+        let me = this;
 
-    //     $(".listRoom2 input").each(function(index1, va){
-    //         let value = $(this).val(),
-    //             index = $(this).data("index"),
-    //             minutes = me.getMaximunMinus(index),
-    //             valuePre = me.listTimeCache[index].StartTime;
+        $(".content-header input").each(function(index, va){
+            let value = $(this).val(),
+                minutes = me.getMaximunMinus(index),
+                valuePre = me.listTimeCache[index].StartTime;
 
-    //             if(value){
-    //                 me.listTimeCache[index].StartTime = value;
-    //                 me.listTimeCache[index].EndTime = addMinutes(value, minutes);
-    //                 $(this).parent().next().text(me.listTimeCache[index].EndTime);
-    //             }else{
-    //                 $(this).val(valuePre);
-    //             }
-    //     });
-    // }
+                if(value){
+                    me.listTimeCache[index].StartTime = value;
+                    me.listTimeCache[index].EndTime = addMinutes(value, minutes);
+                    $(this).parent().next().find(".endtime").text(me.listTimeCache[index].EndTime);
+                }else{
+                    $(this).val(valuePre);
+                }
+        });
+    }
 
     // Thay đổi giá trị ngày tháng
-    // setEventChangeTimePeriod(){
-    //     let me = this;
+    setEventChangeTimePeriod(){
+        let me = this;
 
-    //     $(".listRoom2").on("change", "input",function(){
-    //         let value = $(this).val(),
-    //             index = $(this).data("index"),
-    //             minutes = me.getMaximunMinus(index),
-    //             valuePre = me.listTimeCache[index].StartTime;
+        $(".content-header").on("change", "input",function(){
+            let value = $(this).val(),
+                index = $(this).data("index"),
+                minutes = me.getMaximunMinus(index),
+                valuePre = me.listTimeCache[index].StartTime;
 
-    //             if(value){
-    //                 me.listTimeCache[index].StartTime = value;
-    //                 me.listTimeCache[index].EndTime = addMinutes(value, minutes);
-    //                 $(this).parent().next().text(me.listTimeCache[index].EndTime);
-    //             }else{
-    //                 $(this).val(valuePre);
-    //             }
-    //     });
-    // }
+                if(value){
+                    me.listTimeCache[index].StartTime = value;
+                    me.listTimeCache[index].EndTime = addMinutes(value, minutes);
+                    $(this).parent().next().find(".endtime").text(me.listTimeCache[index].EndTime);
+                }else{
+                    $(this).val(valuePre);
+                }
+        });
+    }
 
     // Chạy hàm sau khi load xong dữ liệu
     executeBeforeLoadAjax(){
         let me = this;
 
         me.createCacheList();
-        me.renderRooms();
         me.updateColorSubject();
         me.renderSubject();
         me.renderPeriod();
@@ -199,6 +194,7 @@ class CreateExamDetail {
                 RoomName: item.RoomName,
                 Location: item.Location,
                 NumberComputer: item.NumberOfComputer,
+                NumberStudent: 0,
                 SortOrder: index,
                 IsShow: true
             };
@@ -209,7 +205,7 @@ class CreateExamDetail {
         me.listSubjects = listSub;
         me.listRooms = listRoom;
     }
-    
+
     // load dữ liệu từ DB
     loadAjaxData() {
         let me = this;
@@ -222,7 +218,54 @@ class CreateExamDetail {
     show() {
         let me = this;
 
+        me.getSubjectConflic();
         me.loadAjaxData();
+    }
+
+    // Lấy các môn học bị conflic
+    getSubjectConflic(){
+        let me = this,
+            semesterId = parseInt(localStorage.getItem("SemesterId")),
+            url = mappingApi.CreateExams.urlGetConflic.format(semesterId);
+
+        if(semesterId){
+             // Lấy danh sách học phần bị conflic
+            CommonFn.GetAjax(url, function (response) {
+                if(response.status == Enum.StatusResponse.Success){
+                    me.listSubjectConflic = response.data;
+                }
+            },false);
+        }
+    }
+
+    // Kiểm tra có bị conflic hàng loạt không
+    checkConflicListSubject(listData, subjectId){
+        let me = this,
+            conflic = false;
+
+        listData.filter(function(item){
+            if(me.checkConflicSubject(item, subjectId)){
+                conflic = true;
+            }
+        });
+
+        return conflic;
+    }
+
+    // Kiểm tra hai học phần có bị conflic không
+    checkConflicSubject(subjectId1, subjectId2){
+        let me = this,
+            listData = me.listSubjectConflic,
+            isConflic = false;
+
+        for(let i = 0; i < listData.length; i++){
+            if(subjectId1 == listData[i].SubjectId && listData[i].SubjectConflict.includes(subjectId2)){
+                isConflic = true;
+                break;
+            }
+        }
+
+        return isConflic;
     }
 
     // Cất dữ liệu
@@ -310,38 +353,11 @@ class CreateExamDetail {
     renderPeriod() {
         let me = this,
             listSubjects = me.listSubjects,
-            sumStudent = sumArrObject(listSubjects, "NumberStudent"),
-            sumComputer = me.getSumRoomBlank(sumStudent),
-            sumPeriod = Math.round(sumStudent / sumComputer) + 2;
+            sumPeriod = listSubjects.length * 2;
 
         me.renderPeriodBlank(sumPeriod);
         me.fillStudentInPeriod();
-    }
-
-    // Lấy tổng phòng trống
-    getSumRoomBlank(sumStudent) {
-        let me = this,
-            sumRoom = 0,
-            listRoomCache = me.listRoomCache,
-            index = 0;
-
-        for (var i = 0; i < listRoomCache.length; i++) {
-            index++;
-
-            for (var j = 0; j < listRoomCache[i].length; j++) {
-                let room = listRoomCache[i][j];
-
-                if (room.IsShow) {
-                    sumRoom += room.NumberComputer;
-                }
-            }
-
-            if (sumRoom >= sumStudent) {
-                break;
-            }
-        }
-
-        return Math.round(sumRoom / index);
+        me.changeAllValueMinus();
     }
 
     // Render các phòng rỗng
@@ -355,24 +371,39 @@ class CreateExamDetail {
         for (var i = 0; i < sumPeriod; i++) {
             let element = $(".period-clone .item-rooms").clone(true);
 
-            listRoomCache[i].filter(function (item) {
+            listRoomCache[i].filter(function (item, indexBox) {
                 if (item.IsShow) {
                     let elementBox = $("<li class='backgound-brown item-number'><span class='numberReal'></span><span class='numberBlank'></span></li>");
                     elementBox.find(".numberBlank").text(item.NumberComputer);
                     elementBox.find(".numberReal").text(0);
                     elementBox.data("room", item);
                     elementBox.data("indexPeriod", i);
+                    elementBox.data("indexBox", indexBox);
                     element.find(".item-period").append(elementBox);
+                }else{
+                    item.SubjectName = "";
+                    item.NumberStudent = 0;
                 }
             });
 
             element.find(".item-period").data("indexPeriod", i);
+            element.find(".settingTime").data("indexPeriod", i);
             element.find(".periodNumber").text(i + 1);
+            element.find("input").attr("class","datetimepicker classDatepicker" + (i + 1));
+            element.find("input").data("index", i);
 
             $(".content-header").append(element);
+
+            // Tạo datetime picker cho input ngày tháng
+            $(".classDatepicker" + (i + 1)).datetimepicker({
+                format:'d/m/Y H:i',
+                defaultTime:'07:00',
+                step:30,
+                timeFormat: 'HH:mm'
+            });
         }
 
-        $(".content-header .period-sortable").eq(periodFocusNow).addClass("period-focus");
+        $(".content-header .item-rooms").eq(periodFocusNow).addClass("period-focus");
     }
 
     // Điền đầy đủ sinh viên vào từng phòng
@@ -380,33 +411,102 @@ class CreateExamDetail {
         let index = 0,
             me = this,
             listSubjects = me.listSubjects,
-            elementBoxs = $(".content-header .item-number");
+            elementBoxs = $(".content-header .item-number"),
+            periodCurrent = 0,
+            subjectCurrent = 0,
+            listSubjectId = [];
+
+        me.resetRooms();
 
         listSubjects.filter(function (subject, subjectIndex) {
             var numberStudent = subject.NumberStudent,
                 sumBox = 0;
 
             for (var j = index; j < elementBoxs.length; j++) {
-                let numberComputer = parseInt($(elementBoxs[j]).find(".numberBlank").text());
+                let numberComputer = parseInt($(elementBoxs[j]).find(".numberBlank").text()),
+                    indexBox = $(elementBoxs[j]).data("indexBox"),
+                    indexPeriod = $(elementBoxs[j]).data("indexPeriod");
 
-                sumBox += numberComputer;
-
-                $(elementBoxs[j]).css("background-color", subject.Color);
-                $(elementBoxs[j]).data("subject", subject);
-                $(elementBoxs[j]).data("subjectIndex", subjectIndex);
-                
-                index++;
-
-                if (sumBox >= numberStudent) {
-                    $(elementBoxs[j]).data("sumStudent",numberComputer - (sumBox - numberStudent));
-                    $(elementBoxs[j]).find(".numberReal").text(numberComputer - (sumBox - numberStudent));
-                    break;
+                if(subjectIndex > 0 && indexPeriod == periodCurrent && subjectIndex != subjectCurrent && me.checkConflicListSubject(listSubjectId, subject.SubjectID)){
+                    index++;
                 }else{
-                    $(elementBoxs[j]).data("sumStudent",numberComputer);
-                    $(elementBoxs[j]).find(".numberReal").text(numberComputer);
+                    me.listRoomCache[indexPeriod][indexBox].SubjectName = subject.SubjectName;
+
+                    sumBox += numberComputer;
+    
+                    $(elementBoxs[j]).css("background-color", subject.Color);
+                    $(elementBoxs[j]).data("subject", subject);
+                    $(elementBoxs[j]).data("subjectIndex", subjectIndex);
+                    
+                    index++;
+    
+                    if(periodCurrent == indexPeriod && !listSubjectId.includes(subject.SubjectID)){
+                        listSubjectId.push(subject.SubjectID);
+                    }else if (periodCurrent != indexPeriod){
+                        listSubjectId = [subject.SubjectID];
+                    }
+
+                    periodCurrent = indexPeriod;
+                    subjectCurrent = subjectIndex;
+
+                    if (sumBox >= numberStudent) {
+                        $(elementBoxs[j]).data("sumStudent",numberComputer - (sumBox - numberStudent));
+                        $(elementBoxs[j]).find(".numberReal").text(numberComputer - (sumBox - numberStudent));
+                        me.listRoomCache[indexPeriod][indexBox].NumberStudent = numberComputer - (sumBox - numberStudent);
+                        break;
+                    }else{
+                        $(elementBoxs[j]).data("sumStudent",numberComputer);
+                        $(elementBoxs[j]).find(".numberReal").text(numberComputer);
+                        me.listRoomCache[indexPeriod][indexBox].NumberStudent = numberComputer;
+                    }
                 }
             }
         });
+
+        // Render các ngày tháng
+        me.renderTimeExam();
+        // ẩn bớt các ca thi không dùng tới
+        me.hideRoomNotUse();
+        // Render lại các phòng thi
+        me.renderRooms();
+    }
+
+    // ẩn những ca không cần thiết
+    hideRoomNotUse(){
+        let me = this;
+
+        $(".content-header .item-rooms").each(function(index, value){
+            let itemRoom = $(this).find(".item-number").eq(0),
+                data = itemRoom.data("subject");
+
+            if(!data){
+                $(this).hide();
+            }
+        });
+
+    }
+
+    // Render các ngày tháng
+    renderTimeExam(){
+        let me = this,
+            listTime = me.listTimeCache;
+
+        $(".content-header .settingTime").each(function(index, element){
+            $(this).find(".datetimepicker").val(listTime[index].StartTime);
+            $(this).find(".endtime").text(listTime[index].EndTime);
+        });
+    }
+
+    // Reset lại phòng thi cho từng ca
+    resetRooms(){
+        let me = this;
+
+        for(let i = 0; i < me.listRoomCache.length; i++){
+            for(let j = 0; j < me.listRoomCache[i].length ; j++){
+                me.listRoomCache[i][j].SubjectName = "";
+                me.listRoomCache[i][j].NumberStudent = 0;
+            }
+        }
     }
 
     // Render danh sách các phòng thi
@@ -423,7 +523,9 @@ class CreateExamDetail {
 
             element.find(".item-name").text(item.RoomName);
             element.find(".item-location").text(item.Location);
-            element.find(".item-count").text(item.NumberComputer);
+            element.find(".item-subject").text(item.SubjectName);
+            element.find(".computer").text(item.NumberComputer);
+            element.find(".sv").text(item.NumberStudent);
             element.data("value", item);
 
             if (!item.IsShow) {
@@ -442,7 +544,7 @@ class CreateExamDetail {
 
         $(".listSubject").html("");
 
-        listSubjects.filter(function (item) {
+        listSubjects.filter(function (item, index) {
             let element = $(".subject-clone .itemSubject").clone(true);
 
             element.find(".item-name").text(item.SubjectName);
@@ -452,6 +554,7 @@ class CreateExamDetail {
             element.find(".square-color").css("background-color", item.Color);
 
             element.data("value", item);
+            element.find("input").data("index", index);
 
             $(".listSubject").append(element);
         });
@@ -492,26 +595,43 @@ class CreateExamDetail {
     }
 
     // Validate list time
-    // validateTimeRange(){
-    //     let me = this,
-    //         isValid = true,
-    //         check = true,
-    //         length = $(".listRoom2 .itemRoom2").length;
+    validateTimeRange(){
+        let me = this,
+            isValid = true,
+            check = true,
+            length = me.getSumPeriodReal();
 
-    //     for(var i = 0; i < length - 1; i++){
-    //         for(var j = i + 1; j < length; j++){
-    //             check = me.checkValidTwoDateRange(me.listTimeCache[i], me.listTimeCache[j]);
+        for(var i = 0; i < length - 1; i++){
+            for(var j = i + 1; j < length; j++){
+                check = me.checkValidTwoDateRange(me.listTimeCache[i], me.listTimeCache[j]);
 
-    //             if(check == false){
-    //                 isValid = false;
-    //                 me.showMessageError("Thời gian không hợp lệ!");
-    //                 break;
-    //             }
-    //         }
-    //     }
+                if(check == false){
+                    isValid = false;
+                    me.showMessageError("Thời gian không hợp lệ!");
+                    break;
+                }
+            }
+        }
 
-    //     return isValid;
-    // }
+        return isValid;
+    }
+
+    // Lấy số ca thi thực thế
+    getSumPeriodReal(){
+        let me = this,
+            sum = 0;
+
+        $(".content-header .item-rooms").each(function(index, value){
+            let itemRoom = $(this).find(".item-number").eq(0),
+                data = itemRoom.data("subject");
+
+            if(data){
+                sum++;
+            }
+        });
+
+        return sum;
+    }
 
     // Validate cần phải thiết lập thời gian
     validateTime(){
@@ -562,54 +682,25 @@ class CreateExamDetail {
     }
 
     // Validate các thông tin thời gian
-    // validateDateRequire(){
-    //     let me = this,
-    //         isValid = true;
+    validateDateRequire(){
+        let me = this,
+            isValid = true;
 
-    //     $(".listRoom2 input").each(function(index, value){
-    //         let val = $(this).val();
+        $(".content-header .item-rooms").each(function(index, value){
+            let itemRoom = $(this).find(".item-number").eq(0),
+                data = itemRoom.data("subject");
 
-    //         if(!val){
-    //             isValid = false;
-    //             me.showMessageError("Vui lòng điền đầy đủ thời gian!");
-    //         }
-    //     });
+            if(data){
+                let val = $(this).find("input").val();
+                if(!val){
+                    isValid = false;
+                    me.showMessageError("Vui lòng điền đầy đủ thời gian!");
+                }
+            }
+        });
 
-    //     return isValid;
-    // }
-
-    // Render bảng thời gian của các ca thi
-    // renderPeriodTime(){
-    //     let me = this;
-
-    //     $(".listRoom2").html("");
-
-    //     $(".content-header .item-rooms").each(function(index, value){
-    //         let itemRoom = $(this).find(".item-number").eq(0),
-    //             data = itemRoom.data("subject");
-
-    //         if(data){
-
-    //             let element = $(".roomTime-clone2 .itemRoom2").clone(true),
-    //                 periodIndex = index + 1;
-
-    //             element.find(".item-name").text("Ca " + periodIndex);
-    //             element.find("input").attr("class","classDatepicker" + periodIndex);
-    //             element.find("input").data("index", index);
-    //             element.find("input").val(me.listTimeCache[index].StartTime);
-    //             element.find(".item-endTime").text(me.listTimeCache[index].EndTime);
-
-    //             $(".listRoom2").append(element);
-
-    //             $(".classDatepicker" + periodIndex).datetimepicker({
-    //                 format:'d/m/Y H:i',
-    //                 defaultTime:'07:00',
-    //                 step:30,
-    //                 timeFormat: 'HH:mm'
-    //             });
-    //         }
-    //     });
-    // }
+        return isValid;
+    }
 
     // Hàm lấy số phút tối đa
     getMaximunMinus(index){
@@ -641,6 +732,7 @@ class CreateExamDetail {
             dataRow.SortOrder = index + 1;
             dataArr.push(dataRow);
             $(this).data("value", dataRow);
+            $(this).find("input").data("index", index);
         });
     
         me.listSubjects = dataArr;
@@ -653,7 +745,7 @@ class CreateExamDetail {
 
         me.listRoomCache = [];
     
-        for(var i = 0; i < listRooms.length*2 ; i++){
+        for(var i = 0; i <= me.listSubjects.length * 2 ; i++){
             var obj = JSON.parse(JSON.stringify(listRooms)),
                 objTime = {
                     StartTime: "",
