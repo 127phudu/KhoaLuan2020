@@ -1,0 +1,7 @@
+.grid-wrapper1 {
+    height: 30%;
+}
+
+.grid-wrapper2 {
+    height: calc(70% - 240px);
+}

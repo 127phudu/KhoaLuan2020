@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Thiết lập phòng thi</title>
+    <title>Danh sách học phần - Sinh viên</title>
     <link rel="shortcut icon" href="../Content/Images/vnuLogo.png">
     <link rel="stylesheet" href="../Script/Library/bootstrap-3.4.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
+    <link rel="stylesheet" href="../Content/CSS/View/MappingManager.css">
 </head>
 
 <body>
@@ -51,12 +52,12 @@
                             <span>Danh sách học phần - SV</span>
                         </a>
                     </li>
-                    <li class="flex item-2 submenu-item  hover-color" key="SettingRoom">
+                    <li class="flex item-2 submenu-item" key="SettingRoom">
                         <a href="#" class="tabLeft">
                             <span>Thiết lập phòng thi</span>
                         </a>
                     </li>
-                    <li class="flex item-3 submenu-item" key="MappingManager">
+                    <li class="flex item-3 submenu-item hover-color" key="MappingManager">
                         <a href="#" class="tabLeft">
                             <span>Điều hướng máy chủ</span>
                         </a>
@@ -113,114 +114,110 @@
             <div class="body-right flex1 main-content">
 
                 <!-- Nội dung thay thế từng trang -->
-                <div class="container-fluid" id="GridRoomSettingContainer">
-
+                <div class="container-fluid" id="SubjectContainer">
                     <div class="row breadrum">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Quản lý kì thi</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Thiết lập phòng thi
+                                <li class="breadcrumb-item active" aria-current="page">Điều hướng máy chủ
                                 </li>
                             </ol>
                         </nav>
                     </div>
 
-                    <div class="row header-title header-title-combo">
+                    <div class="row header-title header-title-combo" Layout="Master">
                         <select class="speed combox-select" aria-placeholder="Chọn kì thi..." DataType="EnumCombobox"
                             id="chooseExam">
                         </select>
                     </div>
 
+                    <div class="row header-title">
+                        <span class="float-left">DANH SÁCH CÁC SERVER</span>
+                    </div>
+
+                    <!-- Grid  -->
+                    <div class="grid-wrapper grid-wrapper1" Layout="Master">
+                        <div class="row" Layout="Master">
+                            <div class="col-xl-12">
+                                <div class="Grid" id="GridListServer" useIndex="true">
+                                    <div class="column" setField="Id">Định danh</div>
+                                    <div class="column" setField="Address">Địa chỉ</div>
+                                    <div class="column" setField="NumberOfStudent">Tổng số sinh viên các môn</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row header-title" Layout="Detail" style="display: block;">
+                        <span>DANH SÁCH CÁC MÔN VÀ MÁY CHỦ QUẢN LÝ</span>
+                    </div>
+
                     <!-- Toolbar -->
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="toolbar" id="ToolbarGridRoomSetting">
-                                <div class="toolbar-item" CommanName='Choose'>
-                                    <span class="icon-toolbar glyphicon glyphicon-plus"></span>
-                                    <span class="text-toolbar">Chọn phòng thi</span>
-                                </div>
+                            <div class="toolbar" id="ToolbarGridMapping">
                                 <div class="toolbar-item" CommanName='Save'>
                                     <span class="icon-toolbar glyphicon glyphicon-download-alt"></span>
                                     <span class="text-toolbar">Cất</span>
                                 </div>
                                 <div class="toolbar-item" CommanName='Setting'>
                                     <span class="icon-toolbar glyphicon glyphicon-edit"></span>
-                                    <span class="text-toolbar">Thiết lập số máy</span>
+                                    <span class="text-toolbar">Thiết lập máy chủ</span>
                                 </div>
-                                <div class="toolbar-item" CommanName='Delete'>
-                                    <span class="icon-toolbar glyphicon glyphicon-trash"></span>
-                                    <span class="text-toolbar">Xóa</span>
-                                </div>
-                                <div class="toolbar-item" CommanName='Export'>
-                                    <span class="icon-toolbar glyphicon glyphicon-cloud-download"></span>
-                                    <span class="text-toolbar">Xuất khẩu</span>
+                                <div class="toolbar-item" CommanName='AutoSet'>
+                                    <span class="icon-toolbar glyphicon glyphicon-edit"></span>
+                                    <span class="text-toolbar">Tự thiết lập máy chủ</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Grid  -->
-                    <div class="grid-wrapper">
+                    <div class="grid-wrapper grid-wrapper2">
                         <div class="row">
                             <div class="col-xl-12">
-                                <div class="Grid" id="GridRoomSetting" useCheckBox='true' useIndex="true">
-                                    <div class="column" setField="RoomName">Tên phòng</div>
-                                    <div class="column" setField="RoomCode">Mã phòng</div>
-                                    <div class="column" setField="Location">Khu vực</div>
-                                    <div class="column" setField="Description">Mô tả</div>
-                                    <div class="column" setField="NumberOfComputer" dataType="Number" allowEdit="true">
-                                        Số máy
-                                        hiện
-                                        có</div>
-                                    <div class="column" setField="PreventiveComputer" dataType="Number"
-                                        allowEdit="true">Số
-                                        máy
-                                        dự phòng</div>
+                                <div class="Grid" id="GridMapping" useIndex="true">
+                                    <div class="column" setField="SubjectName">Tên môn</div>
+                                    <div class="column" setField="NumberOfStudent">Số sinh viên</div>
+                                    <div class="column" setField="ServerId" dataType="Number" allowEdit="true">
+                                        Định danh máy chủ
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Paging -->
+<!--                    <div class="row">-->
+<!--                        <div class="col-xl-12">-->
+<!--                            <div class="paging" id="paging-GridMapping">-->
+<!--                                <div class="paging-left float-left flex">-->
+<!--                                    <div class="icon-paging icon-first" title="Trang đầu"></div>-->
+<!--                                    <div class="icon-paging icon-pre" title="Trang trước"></div>-->
+<!--                                    <div class="paging-text1">Trang</div>-->
+<!--                                    <input type="text" class="page-number" value="1">-->
+<!--                                    <div class="paging-text1">Trên <span class="totalPage">2</span></div>-->
+<!--                                    <div class="icon-paging icon-next" title="Trang sau"></div>-->
+<!--                                    <div class="icon-paging icon-last" title="Trang cuối"></div>-->
+<!--                                    <div class="paging-text1">Số dòng</div>-->
+<!--                                    <select class="page-Size">-->
+<!--                                        <option value="15">15</option>-->
+<!--                                        <option value="30">30</option>-->
+<!--                                        <option value="50">50</option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
+<!--                                <div class="paging-right float-right flex">-->
+<!--                                    <div class="content-paging-right">-->
+<!--                                        Hiển thị <span class="startIndex">1</span> - <span class="end-Index">10</span>-->
+<!--                                        trên <span class="total-record">12</span> kết quả-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
                 </div>
                 <!-- end content -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Form thêm mới Học phần -->
-    <div class="wrapper-form">
-        <div class="formDialog" id="formRoom">
-
-            <!-- Header form -->
-            <div class="header-form">
-                Chọn danh sách phòng thi
-            </div>
-
-            <!-- Body form -->
-            <div class="body-form">
-                <div class="body-wrapper">
-                    <div class="row">
-                        <div class="col-md-12 row-custom">
-                            <div class="Grid" id="GridRoom" useCheckBox='true' useIndex="true">
-                                <div class="column" setField="RoomName">Tên phòng</div>
-                                <div class="column" setField="RoomCode">Mã phòng</div>
-                                <div class="column" setField="Location">Khu vực</div>
-                                <div class="column" setField="Description">Mô tả</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer form -->
-            <div class="footer-form" id="ToolbarChooseRoom">
-                <div class="btn-cancel">
-                    <span class="glyphicon glyphicon-remove"></span>
-                    <span>HỦY BỎ</span>
-                </div>
-                <div class="btn-save" CommanName='ChooseSave'>
-                    <span class="glyphicon glyphicon-save"></span>
-                    <span>CẤT</span>
-                </div>
             </div>
         </div>
     </div>
@@ -279,36 +276,6 @@
         <strong>Cất dữ liệu thành công! </strong>
     </div>
 
-    <!-- Form xác nhận xóa -->
-    <div id="myModal" class="modal fade">
-        <div class="modal-dialog modal-confirm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="header-delete">XÁC NHẬN XÓA</h4>
-                    <h4 class="modal-title">Bạn có muốn xóa các bản ghi đã chọn?</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">HỦY BỎ</button>
-                    <button type="button" id="btn-Delete" class="btn btn-danger">XÓA</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Form cảnh báo xóa -->
-    <div id="myModalWarning" class="modal fade">
-        <div class="modal-dialog modal-confirm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="header-delete">CẢNH BÁO</h4>
-                    <h4 class="modal-title">Bản ghi đã phát sinh dữ liệu liên quan nên không thể xóa!</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">ĐỒNG Ý</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Script library -->
     <script src="../Script/Library/jquery.min.js"></script>
@@ -321,14 +288,12 @@
     <script src="../Script/Common/Master.js"></script>
     <script src="../Script/Base/Grid.js"></script>
     <script src="../Script/Base/BaseGrid.js"></script>
-    <script src="../Script/Base/BaseDetail.js"></script>
     <script src="../Script/Base/BaseForm.js"></script>
 
     <!-- Script từng page -->
-    <script src="../Script/Import/ImportForm.js"></script>
-    <script src="../Script/Form/ChooseRoomForm.js"></script>
     <script src="../Script/Form/ChangePasswordForm.js"></script>
-    <script src="../Script/View/RoomSetting.js"></script>
+    <script src="../Script/View/ServerDetail.js"></script>
+    <script src="../Script/View/MappingManager.js"></script>
 </body>
 
 </html>

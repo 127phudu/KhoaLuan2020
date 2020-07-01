@@ -37,7 +37,7 @@ class Grid{
 
         // Kiểm tra xem có dùng cột số thứ tự không
         if(this.useIndex == "true"){
-            row.prepend("<th class='text-align-right'>STT</th>");
+            row.prepend("<th class='text-align-left'>STT</th>");
         }
 
         // Kiểm tra xem có dùng checkbox không
@@ -100,7 +100,7 @@ class Grid{
 
         // Kiểm tra xem có dùng cột số thứ tự không
         if(this.useIndex){
-            row.prepend("<td class='text-align-right index'></td>");
+            row.prepend("<td class='text-align-left index'></td>");
         }
         // Kiểm tra xem có dùng checkbox không
         if(this.useCheckBox){

@@ -225,6 +225,7 @@ Constant.url = {
     ExamRegisterResult: "http://localhost/KhoaLuan2020/View/ExamRegisterResult.html",
 
     ServerManager: "http://localhost/KhoaLuan2020/View/ServerManager.html",
+    MappingManager: "http://localhost/KhoaLuan2020/View/MappingManager.html"
 }
 
 // pagin phân trang

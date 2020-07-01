@@ -99,10 +99,20 @@ var mappingApi = {
         urlExport: "http://admin.dkt.vnu.edu.vn:8881/admin/student_subject_exam/export/subject_semester/{0}"
     },
 
-    Servers:{ // Phòng thi
+    Servers:{ // Máy chủ
         urlGetData: "http://localhost:8882/server/listForAdmin",
         urlCreate: "http://localhost:8882/server",
         urlUpdate: "http://localhost:8882/server",
         urlDelete: "http://localhost:8882/server",
+    },
+
+    Mapping:{
+        urlGetData: "http://localhost:8882/mapping/listForAdmin/semester/{0}",
+        urlUpdate: "http://localhost:8882/mapping/updateList/",
+        autoSetMapping: "http://localhost:8882/mapping/autoSet/semester/{0}",
+    },
+
+    ServerDetail:{
+        urlGetData: "http://localhost:8882/server/listDetailForAdmin/semester/{0}",
     },
 }
