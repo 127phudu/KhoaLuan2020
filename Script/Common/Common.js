@@ -212,17 +212,19 @@ var Constant = Constant || {};
 
 // Các url để chuyển hướng
 Constant.url = {
-    Login: "file:///D:/KhoaLuan2020/Index.html",
+    Login: "http://localhost/KhoaLuan2020/Index.html",
 
-    StudentManager: "file:///D:/KhoaLuan2020/View/StudentManager.html",
-    SubjectManager: "file:///D:/KhoaLuan2020/View/SubjectManager.html",
-    RoomManager:"file:///D:/KhoaLuan2020/View/RoomManager.html",
-    SemesterManager: "file:///D:/KhoaLuan2020/View/SemesterManager.html",
+    StudentManager: "http://localhost/KhoaLuan2020/View/StudentManager.html",
+    SubjectManager: "http://localhost/KhoaLuan2020/View/SubjectManager.html",
+    RoomManager:"http://localhost/KhoaLuan2020/View/RoomManager.html",
+    SemesterManager: "http://localhost/KhoaLuan2020/View/SemesterManager.html",
 
-    SubjectSemester: "file:///D:/KhoaLuan2020/View/SubjectSemester.html",
-    SettingRoom: "file:///D:/KhoaLuan2020/View/RoomSetting.html",
-    CreateExam: "file:///D:/KhoaLuan2020/View/CreateExam.html",
-    ExamRegisterResult: "file:///D:/KhoaLuan2020/View/ExamRegisterResult.html"
+    SubjectSemester: "http://localhost/KhoaLuan2020/View/SubjectSemester.html",
+    SettingRoom: "http://localhost/KhoaLuan2020/View/RoomSetting.html",
+    CreateExam: "http://localhost/KhoaLuan2020/View/CreateExam.html",
+    ExamRegisterResult: "http://localhost/KhoaLuan2020/View/ExamRegisterResult.html",
+
+    ServerManager: "http://localhost/KhoaLuan2020/View/ServerManager.html",
 }
 
 // pagin phân trang

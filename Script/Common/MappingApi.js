@@ -97,5 +97,12 @@ var mappingApi = {
     ExamRegisterResultDetail: { // Lấy danh sách xem chi tiết
         urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/student_subject_exam/subject_semester/{0}", 
         urlExport: "http://admin.dkt.vnu.edu.vn:8881/admin/student_subject_exam/export/subject_semester/{0}"
-    }
+    },
+
+    Servers:{ // Phòng thi
+        urlGetData: "http://localhost:8882/server/listForAdmin",
+        urlCreate: "http://localhost:8882/server",
+        urlUpdate: "http://localhost:8882/server",
+        urlDelete: "http://localhost:8882/server",
+    },
 }
