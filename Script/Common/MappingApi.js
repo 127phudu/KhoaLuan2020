@@ -110,6 +110,7 @@ var mappingApi = {
         urlGetData: "http://localhost:8882/mapping/listForAdmin/semester/{0}",
         urlUpdate: "http://localhost:8882/mapping/updateList/",
         autoSetMapping: "http://localhost:8882/mapping/autoSet/semester/{0}",
+        evictCache: "http://localhost:8882/mapping/emptyCache",
     },
 
     ServerDetail:{

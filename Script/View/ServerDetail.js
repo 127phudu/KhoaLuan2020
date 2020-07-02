@@ -1,6 +1,5 @@
 //Class quản lý server detail
 class ServerDetail extends BaseGrid {
-
     // Hàm khởi tạo grid
     constructor(gridId) {
         super(gridId);
@@ -26,10 +25,20 @@ class ServerDetail extends BaseGrid {
                 if(response.status == Enum.StatusResponse.Success){
                     me.loadData(response.data["ServerDetail"]);
                     me.editMode = Enum.EditMode.View;
+                    me.createListServerId(response.data["ServerDetail"]);
                     $(".grid-wrapper").removeClass("loading");
                 }
             });
         }
+    }
+
+    //Tạo danh sách các ServerId
+    createListServerId(listServer) {
+        let me = this;
+        me.listServerId = [0];
+        listServer.forEach(function (server) {
+            me.listServerId.push(server.Id);
+        })
     }
 
     // Khởi tạo một số sự kiện

@@ -92,6 +92,7 @@ class MappingManagerPage extends BaseGrid {
                         me.grid.find("input").addClass("notEdit");
                         me.setStatusToolbar();
                         serverDetail.loadAjaxData();
+                        me.evictCacheMappingServer();
                     }
                 });
             }
@@ -102,19 +103,25 @@ class MappingManagerPage extends BaseGrid {
     validatSave(){
         let me = this,
             patt = new RegExp("^[0-9]*$"),
-            isValid = true;
+            isValid = true,
+            listServerId = serverDetail.listServerId;
 
         me.grid.find("input").each(function(){
             let value = $(this).val();
+
 
             if(!patt.test(value) || !value){
                 $(this).addClass("inputError");
                 $(this).attr("title", "Dữ liệu không hợp lệ!");
                 isValid = false;
-            }else{
+            } else if (listServerId.indexOf(parseInt(value)) == -1) {
+                $(this).addClass("inputError");
+                $(this).attr("title", "Định danh không tồn tại");
+                isValid = false;
+            } else {
                 $(this).removeClass("inputError");
-                $(this).attr("title", "Vui lòng nhập số lượng máy!");
             }
+
         });
 
         return isValid;
@@ -134,6 +141,7 @@ class MappingManagerPage extends BaseGrid {
                 serverDetail.loadAjaxData();
                 me.loadAjaxData();
                 me.setStatusToolbar();
+                me.evictCacheMappingServer();
             }
         });
     }
@@ -152,6 +160,11 @@ class MappingManagerPage extends BaseGrid {
         });
 
         return data;
+    }
+
+    //evict cache cho MappingServer
+    evictCacheMappingServer() {
+        CommonFn.PostPutAjax("Delete", mappingApi.Mapping.evictCache, null, function () {});
     }
 
     // Lấy các button bị disable
@@ -178,6 +191,12 @@ class MappingManagerPage extends BaseGrid {
         };
 
         return object;
+    }
+
+    // Hàm chạy khi load data xong
+    loadDataComplete(){
+        let me = this;
+        me.grid.find("input").on("blur",me.validatSave.bind(me));
     }
 }
 
