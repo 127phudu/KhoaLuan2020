@@ -77,6 +77,8 @@ class SemesterManagerPage extends BaseGrid {
                 if(response.status == Enum.StatusResponse.Success){
                     me.showMessageSuccess("Thiết lập thành công!");
                     me.loadAjaxData();
+                }else{
+                    me.showMessageError("Không thể đăng ký hai kì thi một thời điểm!");
                 }
             });
         }

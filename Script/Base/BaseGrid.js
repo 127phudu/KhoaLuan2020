@@ -262,6 +262,18 @@ class BaseGrid extends Grid{
         });
     }
 
+    // Hiển thị thông báo cất thành công
+    showMessageError(customMessage){
+        let message = customMessage || "Đã có lỗi xảy ra!";
+
+        $("#error-alert strong").text(message);
+
+        $("#error-alert").fadeTo(2500, 800).slideUp(800, function(){
+            $("#error-alert").slideUp(800);
+        });
+    }
+
+
     // Thay đổi kích thước một trang
     changePageSize(){
         let me = this;
