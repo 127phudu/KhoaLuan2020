@@ -1,4 +1,4 @@
-// Form thêm , sửa, xóa Phòng thi
+// Form thêm, sửa, xóa Server
 class ServerManagerForm extends BaseForm {
 
     // Hàm khởi tạo
